@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "750529344565",
+    "firebase_url": "https://dateme-f8ef6.firebaseio.com",
+    "project_id": "dateme-f8ef6",
+    "storage_bucket": "dateme-f8ef6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:750529344565:android:f54586bb221a690befad7c",
+        "android_client_info": {
+          "package_name": "phu.nguyen.dateme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "750529344565-vi48ga8ephh236t7e8ttcmjpqvtmt8f5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "phu.nguyen.dateme",
+            "certificate_hash": "8cc571207dd6b11c9bb7561bcf8baddcb0aa2823"
+          }
+        },
+        {
+          "client_id": "750529344565-b2dtqenfvnb3ra71s7nc3kbpj8qm9h92.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpjIeRAOE4oA-7EA6XMj_hGxAYzv-gcNw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "750529344565-b2dtqenfvnb3ra71s7nc3kbpj8qm9h92.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
