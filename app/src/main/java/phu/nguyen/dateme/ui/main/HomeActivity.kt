@@ -1,4 +1,4 @@
-package phu.nguyen.dateme.ui.main.view
+package phu.nguyen.dateme.ui.main
 
 import android.os.Bundle
 import android.view.MenuItem

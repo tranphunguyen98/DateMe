@@ -1,4 +1,4 @@
-package phu.nguyen.dateme.ui.main.view.dashboard
+package phu.nguyen.dateme.ui.dashboard
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -1,13 +1,13 @@
-package phu.nguyen.dateme.ui.main.view.explore
+package phu.nguyen.dateme.ui.profile
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class ExploreViewModel : ViewModel() {
+class ProfileViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is explore Fragment"
+        value = "This is profile Fragment"
     }
     val text: LiveData<String> = _text
 }

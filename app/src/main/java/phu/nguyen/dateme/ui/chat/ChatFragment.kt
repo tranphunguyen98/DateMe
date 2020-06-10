@@ -1,4 +1,4 @@
-package phu.nguyen.dateme.ui.main.view.profile
+package phu.nguyen.dateme.ui.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater

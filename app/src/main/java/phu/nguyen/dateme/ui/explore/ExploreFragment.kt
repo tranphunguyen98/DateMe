@@ -1,4 +1,4 @@
-package phu.nguyen.dateme.ui.main.view.explore
+package phu.nguyen.dateme.ui.explore
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,9 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import phu.nguyen.dateme.R
-import phu.nguyen.dateme.ui.main.view.dashboard.DashboardViewModel
+import phu.nguyen.dateme.ui.dashboard.DashboardViewModel
 
-class DashboardFragment : Fragment() {
+class ExploreFragment : Fragment() {
 
     private lateinit var dashboardViewModel: DashboardViewModel
 
@@ -22,8 +22,8 @@ class DashboardFragment : Fragment() {
     ): View? {
         dashboardViewModel =
             ViewModelProviders.of(this).get(DashboardViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
+        val root = inflater.inflate(R.layout.fragment_explore, container, false)
+        val textView: TextView = root.findViewById(R.id.text_explore)
         dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })

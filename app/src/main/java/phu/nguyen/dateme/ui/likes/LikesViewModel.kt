@@ -1,13 +1,13 @@
-package phu.nguyen.dateme.ui.main.view.profile
+package phu.nguyen.dateme.ui.likes
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class ChatViewModel : ViewModel() {
+class LikesViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is chat Fragment"
+        value = "This is likes Fragment"
     }
     val text: LiveData<String> = _text
 }

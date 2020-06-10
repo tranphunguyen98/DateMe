@@ -6,24 +6,24 @@
     app:startDestination="@id/navigation_dashboard">
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="phu.nguyen.dateme.ui.main.view.profile.ProfileFragment"
+        android:name="phu.nguyen.dateme.ui.profile.ProfileFragment"
         android:label="ProfileFragment" />
     <fragment
         android:id="@+id/navigation_explore"
-        android:name="phu.nguyen.dateme.ui.main.view.explore.ExploreFragment"
+        android:name="phu.nguyen.dateme.ui.explore.ExploreFragment"
         android:label="fragment_explore"
         tools:layout="@layout/fragment_explore" />
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="phu.nguyen.dateme.ui.main.view.explore.DashboardFragment"
+        android:name="phu.nguyen.dateme.ui.explore.DashboardFragment"
         android:label="DashboardFragment" />
     <fragment
         android:id="@+id/navigation_likes"
-        android:name="phu.nguyen.dateme.ui.main.view.likes.LikesFragment"
+        android:name="phu.nguyen.dateme.ui.likes.LikesFragment"
         android:label="fragment_likes"
         tools:layout="@layout/fragment_likes" />
     <fragment
         android:id="@+id/navigation_chat"
-        android:name="phu.nguyen.dateme.ui.main.view.profile.ChatFragment"
+        android:name="phu.nguyen.dateme.ui.profile.ChatFragment"
         android:label="ChatFragment" />
 </navigation>
