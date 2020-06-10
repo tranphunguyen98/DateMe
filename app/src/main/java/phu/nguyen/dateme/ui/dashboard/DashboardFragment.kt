@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
+import com.yuyakaido.android.cardstackview.Direction
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import phu.nguyen.dateme.R
 
@@ -37,15 +38,16 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         setUpCardStackView(view)
-        activity?.actionBar?.hide()
 
         super.onViewCreated(view, savedInstanceState)
     }
 
     private fun setUpCardStackView(view: View) {
+        val cardManager = CardStackLayoutManager(view.context)
+        cardManager.setDirections(Direction.FREEDOM)
 
         with(card_swipe_stack) {
-            layoutManager = CardStackLayoutManager(activity)
+            layoutManager = cardManager
             adapter = CardSwipeStackAdapter(listImageSwipe)
             isNestedScrollingEnabled = true
             addOnItemTouchListener(object: RecyclerView.OnItemTouchListener {

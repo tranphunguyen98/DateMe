@@ -37,6 +37,21 @@
             />
     </FrameLayout>
 
+    <FrameLayout
+        android:id="@+id/top_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="5dp">
+
+        <ImageView
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:layout_marginBottom="220dp"
+            android:layout_gravity="bottom|center"
+            android:src="@drawable/thumbs_up_128dp"
+            />
+    </FrameLayout>
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -51,7 +66,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/image_avatar2" />
+            android:src="@drawable/image_avatar1" />
     </androidx.cardview.widget.CardView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -66,6 +81,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="21"
+            android:elevation="5dp"
+
             android:textSize="32sp"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/textView3"
@@ -76,12 +93,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cách xa 10Km"
+            android:elevation="5dp"
             android:textSize="20sp"
             android:layout_marginStart="16dp"
             android:textColor="@color/white"
             android:layout_marginBottom="80dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" />
 
         <TextView
             android:id="@+id/textView3"
@@ -91,10 +115,23 @@
             android:layout_marginBottom="8dp"
             android:text="Lyly, "
             android:textColor="@color/white"
+            android:elevation="5dp"
+
             android:textSize="32sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/textView"
             app:layout_constraintStart_toStartOf="@+id/textView" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/gradient_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_age" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
