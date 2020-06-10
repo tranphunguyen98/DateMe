@@ -16,7 +16,11 @@
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="phu.nguyen.dateme.ui.dashboard.DashboardFragment"
-        android:label="DashboardFragment" />
+        android:label="DashboardFragment" >
+        <action
+            android:id="@+id/action_navigation_dashboard_to_swipeProfileFragment"
+            app:destination="@id/swipeProfileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_likes"
         android:name="phu.nguyen.dateme.ui.likes.LikesFragment"
@@ -26,4 +30,13 @@
         android:id="@+id/navigation_chat"
         android:name="phu.nguyen.dateme.ui.profile.ChatFragment"
         android:label="ChatFragment" />
+    <fragment
+        android:id="@+id/swipeProfileFragment"
+        android:name="phu.nguyen.dateme.ui.swipeProfile.SwipeProfileFragment"
+        android:label="swipe_profile_fragment"
+        tools:layout="@layout/swipe_profile_fragment" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
 </navigation>

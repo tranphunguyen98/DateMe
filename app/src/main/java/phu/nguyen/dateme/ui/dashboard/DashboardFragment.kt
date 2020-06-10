@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.Direction
@@ -48,7 +50,14 @@ class DashboardFragment : Fragment() {
 
         with(card_swipe_stack) {
             layoutManager = cardManager
-            adapter = CardSwipeStackAdapter(listImageSwipe)
+            adapter = CardSwipeStackAdapter(listImageSwipe) {viewpager, position ->
+                val extras = FragmentNavigatorExtras(
+                    viewpager to  "viewpager_dashboard$position"
+                )
+                val action = DashboardFragmentDirections.actionNavigationDashboardToSwipeProfileFragment("viewpager_dashboard$position")
+
+                findNavController().navigate(action, extras)
+            }
             isNestedScrollingEnabled = true
             addOnItemTouchListener(object: RecyclerView.OnItemTouchListener {
                 override fun onTouchEvent(rv: RecyclerView, e: MotionEvent) {
