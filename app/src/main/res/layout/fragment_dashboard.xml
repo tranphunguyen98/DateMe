@@ -6,17 +6,114 @@
     android:layout_height="match_parent"
     tools:context=".ui.dashboard.DashboardFragment">
 
-    <TextView
-        android:id="@+id/text_dashboard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+    <com.yuyakaido.android.cardstackview.CardStackView
+        android:id="@+id/card_swipe_stack"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/round_button_gray"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="6dp"
+        android:src="@drawable/ic_filter_list_black_24"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/img_replay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="88dp"
+        android:background="@drawable/round_button_black"
+        android:clickable="true"
+        android:elevation="10dp"
+        android:focusable="true"
+        android:padding="4dp"
+        android:src="@drawable/ic_replay_green_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/img_cancel"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/card_swipe_stack"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/img_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_button_black"
+        android:clickable="true"
+        android:elevation="10dp"
+        android:focusable="true"
+        android:padding="4dp"
+        android:src="@drawable/ic_cancel_pink_24"
+        app:layout_constraintBottom_toBottomOf="@+id/img_replay"
+        app:layout_constraintEnd_toStartOf="@+id/img_star"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/img_replay"
+        app:layout_constraintTop_toTopOf="@+id/img_replay" />
+
+    <ImageView
+        android:id="@+id/img_star"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_button_black"
+        android:clickable="true"
+        android:elevation="10dp"
+        android:focusable="true"
+        android:padding="4dp"
+        android:src="@drawable/ic_star_blue_36"
+        app:layout_constraintBottom_toBottomOf="@+id/img_replay"
+        app:layout_constraintEnd_toStartOf="@+id/img_match"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/img_cancel"
+        app:layout_constraintTop_toTopOf="@+id/img_replay"
+        app:layout_constraintVertical_bias="0.461" />
+
+    <ImageView
+        android:id="@+id/img_match"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_button_black"
+        android:clickable="true"
+        android:elevation="10dp"
+        android:focusable="true"
+        android:padding="4dp"
+        android:src="@drawable/ic_favorite_pink_48"
+        app:layout_constraintBottom_toBottomOf="@+id/img_replay"
+        app:layout_constraintEnd_toStartOf="@+id/img_speed"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/img_star"
+        app:layout_constraintTop_toTopOf="@+id/img_replay"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/img_speed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_button_black"
+        android:clickable="true"
+        android:elevation="10dp"
+        android:focusable="true"
+        android:padding="4dp"
+        android:src="@drawable/ic_flash_on_green_24"
+        app:layout_constraintBottom_toBottomOf="@+id/img_replay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/img_match"
+        app:layout_constraintTop_toTopOf="@+id/img_replay"
+        app:layout_constraintVertical_bias="0.0" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

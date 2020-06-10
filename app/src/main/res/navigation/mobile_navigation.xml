@@ -15,7 +15,7 @@
         tools:layout="@layout/fragment_explore" />
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="phu.nguyen.dateme.ui.explore.DashboardFragment"
+        android:name="phu.nguyen.dateme.ui.dashboard.DashboardFragment"
         android:label="DashboardFragment" />
     <fragment
         android:id="@+id/navigation_likes"
