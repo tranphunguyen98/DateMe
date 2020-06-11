@@ -41,6 +41,8 @@ class DashboardFragment : Fragment() {
 
         setUpCardStackView(view)
 
+        dashboardViewModel.getData()
+
         super.onViewCreated(view, savedInstanceState)
     }
 
