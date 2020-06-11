@@ -6,16 +6,22 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.Direction
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import phu.nguyen.dateme.R
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class DashboardFragment : Fragment() {
+
+    @Inject
+    lateinit var factory: DashboardViewModelFactory
 
     private lateinit var dashboardViewModel: DashboardViewModel
 
@@ -32,8 +38,7 @@ class DashboardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         dashboardViewModel =
-            ViewModelProviders.of(this).get(DashboardViewModel::class.java)
-
+            ViewModelProvider(this,factory).get(DashboardViewModel::class.java)
         return inflater.inflate(R.layout.fragment_dashboard, container, false)
     }
 

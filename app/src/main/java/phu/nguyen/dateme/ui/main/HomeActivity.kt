@@ -2,15 +2,15 @@ package phu.nguyen.dateme.ui.main
 
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
 import phu.nguyen.dateme.R
 
-
+@AndroidEntryPoint
 class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {

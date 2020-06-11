@@ -7,9 +7,10 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import phu.nguyen.dateme.remote.model.NetworkProfile
+import javax.inject.Inject
 import kotlinx.coroutines.tasks.await as myAwait
 
-class ProfileService {
+class ProfileService @Inject constructor(){
     init {
         Log.d("testInit", "ProfileService")
     }

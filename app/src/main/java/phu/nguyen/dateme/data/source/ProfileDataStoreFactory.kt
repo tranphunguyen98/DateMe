@@ -1,11 +1,12 @@
 package phu.nguyen.dateme.data.source
 
 import phu.nguyen.dateme.data.repository.ProfileDataStore
+import javax.inject.Inject
 
 /**
  * Create an instance of a ProfileDataStore
  */
-class ProfileDataStoreFactory(
+class ProfileDataStoreFactory @Inject constructor(
     private val profileCacheDataStore: ProfileCacheDataStore,
     private val profileRemoteDataStore: ProfileRemoteDataStore
 ) {

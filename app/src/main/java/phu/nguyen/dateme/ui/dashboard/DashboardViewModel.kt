@@ -6,38 +6,38 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import phu.nguyen.dateme.data.ProfileDataRepository
-import phu.nguyen.dateme.data.source.ProfileCacheDataStore
-import phu.nguyen.dateme.data.source.ProfileDataStoreFactory
-import phu.nguyen.dateme.data.source.ProfileRemoteDataStore
-import phu.nguyen.dateme.remote.ProfileRemoteImpl
-import phu.nguyen.dateme.remote.ProfileService
+import phu.nguyen.dateme.data.ProfileRepository
 import phu.nguyen.dateme.remote.mapper.NetworkProfileMapper
+import javax.inject.Inject
 
-class DashboardViewModel : ViewModel() {
+class DashboardViewModel(private val profileRepository: ProfileRepository) : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is dashboard Fragment"
     }
+
+    @Inject
+    lateinit var networkProfileMapper: NetworkProfileMapper
 
     val text: LiveData<String> = _text
     fun getData() {
         viewModelScope.launch {
             Log.d("testCoroutine", Thread.currentThread().name)
             Log.d("testRemote", "DashboardViewModel")
-            val profiles = ProfileDataRepository(
-                ProfileDataStoreFactory(
-                    ProfileCacheDataStore(
-
-                    ),
-                    ProfileRemoteDataStore(
-                        ProfileRemoteImpl(
-                            ProfileService(),
-                            NetworkProfileMapper()
-                        )
-                    )
-                )
-            ).getProfiles()
+            val profiles = profileRepository.getProfiles()
+//            val profiles = ProfileDataRepository(
+//                ProfileDataStoreFactory(
+//                    ProfileCacheDataStore(
+//
+//                    ),
+//                    ProfileRemoteDataStore(
+//                        ProfileRemoteSourceImpl(
+//                            ProfileService(),
+//                            networkProfileMapper
+//                        )
+//                    )
+//                )
+//            ).getProfiles()
             Log.d("testRemote1", profiles.size.toString())
         }
 

@@ -7,6 +7,6 @@ import phu.nguyen.dateme.data.model.Profile
  * remote layer, using this interface as a way of communicating.
  */
 
-interface ProfileRemote {
+interface ProfileRemoteDataSource {
     suspend fun getTopProfiles() : List<Profile>
 }
