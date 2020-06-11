@@ -12,6 +12,7 @@ class ProfileDataRepository (
     override suspend fun getMyProfile(): Profile = factory.retrieveCacheDataStore().getMyProfile()
 
     override suspend fun getProfiles(): List<Profile>  {
+        Log.d("testCoroutine", Thread.currentThread().name)
         Log.d("testRemote", "ProfileRepository")
         return factory.retrieveRemoteDataStore().getTopProfiles()
     }

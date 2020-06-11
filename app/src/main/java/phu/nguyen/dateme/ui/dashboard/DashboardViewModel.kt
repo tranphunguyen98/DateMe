@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import phu.nguyen.dateme.data.ProfileDataRepository
 import phu.nguyen.dateme.data.source.ProfileCacheDataStore
@@ -23,7 +22,8 @@ class DashboardViewModel : ViewModel() {
 
     val text: LiveData<String> = _text
     fun getData() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
+            Log.d("testCoroutine", Thread.currentThread().name)
             Log.d("testRemote", "DashboardViewModel")
             val profiles = ProfileDataRepository(
                 ProfileDataStoreFactory(
