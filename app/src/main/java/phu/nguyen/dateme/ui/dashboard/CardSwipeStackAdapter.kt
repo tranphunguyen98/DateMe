@@ -1,5 +1,6 @@
 package phu.nguyen.dateme.ui.dashboard
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,19 +25,26 @@ class CardSwipeStackAdapter(private val listProfiles: List<Profile>, private val
     override fun getItemCount(): Int = listProfiles.size
 
     override fun onBindViewHolder(holder: TinderViewHolder, position: Int) {
+        Log.d("testBindCard", "bindC $position")
         holder.bind(listProfiles[position],onItemActionListener, position)
     }
 
     class TinderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(profile: Profile, onItemActionListener: (viewpager: ViewPager2, position : Int) -> Unit, position: Int) =
             with(itemView) {
+
                 tv_name.text = profile.name
                 tv_age.text = profile.age.toString()
                 tv_distance.text = "Cách bạn ${Random.nextInt(1,20)}Km"
-                viewpager_dashboard.adapter = ImageProfileAdapter(profile.images) { it ->
-                    viewpager_dashboard.setCurrentItem(it, true)
+
+                with(viewpager_dashboard) {
+                    offscreenPageLimit = 2
+                    adapter = ImageProfileAdapter(profile.images) { it ->
+                        setCurrentItem(it, true)
+                    }
+                    transitionName = "viewpager_dashboard$position"
                 }
-                viewpager_dashboard.transitionName = "viewpager_dashboard$position"
+
                 TabLayoutMediator(tab_layout_profile,viewpager_dashboard,
                     TabLayoutMediator.TabConfigurationStrategy { _, _ ->
                     }).attach()

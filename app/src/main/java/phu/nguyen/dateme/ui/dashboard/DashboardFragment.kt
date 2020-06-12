@@ -89,15 +89,17 @@ class DashboardFragment : Fragment() {
             when (it) {
                 is Result.Waiting -> {
                     Log.d("testObserver", "Waiting")
+                    prg_loading.visibility = View.VISIBLE
                 }
                 is Result.Success<*> -> {
-
+                    prg_loading.visibility = View.GONE
                     if (it.value is List<*>) {
                         setUpCardStackView(it.value as List<Profile>)
                         Log.d("testObserver", (it.value[0] as Profile).name)
                     }
                 }
                 is Result.Failure -> {
+                    prg_loading.visibility = View.GONE
                     Log.d("testObserver", "Failure")
                 }
             }
