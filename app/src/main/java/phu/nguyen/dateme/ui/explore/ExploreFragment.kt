@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import phu.nguyen.dateme.R
 import phu.nguyen.dateme.ui.dashboard.DashboardViewModel
@@ -24,9 +23,6 @@ class ExploreFragment : Fragment() {
             ViewModelProviders.of(this).get(DashboardViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_explore, container, false)
         val textView: TextView = root.findViewById(R.id.text_explore)
-        dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
         return root
     }
 }

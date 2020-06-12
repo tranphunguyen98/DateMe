@@ -19,7 +19,7 @@ class ProfileService @Inject constructor() {
     private val db = Firebase.firestore
 
     suspend fun getTopProfiles(): List<NetworkProfile> = withContext(Dispatchers.IO) {
-        Log.d("testRemote", "a")
+//        Log.d("testRemote", "a")
 //        Log.d("testCoroutine", Thread.currentThread().name)
 
         val profiles = mutableListOf<NetworkProfile>()
@@ -33,7 +33,7 @@ class ProfileService @Inject constructor() {
 
                 val profile = document.toObject<NetworkProfile>()
 
-                Log.d("TestCoroutine", profile?.name ?: "null ne")
+//                Log.d("TestCoroutine", profile?.name ?: "null ne")
 
                 profile?.let {
                     profile.id = document.id
@@ -46,7 +46,7 @@ class ProfileService @Inject constructor() {
             }
         }
         job.join()
-        Log.d("TestCoroutine", profiles[0].images.size.toString())
+//        Log.d("TestCoroutine", profiles[0].images.size.toString())
         return@withContext profiles
     }
 
