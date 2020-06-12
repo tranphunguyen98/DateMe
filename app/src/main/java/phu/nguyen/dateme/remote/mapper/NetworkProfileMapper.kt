@@ -8,7 +8,7 @@ class NetworkProfileMapper @Inject constructor() : NetworkMapper<NetworkProfile,
     override fun mapFromRemote(type: NetworkProfile): Profile {
         return Profile(
             type.id,
-            type.name,
+            type.name + ",",
             type.age,
             type.introduction,
             type.images,

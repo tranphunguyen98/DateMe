@@ -29,14 +29,6 @@ class DashboardFragment : Fragment() {
 
     private lateinit var dashboardViewModel: DashboardViewModel
 
-    private val listImageSwipe = arrayListOf(
-        R.drawable.image_avatar1, R.drawable.image_avatar2,
-        R.drawable.image_avatar1, R.drawable.image_avatar2,
-        R.drawable.image_avatar1, R.drawable.image_avatar2,
-        R.drawable.image_avatar1, R.drawable.image_avatar2,
-        R.drawable.image_avatar1, R.drawable.image_avatar2
-    )
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -49,39 +41,19 @@ class DashboardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        setUpCardStackView(view)
         Log.d("testObserver", "onViewCreated")
         dashboardViewModel.getData()
         setUpObserver()
         super.onViewCreated(view, savedInstanceState)
     }
 
-    private fun setUpObserver() {
-        dashboardViewModel.result.observe(viewLifecycleOwner, Observer {
-            Log.d("testObserver", "observe")
-            when (it) {
-                is Result.Waiting -> {
-                    Log.d("testObserver", "Waiting")
-                }
-                is Result.Success<*> -> {
-                    if (it.value is List<*>) {
-                        Log.d("testObserver", (it.value[0] as Profile).name)
-                    }
-                }
-                is Result.Failure -> {
-                    Log.d("testObserver", "Failure")
-                }
-            }
-        })
-    }
-
-    private fun setUpCardStackView(view: View) {
-        val cardManager = CardStackLayoutManager(view.context)
+    private fun setUpCardStackView( profiles : List<Profile>) {
+        val cardManager = CardStackLayoutManager(context)
         cardManager.setDirections(Direction.FREEDOM)
 
         with(card_swipe_stack) {
             layoutManager = cardManager
-            adapter = CardSwipeStackAdapter(listImageSwipe) { viewpager, position ->
+            adapter = CardSwipeStackAdapter(profiles) { viewpager, position ->
                 val extras = FragmentNavigatorExtras(
                     viewpager to "viewpager_dashboard$position"
                 )
@@ -109,5 +81,26 @@ class DashboardFragment : Fragment() {
             })
         }
 
+    }
+
+    private fun setUpObserver() {
+        dashboardViewModel.result.observe(viewLifecycleOwner, Observer {
+            Log.d("testObserver", "observe")
+            when (it) {
+                is Result.Waiting -> {
+                    Log.d("testObserver", "Waiting")
+                }
+                is Result.Success<*> -> {
+
+                    if (it.value is List<*>) {
+                        setUpCardStackView(it.value as List<Profile>)
+                        Log.d("testObserver", (it.value[0] as Profile).name)
+                    }
+                }
+                is Result.Failure -> {
+                    Log.d("testObserver", "Failure")
+                }
+            }
+        })
     }
 }

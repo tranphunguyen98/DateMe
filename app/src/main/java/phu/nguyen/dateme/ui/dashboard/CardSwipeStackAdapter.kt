@@ -8,8 +8,10 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.item_swipe.view.*
 import phu.nguyen.dateme.R
+import phu.nguyen.dateme.data.model.Profile
+import kotlin.random.Random
 
-class CardSwipeStackAdapter(private val listImage: ArrayList<Int>, private val onItemActionListener: (viewpager : ViewPager2, position : Int) -> Unit) :
+class CardSwipeStackAdapter(private val listProfiles: List<Profile>, private val onItemActionListener: (viewpager : ViewPager2, position : Int) -> Unit) :
     RecyclerView.Adapter<CardSwipeStackAdapter.TinderViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TinderViewHolder {
@@ -19,16 +21,19 @@ class CardSwipeStackAdapter(private val listImage: ArrayList<Int>, private val o
         return TinderViewHolder(view)
     }
 
-    override fun getItemCount(): Int = listImage.size
+    override fun getItemCount(): Int = listProfiles.size
 
     override fun onBindViewHolder(holder: TinderViewHolder, position: Int) {
-        holder.bind(listImage,onItemActionListener, position)
+        holder.bind(listProfiles[position],onItemActionListener, position)
     }
 
     class TinderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun bind(listImage: List<Int>, onItemActionListener: (viewpager: ViewPager2, position : Int) -> Unit, position: Int) =
+        fun bind(profile: Profile, onItemActionListener: (viewpager: ViewPager2, position : Int) -> Unit, position: Int) =
             with(itemView) {
-                viewpager_dashboard.adapter = ImageProfileAdapter(listImage) { it ->
+                tv_name.text = profile.name
+                tv_age.text = profile.age.toString()
+                tv_distance.text = "Cách bạn ${Random.nextInt(1,20)}Km"
+                viewpager_dashboard.adapter = ImageProfileAdapter(profile.images) { it ->
                     viewpager_dashboard.setCurrentItem(it, true)
                 }
                 viewpager_dashboard.transitionName = "viewpager_dashboard$position"

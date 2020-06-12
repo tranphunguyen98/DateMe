@@ -10,16 +10,10 @@ import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
 import kotlinx.android.synthetic.main.swipe_profile_fragment.*
 import phu.nguyen.dateme.R
-import phu.nguyen.dateme.ui.dashboard.ImageProfileAdapter
 
 class SwipeProfileFragment : Fragment() {
     private val args : SwipeProfileFragmentArgs by navArgs()
-    private val listImageSwipe = arrayListOf(
-        R.drawable.image_avatar1,R.drawable.image_avatar2,
-        R.drawable.image_avatar1,R.drawable.image_avatar2,
-        R.drawable.image_avatar1,R.drawable.image_avatar2,
-        R.drawable.image_avatar1,R.drawable.image_avatar2,
-        R.drawable.image_avatar1,R.drawable.image_avatar2)
+
     companion object {
         fun newInstance() = SwipeProfileFragment()
     }
@@ -44,9 +38,9 @@ class SwipeProfileFragment : Fragment() {
         // TODO: Use the ViewModel
         val id = args.id
         viewpager_swipe_profile.transitionName = id
-        viewpager_swipe_profile.adapter = ImageProfileAdapter(listImageSwipe) { it ->
-            viewpager_swipe_profile.setCurrentItem(it, true)
-        }
+//        viewpager_swipe_profile.adapter = ImageProfileAdapter(listImageSwipe) { it ->
+//            viewpager_swipe_profile.setCurrentItem(it, true)
+//        }
     }
 
 }

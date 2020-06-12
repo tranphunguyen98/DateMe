@@ -4,14 +4,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_viewpager_dashboard.view.*
 import phu.nguyen.dateme.R
 
-class ImageProfileAdapter(private val listItem: List<Int>, private val onItemActionListener: (Int) -> Unit) :
+class ImageProfileAdapter(private val listImage: List<String>, private val onItemActionListener: (Int) -> Unit) :
     RecyclerView.Adapter<ImageProfileAdapter.ImageProfileVH>() {
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageProfileVH {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_viewpager_dashboard, parent, false)
+        return ImageProfileVH(view)
+    }
+
+    override fun getItemCount(): Int = listImage.size
+
+    override fun onBindViewHolder(holder: ImageProfileVH, position: Int) {
+        holder.bind(listImage[position],onItemActionListener,position,listImage.size)
+    }
+
+
     class ImageProfileVH(item: View) : RecyclerView.ViewHolder(item) {
-        fun bind(image : Int, onItemActionListener: (Int) -> Unit, position: Int, size : Int) {
+        fun bind(image : String, onItemActionListener: (Int) -> Unit, position: Int, size : Int) {
+
             itemView.view_left.setOnClickListener {
                 var previousPosition = 0
                 if(position > 1) {
@@ -32,19 +47,14 @@ class ImageProfileAdapter(private val listItem: List<Int>, private val onItemAct
                 }
                 onItemActionListener(nextPosition)
             }
-            itemView.img_profile_dashboard.setImageResource(image)
+
+            Glide
+                .with(itemView)
+                .load(image)
+                .centerCrop()
+                .placeholder(R.drawable.placeholder)
+                .into(itemView.img_profile_dashboard)
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageProfileVH {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_viewpager_dashboard, parent, false)
-        return ImageProfileVH(view)
-    }
-
-    override fun getItemCount(): Int = listItem.size
-
-    override fun onBindViewHolder(holder: ImageProfileVH, position: Int) {
-        holder.bind(listItem[position],onItemActionListener,position,listItem.size)
-    }
 }
