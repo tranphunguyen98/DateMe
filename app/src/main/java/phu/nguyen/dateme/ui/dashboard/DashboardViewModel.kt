@@ -25,20 +25,8 @@ class DashboardViewModel(private val profileRepository: ProfileRepository) : Vie
             Log.d("testCoroutine", Thread.currentThread().name)
             Log.d("testRemote", "DashboardViewModel")
             val profiles = profileRepository.getProfiles()
-//            val profiles = ProfileDataRepository(
-//                ProfileDataStoreFactory(
-//                    ProfileCacheDataStore(
-//
-//                    ),
-//                    ProfileRemoteDataStore(
-//                        ProfileRemoteSourceImpl(
-//                            ProfileService(),
-//                            networkProfileMapper
-//                        )
-//                    )
-//                )
-//            ).getProfiles()
             Log.d("testRemote1", profiles.size.toString())
+            Log.d("testRemote1", profiles[0].images.size.toString())
         }
 
     }

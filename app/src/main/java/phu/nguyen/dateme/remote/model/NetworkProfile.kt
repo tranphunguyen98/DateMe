@@ -1,11 +1,11 @@
 package phu.nguyen.dateme.remote.model
 
 data class NetworkProfile(
-    val id: String,
+    var id: String,
     val name: String,
     val age: Int,
     val introduction: String,
-    val images: List<String>,
+    var images: List<String>,
     val latitude: Double,
     val longitude: Double
 ) {
