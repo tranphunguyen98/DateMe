@@ -67,7 +67,8 @@ class DashboardFragment : Fragment() {
         super.onDetach()
         Log.d("testObserver", "onDetach")
     }
-    private fun setUpCardStackView( profiles : List<Profile>) {
+
+    private fun setUpCardStackView(profiles: List<Profile>) {
         val cardManager = CardStackLayoutManager(context)
         cardManager.setDirections(Direction.FREEDOM)
 
@@ -79,13 +80,18 @@ class DashboardFragment : Fragment() {
                     img_match to "image"
                 )
                 val action =
-                    DashboardFragmentDirections.actionNavigationDashboardToSwipeProfileFragment(profiles[position])
+                    DashboardFragmentDirections.actionNavigationDashboardToSwipeProfileFragment(
+                        profiles[position]
+                    )
 
                 findNavController().navigate(action, extras)
             }
+
             isNestedScrollingEnabled = true
+
             addOnItemTouchListener(object : RecyclerView.OnItemTouchListener {
                 override fun onTouchEvent(rv: RecyclerView, e: MotionEvent) {
+
                 }
 
                 override fun onInterceptTouchEvent(rv: RecyclerView, e: MotionEvent): Boolean {

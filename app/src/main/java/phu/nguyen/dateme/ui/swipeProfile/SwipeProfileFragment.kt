@@ -45,18 +45,24 @@ class SwipeProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         args.profile?.let {profile ->
-            viewpager_swipe_profile.transitionName = "profile${profile.id}"
-            img_match_swiped.transitionName = "image"
-            viewpager_swipe_profile.adapter = ImageProfileAdapter(profile.images) { it ->
-                viewpager_swipe_profile.setCurrentItem(it, true)
+            with(viewpager_swipe_profile){
+                transitionName = "profile${profile.id}"
+                adapter = ImageProfileAdapter(profile.images) { it ->
+                    viewpager_swipe_profile.setCurrentItem(it, true)
+                }
+                offscreenPageLimit = 2
             }
+            img_match_swiped.transitionName = "image"
         }
+
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(SwipeProfileViewModel::class.java)
         // TODO: Use the ViewModel
-
+        img_back.setOnClickListener {
+            activity?.onBackPressed()
+        }
     }
 
 

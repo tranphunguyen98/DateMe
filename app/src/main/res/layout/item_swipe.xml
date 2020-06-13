@@ -97,14 +97,26 @@
             android:id="@+id/tv_distance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="80dp"
             android:elevation="5dp"
             android:text="Cách xa 10Km"
             android:textColor="@color/white"
             android:textSize="20sp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/img_location"
+            app:layout_constraintStart_toEndOf="@+id/img_location"
+            app:layout_constraintTop_toTopOf="@+id/img_location" />
+
+        <ImageView
+            android:id="@+id/img_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_location_white_16"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="80dp"
+            android:elevation="5dp"
+            />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"
@@ -117,15 +129,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="12dp"
             android:elevation="5dp"
             android:text="Lyly,"
             android:textColor="@color/white"
-
             android:textSize="32sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/tv_distance"
-            app:layout_constraintStart_toStartOf="@+id/tv_distance" />
+            app:layout_constraintBottom_toTopOf="@+id/img_location"
+            app:layout_constraintStart_toStartOf="@+id/img_location" />
 
         <View
             android:id="@+id/view_bottom"
