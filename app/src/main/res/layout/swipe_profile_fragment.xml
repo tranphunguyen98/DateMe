@@ -15,4 +15,14 @@
 
     </androidx.viewpager2.widget.ViewPager2>
 
+    <ImageView
+        android:id="@+id/img_match_swiped"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_favorite_pink_48"
+        app:layout_constraintEnd_toEndOf="@+id/viewpager_swipe_profile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,9 @@
 package phu.nguyen.dateme.data.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Profile(
     val id: String,
     val name: String,
@@ -8,4 +12,4 @@ data class Profile(
     val images : List<String>,
     val latitude: Double,
     val longitude: Double
-)
+): Parcelable

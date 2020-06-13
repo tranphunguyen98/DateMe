@@ -13,15 +13,22 @@ import javax.inject.Inject
 
 class DashboardViewModel(private val profileRepository: ProfileRepository) : ViewModel() {
 
+    private var _result : MutableLiveData<Result> = MutableLiveData<Result>()
+
+    init {
+//        Log.d("testObserve", "DashboardViewModel created")
+        getData()
+    }
+
     @Inject
     lateinit var networkProfileMapper: NetworkProfileMapper
 
-    private val _result = MutableLiveData<Result>()
+
     val result: LiveData<Result>
         get() = _result
 
     fun getData() {
-        Log.d("testRemote", "DashboardViewModel")
+//        Log.d("testRemote", "DashboardViewModel")
         _result.value = Result.Waiting
         viewModelScope.launch {
             try {

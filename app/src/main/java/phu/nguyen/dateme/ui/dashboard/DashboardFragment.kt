@@ -36,17 +36,37 @@ class DashboardFragment : Fragment() {
     ): View? {
         dashboardViewModel =
             ViewModelProvider(this, factory).get(DashboardViewModel::class.java)
+
+        Log.d("testObserver", "onCreateView")
+
+
         return inflater.inflate(R.layout.fragment_dashboard, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         Log.d("testObserver", "onViewCreated")
-        dashboardViewModel.getData()
+        img_match.transitionName = "image"
         setUpObserver()
         super.onViewCreated(view, savedInstanceState)
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        Log.d("testObserver", "onActivityCreated")
+//        if(savedInstanceState == null) {
+//            dashboardViewModel.getData()
+//        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("testObserver", "onDestroy")
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        Log.d("testObserver", "onDetach")
+    }
     private fun setUpCardStackView( profiles : List<Profile>) {
         val cardManager = CardStackLayoutManager(context)
         cardManager.setDirections(Direction.FREEDOM)
@@ -55,10 +75,11 @@ class DashboardFragment : Fragment() {
             layoutManager = cardManager
             adapter = CardSwipeStackAdapter(profiles) { viewpager, position ->
                 val extras = FragmentNavigatorExtras(
-                    viewpager to "viewpager_dashboard$position"
+                    viewpager to "profile${profiles[position].id}",
+                    img_match to "image"
                 )
                 val action =
-                    DashboardFragmentDirections.actionNavigationDashboardToSwipeProfileFragment("viewpager_dashboard$position")
+                    DashboardFragmentDirections.actionNavigationDashboardToSwipeProfileFragment(profiles[position])
 
                 findNavController().navigate(action, extras)
             }

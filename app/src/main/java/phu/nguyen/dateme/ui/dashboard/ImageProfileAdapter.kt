@@ -1,6 +1,5 @@
 package phu.nguyen.dateme.ui.dashboard
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +20,7 @@ class ImageProfileAdapter(private val listImage: List<String>, private val onIte
     override fun getItemCount(): Int = listImage.size
 
     override fun onBindViewHolder(holder: ImageProfileVH, position: Int) {
-        Log.d("testBind", "bind $position")
+//        Log.d("testBind", "bind $position")
         holder.bind(listImage[position],onItemActionListener,position,listImage.size)
     }
 

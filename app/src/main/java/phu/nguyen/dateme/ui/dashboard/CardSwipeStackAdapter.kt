@@ -1,6 +1,5 @@
 package phu.nguyen.dateme.ui.dashboard
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,7 +24,7 @@ class CardSwipeStackAdapter(private val listProfiles: List<Profile>, private val
     override fun getItemCount(): Int = listProfiles.size
 
     override fun onBindViewHolder(holder: TinderViewHolder, position: Int) {
-        Log.d("testBindCard", "bindC $position")
+//        Log.d("testBindCard", "bindC $position")
         holder.bind(listProfiles[position],onItemActionListener, position)
     }
 
@@ -42,7 +41,7 @@ class CardSwipeStackAdapter(private val listProfiles: List<Profile>, private val
                     adapter = ImageProfileAdapter(profile.images) { it ->
                         setCurrentItem(it, true)
                     }
-                    transitionName = "viewpager_dashboard$position"
+                    transitionName = "profile${profile.id}"
                 }
 
                 TabLayoutMediator(tab_layout_profile,viewpager_dashboard,
