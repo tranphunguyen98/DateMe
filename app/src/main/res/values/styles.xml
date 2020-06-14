@@ -21,4 +21,43 @@
     <style name="btnWhite" parent="btnWhiteTransparent">
         <item name="android:background">@drawable/button_round_white</item>
     </style>
+
+    <style name="tabImageSwipe">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">4dp</item>
+        <item name="android:layout_marginStart">12dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginEnd">12dp</item>
+        <item name="android:elevation">6dp</item>
+    </style>
+
+    <style name="textNormalWhite">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:fontFamily">@font/roboto_slab_light</item>
+    </style>
+
+    <style name="textNormalGray" parent="textNormalWhite">
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="textTitleNormalWhite">
+        <item name="android:fontFamily">@font/roboto_slab</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">32sp</item>
+    </style>
+
+    <style name="textTitleBoldWhite" parent="textTitleNormalWhite">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="textTitleNormalBlack" parent="textTitleNormalWhite">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="textTitleBoldBlack" parent="textTitleNormalBlack">
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

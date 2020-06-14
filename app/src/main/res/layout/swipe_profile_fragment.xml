@@ -14,6 +14,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout_swipe_profile"
+                style="@style/tabImageSwipe"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tabBackground="@drawable/tab_selector"
+                app:tabIndicatorHeight="0dp"
+                app:tabMode="fixed" />
+
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewpager_swipe_profile"
                 android:layout_width="match_parent"
@@ -25,40 +36,23 @@
             </androidx.viewpager2.widget.ViewPager2>
 
             <TextView
-                android:id="@+id/tv_age"
+                android:id="@+id/tv_age_wipe_profile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:elevation="5dp"
-
                 android:text="21"
-                android:textColor="@color/black"
-                android:textSize="32sp"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_name"
-                app:layout_constraintStart_toEndOf="@+id/tv_name" />
+                style="@style/textTitleNormalBlack"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_name_wipe_profile"
+                app:layout_constraintStart_toEndOf="@+id/tv_name_wipe_profile" />
 
             <TextView
-                android:id="@+id/tv_distance"
+                android:id="@+id/tv_distance_swipe_profile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:elevation="5dp"
                 android:text="Cách xa 10Km"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/img_location"
-                app:layout_constraintStart_toEndOf="@+id/img_location"
-                app:layout_constraintTop_toTopOf="@+id/img_location" />
-
-            <TextView
-                android:id="@+id/tv_distance2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:elevation="5dp"
-                android:text="Cách xa 10Km"
-                android:textColor="@color/gray"
-                android:textSize="20sp"
+                style="@style/textNormalGray"
                 app:layout_constraintBottom_toBottomOf="@+id/img_location"
                 app:layout_constraintStart_toEndOf="@+id/img_location"
                 app:layout_constraintTop_toTopOf="@+id/img_location" />
@@ -67,47 +61,45 @@
                 android:id="@+id/img_school"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:src="@drawable/ic_school_white_16"
                 android:tint="@color/gray"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_school"
                 app:layout_constraintStart_toStartOf="@+id/img_location"
-                app:layout_constraintTop_toBottomOf="@id/img_location" />
+                app:layout_constraintTop_toTopOf="@+id/tv_school" />
 
             <TextView
                 android:id="@+id/tv_school"
-                android:layout_width="wrap_content"
+                style="@style/textNormalGray"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 android:elevation="5dp"
                 android:text="Trường Đại học Khoa học Tự nhiên"
-                android:textColor="@color/gray"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/img_school"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/img_school"
-                app:layout_constraintTop_toTopOf="@+id/img_school" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_distance_swipe_profile" />
 
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:src="@drawable/ic_baseline_favorite_border_16"
                 android:tint="@color/gray"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_hobby"
                 app:layout_constraintStart_toStartOf="@+id/img_school"
-                app:layout_constraintTop_toBottomOf="@+id/img_school" />
+                app:layout_constraintTop_toTopOf="@+id/tv_hobby" />
 
             <TextView
                 android:id="@+id/tv_hobby"
+                style="@style/textNormalGray"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 android:elevation="5dp"
                 android:text="Sở thích: Cầu lông, bóng đá."
-                android:textColor="@color/gray"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
-                app:layout_constraintTop_toTopOf="@+id/imageView" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_school" />
 
             <ImageView
                 android:id="@+id/img_location"
@@ -118,11 +110,12 @@
                 android:elevation="5dp"
                 android:src="@drawable/ic_location_white_16"
                 android:tint="@color/gray"
-                app:layout_constraintStart_toStartOf="@+id/tv_name"
-                app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+                app:layout_constraintStart_toStartOf="@+id/tv_name_wipe_profile"
+                app:layout_constraintTop_toBottomOf="@+id/tv_name_wipe_profile" />
 
             <TextView
-                android:id="@+id/tv_name"
+                android:id="@+id/tv_name_wipe_profile"
+                style="@style/textTitleBoldBlack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
@@ -130,9 +123,6 @@
                 android:layout_marginTop="8dp"
                 android:elevation="5dp"
                 android:text="Lyly,"
-                android:textColor="@color/black"
-                android:textSize="32sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/viewpager_swipe_profile" />
 
@@ -170,8 +160,8 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="16dp"
+                style="@style/textNormalGray"
                 android:text="Tấm ảnh chụp san hô lòng biển, vốn méo mó và mờ mịt vì ống kính phải nhìn xuyên làn nước, bỗng hiện ra sặc sỡ bất ngờ."
-                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/v_separate" />

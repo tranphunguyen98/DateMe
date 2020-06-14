@@ -11,7 +11,7 @@ import phu.nguyen.dateme.R
 import phu.nguyen.dateme.data.model.Profile
 import kotlin.random.Random
 
-class CardSwipeStackAdapter(private val listProfiles: List<Profile>, private val onItemActionListener: (viewpager : ViewPager2, position : Int) -> Unit) :
+class CardSwipeStackAdapter(private val listProfiles: MutableList<Profile>, private val onItemActionListener: (viewpager : ViewPager2, position : Int, currentItemVP: Int) -> Unit) :
     RecyclerView.Adapter<CardSwipeStackAdapter.TinderViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TinderViewHolder {
@@ -28,8 +28,14 @@ class CardSwipeStackAdapter(private val listProfiles: List<Profile>, private val
         holder.bind(listProfiles[position],onItemActionListener, position)
     }
 
+//    fun removeTop() {
+//        listProfiles.removeAt(0)
+//        notifyItemRemoved(0)
+//        notifyItemRangeChanged(0, listProfiles.size);
+//    }
+
     class TinderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun bind(profile: Profile, onItemActionListener: (viewpager: ViewPager2, position : Int) -> Unit, position: Int) =
+        fun bind(profile: Profile, onItemActionListener: (viewpager: ViewPager2, position : Int, currentItemVP: Int) -> Unit, position: Int) =
             with(itemView) {
 
                 tv_name.text = profile.name
@@ -47,8 +53,9 @@ class CardSwipeStackAdapter(private val listProfiles: List<Profile>, private val
                 TabLayoutMediator(tab_layout_profile,viewpager_dashboard,
                     TabLayoutMediator.TabConfigurationStrategy { _, _ ->
                     }).attach()
+
                 view_bottom.setOnClickListener {
-                    onItemActionListener(viewpager_dashboard, position)
+                    onItemActionListener(viewpager_dashboard, position, viewpager_dashboard.currentItem)
                 }
             }
 

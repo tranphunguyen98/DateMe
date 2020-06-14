@@ -16,11 +16,10 @@
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="phu.nguyen.dateme.ui.dashboard.DashboardFragment"
-        android:label="DashboardFragment" >
+        android:label="DashboardFragment">
         <action
             android:id="@+id/action_navigation_dashboard_to_swipeProfileFragment"
-            app:destination="@id/swipeProfileFragment"
-            />
+            app:destination="@id/swipeProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/navigation_likes"
@@ -35,10 +34,13 @@
         android:id="@+id/swipeProfileFragment"
         android:name="phu.nguyen.dateme.ui.swipeProfile.SwipeProfileFragment"
         android:label="swipe_profile_fragment"
-        tools:layout="@layout/swipe_profile_fragment" >
+        tools:layout="@layout/swipe_profile_fragment">
         <argument
             android:name="profile"
-            app:nullable="true"
-            app:argType="phu.nguyen.dateme.data.model.Profile" />
+            app:argType="phu.nguyen.dateme.data.model.Profile"
+            app:nullable="true" />
+        <argument
+            android:name="currentItem"
+            app:argType="integer" />
     </fragment>
 </navigation>

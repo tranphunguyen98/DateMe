@@ -51,15 +51,10 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout_profile"
-        android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="12dp"
-        android:elevation="6dp"
         app:tabBackground="@drawable/tab_selector"
         app:tabIndicatorHeight="0dp"
-        app:tabMode="fixed" />
+        app:tabMode="fixed"
+        style="@style/tabImageSwipe" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewpager_dashboard"
@@ -67,10 +62,10 @@
         android:layout_height="match_parent"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:transitionName="test"
         android:layout_marginBottom="64dp"
         app:layout_anchor="@id/tab_layout_profile"
-        app:layout_anchorGravity="top">
+        app:layout_anchorGravity="top"
+        >
 
     </androidx.viewpager2.widget.ViewPager2>
 
@@ -86,10 +81,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:elevation="5dp"
-
             android:text="21"
-            android:textColor="@color/white"
-            android:textSize="32sp"
+            style="@style/textTitleNormalWhite"
             app:layout_constraintBottom_toBottomOf="@+id/tv_name"
             app:layout_constraintStart_toEndOf="@+id/tv_name" />
 
@@ -99,12 +92,11 @@
             android:layout_height="wrap_content"
             android:elevation="5dp"
             android:text="Cách xa 10Km"
-            android:textColor="@color/white"
-            android:textSize="20sp"
             android:layout_marginStart="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/img_location"
             app:layout_constraintStart_toEndOf="@+id/img_location"
-            app:layout_constraintTop_toTopOf="@+id/img_location" />
+            app:layout_constraintTop_toTopOf="@+id/img_location"
+            style="@style/textNormalWhite" />
 
         <ImageView
             android:id="@+id/img_location"
@@ -114,7 +106,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="16dp"
-            android:layout_marginBottom="80dp"
+            android:layout_marginBottom="84dp"
             android:elevation="5dp"
             />
 
@@ -132,9 +124,7 @@
             android:layout_marginBottom="12dp"
             android:elevation="5dp"
             android:text="Lyly,"
-            android:textColor="@color/white"
-            android:textSize="32sp"
-            android:textStyle="bold"
+            style="@style/textTitleBoldWhite"
             app:layout_constraintBottom_toTopOf="@+id/img_location"
             app:layout_constraintStart_toStartOf="@+id/img_location" />
 

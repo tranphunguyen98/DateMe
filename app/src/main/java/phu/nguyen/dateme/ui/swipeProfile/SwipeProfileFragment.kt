@@ -9,9 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
+import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.swipe_profile_fragment.*
 import phu.nguyen.dateme.R
 import phu.nguyen.dateme.ui.dashboard.ImageProfileAdapter
+import phu.nguyen.dateme.ui.dashboard.ImageProfileAdapter.Companion.NON_BORDER
 
 class SwipeProfileFragment : Fragment() {
     private val args: SwipeProfileFragmentArgs by navArgs()
@@ -44,18 +46,28 @@ class SwipeProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        args.profile?.let {profile ->
-            with(viewpager_swipe_profile){
+        args.profile?.let { profile ->
+            with(viewpager_swipe_profile) {
                 transitionName = "profile${profile.id}"
-                adapter = ImageProfileAdapter(profile.images) { it ->
-                    viewpager_swipe_profile.setCurrentItem(it, true)
+                adapter = ImageProfileAdapter(profile.images, NON_BORDER) { it ->
+                    setCurrentItem(it, true)
                 }
                 offscreenPageLimit = 2
+                TabLayoutMediator(tab_layout_swipe_profile, this,
+                    TabLayoutMediator.TabConfigurationStrategy { _, _ ->
+                    }).attach()
+                post {
+                    setCurrentItem(args.currentItem, false)
+                }
             }
+
+            tv_name_wipe_profile.text = profile.name
+            tv_age_wipe_profile.text = profile.age.toString()
             img_match_swiped.transitionName = "image"
         }
 
     }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(SwipeProfileViewModel::class.java)
@@ -63,6 +75,7 @@ class SwipeProfileFragment : Fragment() {
         img_back.setOnClickListener {
             activity?.onBackPressed()
         }
+
     }
 
 
