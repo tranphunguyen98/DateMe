@@ -7,7 +7,7 @@ import kotlinx.android.parcel.Parcelize
 data class Profile(
     val id: String,
     val name: String,
-    val age: Int,
+    val age: String,
     val introduction: String,
     val images : List<String>,
     val latitude: Double,

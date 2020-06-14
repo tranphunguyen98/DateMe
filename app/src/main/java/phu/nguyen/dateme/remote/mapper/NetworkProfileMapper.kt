@@ -9,7 +9,7 @@ class NetworkProfileMapper @Inject constructor() : NetworkMapper<NetworkProfile,
         return Profile(
             type.id,
             type.name + ",",
-            type.age,
+            type.age.toString(),
             type.introduction,
             type.images,
             type.latitude,

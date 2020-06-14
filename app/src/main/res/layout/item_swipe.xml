@@ -1,145 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="profile"
+            type="phu.nguyen.dateme.data.model.Profile" />
+        <variable
+            name="tabLayout"
+            type="com.google.android.material.tabs.TabLayout" />
+    </data>
 
     <FrameLayout
-        android:id="@+id/left_overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:elevation="5dp">
+        android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="128dp"
-            android:layout_height="128dp"
-            android:layout_gravity="end"
-            android:layout_marginTop="60dp"
-            android:layout_marginEnd="60dp"
-            android:src="@drawable/thumbs_down_128dp" />
+        <FrameLayout
+            android:id="@+id/left_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="5dp">
 
-    </FrameLayout>
+            <ImageView
+                android:layout_width="128dp"
+                android:layout_height="128dp"
+                android:layout_gravity="end"
+                android:layout_marginTop="60dp"
+                android:layout_marginEnd="60dp"
+                android:src="@drawable/thumbs_down_128dp" />
 
-    <FrameLayout
-        android:id="@+id/right_overlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:elevation="5dp">
+        </FrameLayout>
 
-        <ImageView
-            android:layout_width="128dp"
-            android:layout_height="128dp"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="60dp"
-            android:src="@drawable/thumbs_up_128dp" />
-    </FrameLayout>
+        <FrameLayout
+            android:id="@+id/right_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="5dp">
 
-    <FrameLayout
-        android:id="@+id/top_overlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:elevation="5dp">
+            <ImageView
+                android:layout_width="128dp"
+                android:layout_height="128dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="60dp"
+                android:src="@drawable/thumbs_up_128dp" />
+        </FrameLayout>
 
-        <ImageView
-            android:layout_width="128dp"
-            android:layout_height="128dp"
-            android:layout_gravity="bottom|center"
-            android:layout_marginBottom="220dp"
-            android:src="@drawable/thumbs_up_128dp" />
-    </FrameLayout>
+        <FrameLayout
+            android:id="@+id/top_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="5dp">
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout_profile"
-        app:tabBackground="@drawable/tab_selector"
-        app:tabIndicatorHeight="0dp"
-        app:tabMode="fixed"
-        style="@style/tabImageSwipe" />
+            <ImageView
+                android:layout_width="128dp"
+                android:layout_height="128dp"
+                android:layout_gravity="bottom|center"
+                android:layout_marginBottom="220dp"
+                android:src="@drawable/thumbs_up_128dp" />
+        </FrameLayout>
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewpager_dashboard"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="64dp"
-        app:layout_anchor="@id/tab_layout_profile"
-        app:layout_anchorGravity="top"
-        >
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout_profile"
+            style="@style/tabImageSwipe"
+            app:tabBackground="@drawable/tab_selector"
+            app:tabIndicatorHeight="0dp"
+            app:tabMode="fixed" />
 
-    </androidx.viewpager2.widget.ViewPager2>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="64dp"
-        android:elevation="5dp">
-
-        <TextView
-            android:id="@+id/tv_age"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:elevation="5dp"
-            android:text="21"
-            style="@style/textTitleNormalWhite"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_name"
-            app:layout_constraintStart_toEndOf="@+id/tv_name" />
-
-        <TextView
-            android:id="@+id/tv_distance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="5dp"
-            android:text="Cách xa 10Km"
-            android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/img_location"
-            app:layout_constraintStart_toEndOf="@+id/img_location"
-            app:layout_constraintTop_toTopOf="@+id/img_location"
-            style="@style/textNormalWhite" />
-
-        <ImageView
-            android:id="@+id/img_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_location_white_16"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="84dp"
-            android:elevation="5dp"
-            />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" />
-
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="12dp"
-            android:elevation="5dp"
-            android:text="Lyly,"
-            style="@style/textTitleBoldWhite"
-            app:layout_constraintBottom_toTopOf="@+id/img_location"
-            app:layout_constraintStart_toStartOf="@+id/img_location" />
-
-        <View
-            android:id="@+id/view_bottom"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewpager_dashboard"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:background="@drawable/gradient_black"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_age" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_marginBottom="64dp"
+            loadImagesProfile="@{profile}"
+            withTabLayout="@{tabLayout}"
+            app:layout_anchor="@id/tab_layout_profile"
+            app:layout_anchorGravity="top">
+
+        </androidx.viewpager2.widget.ViewPager2>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="64dp"
+            android:elevation="5dp">
+
+            <TextView
+                android:id="@+id/tv_age"
+                style="@style/textTitleNormalWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:elevation="5dp"
+                android:text="@{profile.age}"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_name"
+                app:layout_constraintStart_toEndOf="@+id/tv_name" />
+
+            <TextView
+                android:id="@+id/tv_distance"
+                style="@style/textNormalWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:elevation="5dp"
+                android:text="Cách xa Km"
+                app:layout_constraintBottom_toBottomOf="@+id/img_location"
+                app:layout_constraintStart_toEndOf="@+id/img_location"
+                app:layout_constraintTop_toTopOf="@+id/img_location" />
+
+            <ImageView
+                android:id="@+id/img_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="84dp"
+                android:elevation="5dp"
+                android:src="@drawable/ic_location_white_16"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                style="@style/textTitleBoldWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="12dp"
+                android:elevation="5dp"
+                android:text="@{profile.name}"
+                app:layout_constraintBottom_toTopOf="@+id/img_location"
+                app:layout_constraintStart_toStartOf="@+id/img_location" />
+
+            <View
+                android:id="@+id/view_bottom"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/gradient_black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_age" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</FrameLayout>
+    </FrameLayout>
+</layout>

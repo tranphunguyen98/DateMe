@@ -1,61 +1,50 @@
 package phu.nguyen.dateme.ui.dashboard
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.android.synthetic.main.item_swipe.view.*
-import phu.nguyen.dateme.R
 import phu.nguyen.dateme.data.model.Profile
+import phu.nguyen.dateme.databinding.ItemSwipeBinding
 import kotlin.random.Random
 
-class CardSwipeStackAdapter(private val listProfiles: MutableList<Profile>, private val onItemActionListener: (viewpager : ViewPager2, position : Int, currentItemVP: Int) -> Unit) :
+class CardSwipeStackAdapter(
+    private val listProfiles: MutableList<Profile>,
+    private val onItemActionListener: (viewpager: ViewPager2, position: Int, currentItemVP: Int) -> Unit
+) :
     RecyclerView.Adapter<CardSwipeStackAdapter.TinderViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TinderViewHolder {
-
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_swipe, parent, false)
-
-        return TinderViewHolder(view)
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val itemBinding = ItemSwipeBinding.inflate(layoutInflater, parent, false)
+        return TinderViewHolder(itemBinding)
     }
 
     override fun getItemCount(): Int = listProfiles.size
 
     override fun onBindViewHolder(holder: TinderViewHolder, position: Int) {
 //        Log.d("testBindCard", "bindC $position")
-        holder.bind(listProfiles[position],onItemActionListener, position)
+        holder.bind(listProfiles[position], onItemActionListener, position)
     }
 
-//    fun removeTop() {
-//        listProfiles.removeAt(0)
-//        notifyItemRemoved(0)
-//        notifyItemRangeChanged(0, listProfiles.size);
-//    }
+    inner class TinderViewHolder(private val binding: ItemSwipeBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(
+            _profile: Profile,
+            onItemActionListener: (viewpager: ViewPager2, position: Int, currentItemVP: Int) -> Unit,
+            position: Int
+        ) =
+            with(binding) {
+                profile = _profile
+                tabLayout = binding.tabLayoutProfile
+                tvDistance.text = "Cách bạn ${Random.nextInt(1, 20)}Km"
 
-    class TinderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun bind(profile: Profile, onItemActionListener: (viewpager: ViewPager2, position : Int, currentItemVP: Int) -> Unit, position: Int) =
-            with(itemView) {
-
-                tv_name.text = profile.name
-                tv_age.text = profile.age.toString()
-                tv_distance.text = "Cách bạn ${Random.nextInt(1,20)}Km"
-
-                with(viewpager_dashboard) {
-                    offscreenPageLimit = 2
-                    adapter = ImageProfileAdapter(profile.images) { it ->
-                        setCurrentItem(it, true)
-                    }
-                    transitionName = "profile${profile.id}"
-                }
-
-                TabLayoutMediator(tab_layout_profile,viewpager_dashboard,
-                    TabLayoutMediator.TabConfigurationStrategy { _, _ ->
-                    }).attach()
-
-                view_bottom.setOnClickListener {
-                    onItemActionListener(viewpager_dashboard, position, viewpager_dashboard.currentItem)
+                viewBottom.setOnClickListener {
+                    onItemActionListener(
+                        viewpagerDashboard,
+                        position,
+                        viewpagerDashboard.currentItem
+                    )
                 }
             }
 

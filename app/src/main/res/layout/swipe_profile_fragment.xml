@@ -1,312 +1,329 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.swipeProfile.SwipeProfileFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ScrollView
+    <data>
+        <variable
+            name="profile"
+            type="phu.nguyen.dateme.data.model.Profile" />
+        <variable
+            name="tabLayout"
+            type="com.google.android.material.tabs.TabLayout" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
-        <androidx.constraintlayout.widget.ConstraintLayout
+        tools:context=".ui.swipeProfile.SwipeProfileFragment">
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tab_layout_swipe_profile"
-                style="@style/tabImageSwipe"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tabBackground="@drawable/tab_selector"
-                app:tabIndicatorHeight="0dp"
-                app:tabMode="fixed" />
-
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/viewpager_swipe_profile"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="420dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-            </androidx.viewpager2.widget.ViewPager2>
-
-            <TextView
-                android:id="@+id/tv_age_wipe_profile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:elevation="5dp"
-                android:text="21"
-                style="@style/textTitleNormalBlack"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_name_wipe_profile"
-                app:layout_constraintStart_toEndOf="@+id/tv_name_wipe_profile" />
-
-            <TextView
-                android:id="@+id/tv_distance_swipe_profile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="Cách xa 10Km"
-                style="@style/textNormalGray"
-                app:layout_constraintBottom_toBottomOf="@+id/img_location"
-                app:layout_constraintStart_toEndOf="@+id/img_location"
-                app:layout_constraintTop_toTopOf="@+id/img_location" />
-
-            <ImageView
-                android:id="@+id/img_school"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_school_white_16"
-                android:tint="@color/gray"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_school"
-                app:layout_constraintStart_toStartOf="@+id/img_location"
-                app:layout_constraintTop_toTopOf="@+id/tv_school" />
-
-            <TextView
-                android:id="@+id/tv_school"
-                style="@style/textNormalGray"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:elevation="5dp"
-                android:text="Trường Đại học Khoa học Tự nhiên"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/img_school"
-                app:layout_constraintTop_toBottomOf="@+id/tv_distance_swipe_profile" />
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_baseline_favorite_border_16"
-                android:tint="@color/gray"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_hobby"
-                app:layout_constraintStart_toStartOf="@+id/img_school"
-                app:layout_constraintTop_toTopOf="@+id/tv_hobby" />
-
-            <TextView
-                android:id="@+id/tv_hobby"
-                style="@style/textNormalGray"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:elevation="5dp"
-                android:text="Sở thích: Cầu lông, bóng đá."
-                app:layout_constraintStart_toEndOf="@+id/imageView"
-                app:layout_constraintTop_toBottomOf="@+id/tv_school" />
-
-            <ImageView
-                android:id="@+id/img_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:backgroundTint="@color/black"
-                android:elevation="5dp"
-                android:src="@drawable/ic_location_white_16"
-                android:tint="@color/gray"
-                app:layout_constraintStart_toStartOf="@+id/tv_name_wipe_profile"
-                app:layout_constraintTop_toBottomOf="@+id/tv_name_wipe_profile" />
-
-            <TextView
-                android:id="@+id/tv_name_wipe_profile"
-                style="@style/textTitleBoldBlack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:elevation="5dp"
-                android:text="Lyly,"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/viewpager_swipe_profile" />
-
-            <View
-                android:id="@+id/v_separate"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:background="@color/gray_light"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_hobby" />
-
-            <View
-                android:id="@+id/view"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginBottom="26dp"
-                app:layout_constraintBottom_toBottomOf="@+id/viewpager_swipe_profile"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <ImageView
-                android:id="@+id/img_back"
-                style="@style/btnWhite"
-                android:layout_marginEnd="20dp"
-                android:src="@drawable/ic_redo_pink_24"
-                app:layout_constraintEnd_toEndOf="@+id/viewpager_swipe_profile"
-                app:layout_constraintTop_toBottomOf="@+id/view" />
+                android:layout_height="wrap_content">
 
 
-            <TextView
-                android:id="@+id/tv_introduction"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="16dp"
-                style="@style/textNormalGray"
-                android:text="Tấm ảnh chụp san hô lòng biển, vốn méo mó và mờ mịt vì ống kính phải nhìn xuyên làn nước, bỗng hiện ra sặc sỡ bất ngờ."
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/v_separate" />
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_layout_swipe_profile"
+                    style="@style/tabImageSwipe"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tabBackground="@drawable/tab_selector"
+                    app:tabIndicatorHeight="0dp"
+                    app:tabMode="fixed" />
 
-            <View
-                android:id="@+id/v_separate1"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:background="@color/gray_light"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_introduction" />
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/viewpager_swipe_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="420dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    loadImagesProfile="@{profile}"
+                    withTabLayout="@{tabLayout}"
+                    withNonBorder="@{true}"
+                    app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/tv_share"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="16dp"
-                android:text="CHIA SẺ HỒ SƠ CỦA LYLY"
-                android:textColor="@color/colorPrimary"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/v_separate1" />
+                </androidx.viewpager2.widget.ViewPager2>
 
-            <View
-                android:id="@+id/v_separate2"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:background="@color/gray_light"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_share" />
+                <TextView
+                    android:id="@+id/tv_age_wipe_profile"
+                    style="@style/textTitleNormalBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:elevation="5dp"
+                    android:text="@{profile.age}"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_name_wipe_profile"
+                    app:layout_constraintStart_toEndOf="@+id/tv_name_wipe_profile"
+                    tools:text="21" />
 
-            <TextView
-                android:id="@+id/tv_report"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="16dp"
-                android:text="BÁO CÁO LYLY"
-                android:textColor="@color/gray"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/v_separate2" />
+                <TextView
+                    android:id="@+id/tv_distance_swipe_profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Cách xa 10Km"
+                    style="@style/textNormalGray"
+                    app:layout_constraintBottom_toBottomOf="@+id/img_location"
+                    app:layout_constraintStart_toEndOf="@+id/img_location"
+                    app:layout_constraintTop_toTopOf="@+id/img_location" />
 
-            <View
-                android:id="@+id/v_separate3"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:background="@color/gray_light"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_report" />
+                <ImageView
+                    android:id="@+id/img_school"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_school_white_16"
+                    android:tint="@color/gray"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_school"
+                    app:layout_constraintStart_toStartOf="@+id/img_location"
+                    app:layout_constraintTop_toTopOf="@+id/tv_school" />
 
-            <View
-                android:layout_width="1dp"
-                android:layout_height="180dp"
-                app:layout_constraintEnd_toEndOf="@+id/viewpager_swipe_profile"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/v_separate3" />
+                <TextView
+                    android:id="@+id/tv_school"
+                    style="@style/textNormalGray"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:elevation="5dp"
+                    android:text="Trường Đại học Khoa học Tự nhiên"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/img_school"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_distance_swipe_profile" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_favorite_border_16"
+                    android:tint="@color/gray"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_hobby"
+                    app:layout_constraintStart_toStartOf="@+id/img_school"
+                    app:layout_constraintTop_toTopOf="@+id/tv_hobby" />
 
+                <TextView
+                    android:id="@+id/tv_hobby"
+                    style="@style/textNormalGray"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:elevation="5dp"
+                    android:text="Sở thích: Cầu lông, bóng đá."
+                    app:layout_constraintStart_toEndOf="@+id/imageView"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_school" />
 
-    <ImageView
-        android:id="@+id/img_replay_swiped"
-        style="@style/btnWhite"
-        android:layout_marginBottom="84dp"
-        android:src="@drawable/ic_replay_green_24"
-        android:transitionName="img_replay"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/img_cancel_swiped"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+                <ImageView
+                    android:id="@+id/img_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:backgroundTint="@color/black"
+                    android:elevation="5dp"
+                    android:src="@drawable/ic_location_white_16"
+                    android:tint="@color/gray"
+                    app:layout_constraintStart_toStartOf="@+id/tv_name_wipe_profile"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_name_wipe_profile" />
 
-    <ImageView
-        android:id="@+id/img_cancel_swiped"
-        style="@style/btnWhite"
-        android:src="@drawable/ic_cancel_pink_24"
-        android:transitionName="img_cancel"
-        app:layout_constraintBottom_toBottomOf="@+id/img_replay_swiped"
-        app:layout_constraintEnd_toStartOf="@+id/img_star_swiped"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/img_replay_swiped"
-        app:layout_constraintTop_toTopOf="@+id/img_replay_swiped" />
+                <TextView
+                    android:id="@+id/tv_name_wipe_profile"
+                    style="@style/textTitleBoldBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:elevation="5dp"
+                    android:text="@{profile.name}"
+                    tools:text="Selena Dương"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/viewpager_swipe_profile" />
 
-    <ImageView
-        android:id="@+id/img_star_swiped"
-        style="@style/btnWhite"
-        android:src="@drawable/ic_star_blue_36"
-        android:transitionName="img_star"
-        app:layout_constraintBottom_toBottomOf="@+id/img_replay_swiped"
-        app:layout_constraintEnd_toStartOf="@+id/img_match_swiped"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/img_cancel_swiped"
-        app:layout_constraintTop_toTopOf="@+id/img_replay_swiped"
-        app:layout_constraintVertical_bias="0.461" />
+                <View
+                    android:id="@+id/v_separate"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/gray_light"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_hobby" />
 
-    <ImageView
-        android:id="@+id/img_match_swiped"
-        style="@style/btnWhite"
-        android:src="@drawable/ic_favorite_pink_48"
-        android:transitionName="img_match"
-        app:layout_constraintBottom_toBottomOf="@+id/img_cancel_swiped"
-        app:layout_constraintEnd_toStartOf="@+id/img_speed_swiped"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/img_star_swiped"
-        app:layout_constraintTop_toTopOf="@+id/img_cancel_swiped"
-        app:layout_constraintVertical_bias="0.0" />
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="26dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/viewpager_swipe_profile"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
-    <ImageView
-        android:id="@+id/img_speed_swiped"
-        style="@style/btnWhite"
-        android:src="@drawable/ic_flash_on_green_24"
-        android:transitionName="img_speed"
-
-        app:layout_constraintBottom_toBottomOf="@+id/img_replay_swiped"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/img_match_swiped"
-        app:layout_constraintTop_toTopOf="@+id/img_replay_swiped"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <View
-        android:id="@+id/view3"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:background="@drawable/gradient_white"
-        app:layout_constraintBottom_toTopOf="@+id/view2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <View
-        android:id="@+id/view2"
-        android:layout_width="0dp"
-        android:layout_height="54dp"
-        android:layout_marginBottom="56dp"
-        android:background="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+                <ImageView
+                    android:id="@+id/img_back"
+                    style="@style/btnWhite"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/ic_redo_pink_24"
+                    app:layout_constraintEnd_toEndOf="@+id/viewpager_swipe_profile"
+                    app:layout_constraintTop_toBottomOf="@+id/view" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/tv_introduction"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="16dp"
+                    style="@style/textNormalGray"
+                    android:text="Tấm ảnh chụp san hô lòng biển, vốn méo mó và mờ mịt vì ống kính phải nhìn xuyên làn nước, bỗng hiện ra sặc sỡ bất ngờ."
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/v_separate" />
+
+                <View
+                    android:id="@+id/v_separate1"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/gray_light"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_introduction" />
+
+                <TextView
+                    android:id="@+id/tv_share"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="16dp"
+                    android:text="CHIA SẺ HỒ SƠ CỦA LYLY"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/v_separate1" />
+
+                <View
+                    android:id="@+id/v_separate2"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray_light"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_share" />
+
+                <TextView
+                    android:id="@+id/tv_report"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="16dp"
+                    android:text="BÁO CÁO LYLY"
+                    android:textColor="@color/gray"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/v_separate2" />
+
+                <View
+                    android:id="@+id/v_separate3"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray_light"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_report" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="180dp"
+                    app:layout_constraintEnd_toEndOf="@+id/viewpager_swipe_profile"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/v_separate3" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+
+        <ImageView
+            android:id="@+id/img_replay_swiped"
+            style="@style/btnWhite"
+            android:layout_marginBottom="84dp"
+            android:src="@drawable/ic_replay_green_24"
+            android:transitionName="img_replay"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/img_cancel_swiped"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/img_cancel_swiped"
+            style="@style/btnWhite"
+            android:src="@drawable/ic_cancel_pink_24"
+            android:transitionName="img_cancel"
+            app:layout_constraintBottom_toBottomOf="@+id/img_replay_swiped"
+            app:layout_constraintEnd_toStartOf="@+id/img_star_swiped"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/img_replay_swiped"
+            app:layout_constraintTop_toTopOf="@+id/img_replay_swiped" />
+
+        <ImageView
+            android:id="@+id/img_star_swiped"
+            style="@style/btnWhite"
+            android:src="@drawable/ic_star_blue_36"
+            android:transitionName="img_star"
+            app:layout_constraintBottom_toBottomOf="@+id/img_replay_swiped"
+            app:layout_constraintEnd_toStartOf="@+id/img_match_swiped"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/img_cancel_swiped"
+            app:layout_constraintTop_toTopOf="@+id/img_replay_swiped"
+            app:layout_constraintVertical_bias="0.461" />
+
+        <ImageView
+            android:id="@+id/img_match_swiped"
+            style="@style/btnWhite"
+            android:src="@drawable/ic_favorite_pink_48"
+            android:transitionName="img_match"
+            app:layout_constraintBottom_toBottomOf="@+id/img_cancel_swiped"
+            app:layout_constraintEnd_toStartOf="@+id/img_speed_swiped"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/img_star_swiped"
+            app:layout_constraintTop_toTopOf="@+id/img_cancel_swiped"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/img_speed_swiped"
+            style="@style/btnWhite"
+            android:src="@drawable/ic_flash_on_green_24"
+            android:transitionName="img_speed"
+
+            app:layout_constraintBottom_toBottomOf="@+id/img_replay_swiped"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img_match_swiped"
+            app:layout_constraintTop_toTopOf="@+id/img_replay_swiped"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:background="@drawable/gradient_white"
+            app:layout_constraintBottom_toTopOf="@+id/view2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:layout_marginBottom="56dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
