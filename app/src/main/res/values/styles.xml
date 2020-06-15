@@ -60,4 +60,18 @@
     <style name="textTitleBoldBlack" parent="textTitleNormalBlack">
         <item name="android:textStyle">bold</item>
     </style>
+
+    <style name="btn_circle_gray_normal">
+        <item name="android:layout_width">56dp</item>
+        <item name="android:layout_height">56dp</item>
+        <item name="android:background">@drawable/btn_circle_gray</item>
+    </style>
+
+    <style name="text_gray_medium_14">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:textSize">14sp</item>
+    </style>
 </resources>

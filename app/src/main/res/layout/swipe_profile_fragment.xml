@@ -147,7 +147,7 @@
                     android:layout_width="0dp"
                     android:layout_height="1dp"
                     android:layout_marginTop="8dp"
-                    android:background="@color/gray_light"
+                    android:background="@color/grayLight"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_hobby" />
@@ -187,7 +187,7 @@
                     android:layout_width="0dp"
                     android:layout_height="1dp"
                     android:layout_marginTop="8dp"
-                    android:background="@color/gray_light"
+                    android:background="@color/grayLight"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_introduction" />
@@ -209,7 +209,7 @@
                     android:id="@+id/v_separate2"
                     android:layout_width="0dp"
                     android:layout_height="1dp"
-                    android:background="@color/gray_light"
+                    android:background="@color/grayLight"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_share" />
@@ -231,7 +231,7 @@
                     android:id="@+id/v_separate3"
                     android:layout_width="0dp"
                     android:layout_height="1dp"
-                    android:background="@color/gray_light"
+                    android:background="@color/grayLight"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_report" />
