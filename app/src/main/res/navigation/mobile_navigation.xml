@@ -7,7 +7,11 @@
     <fragment
         android:id="@+id/navigation_profile"
         android:name="phu.nguyen.dateme.ui.profile.ProfileFragment"
-        android:label="ProfileFragment" />
+        android:label="ProfileFragment" >
+        <action
+            android:id="@+id/action_navigation_profile_to_settingFragment"
+            app:destination="@id/settingFragment" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_explore"
         android:name="phu.nguyen.dateme.ui.explore.ExploreFragment"
@@ -43,4 +47,9 @@
             android:name="currentItem"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="phu.nguyen.dateme.ui.setting.SettingFragment"
+        android:label="setting_fragment"
+        tools:layout="@layout/setting_fragment" />
 </navigation>
