@@ -11,6 +11,9 @@
         <action
             android:id="@+id/action_navigation_profile_to_settingFragment"
             app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_navigation_profile_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/navigation_explore"
@@ -52,4 +55,9 @@
         android:name="phu.nguyen.dateme.ui.setting.SettingFragment"
         android:label="setting_fragment"
         tools:layout="@layout/setting_fragment" />
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="phu.nguyen.dateme.ui.editProfile.EditProfileFragment"
+        android:label="edit_profile_fragment"
+        tools:layout="@layout/edit_profile_fragment" />
 </navigation>

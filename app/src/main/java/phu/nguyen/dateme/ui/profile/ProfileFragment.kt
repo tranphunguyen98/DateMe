@@ -29,5 +29,8 @@ class ProfileFragment : Fragment() {
         btn_setting.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_profile_to_settingFragment)
         }
+        btn_edit.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_profile_to_editProfileFragment)
+        }
     }
 }
