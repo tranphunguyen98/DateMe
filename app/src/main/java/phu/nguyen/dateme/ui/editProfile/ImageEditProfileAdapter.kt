@@ -1,5 +1,7 @@
 package phu.nguyen.dateme.ui.editProfile
 
+import android.app.Activity
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -11,9 +13,13 @@ class ImageEditProfileAdapter(private val listImage: List<String>) : RecyclerVie
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageEditVH {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = ItemImageEditProfileBinding.inflate(layoutInflater,parent, false)
-        val lp =
-            binding.root.layoutParams
-        lp.height = (parent.measuredHeight) / 4
+        val lp = binding.root.layoutParams
+
+        val displayMetrics = DisplayMetrics()
+        (parent.context as Activity).windowManager.defaultDisplay.getMetrics(displayMetrics)
+
+        lp.height = (displayMetrics.heightPixels) / 4
+
         binding.root.layoutParams = lp
         return ImageEditVH(binding)
     }
