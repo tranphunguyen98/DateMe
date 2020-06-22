@@ -35,6 +35,26 @@ class EditProfileFragment : Fragment() {
         val listImage = listOf<String>(image1,image2,image1,image2,image1,image2,image1,image2,image1)
         rc_images.layoutManager = GridLayoutManager(context,3)
         rc_images.adapter = ImageEditProfileAdapter(listImage)
+
+        radio_button_gender_edit.setOnCheckedChangeListener { group, checkedId ->
+            when(checkedId) {
+                R.id.rb_male_edit -> {
+                    rb_male_edit.setTextColor(resources.getColor(R.color.white))
+                    rb_female_edit.setTextColor(resources.getColor(R.color.colorPrimary))
+                    rb_other_edit.setTextColor(resources.getColor(R.color.colorPrimary))
+                }
+                R.id.rb_female_edit -> {
+                    rb_male_edit.setTextColor(resources.getColor(R.color.colorPrimary))
+                    rb_female_edit.setTextColor(resources.getColor(R.color.white))
+                    rb_other_edit.setTextColor(resources.getColor(R.color.colorPrimary))
+                }
+                R.id.rb_other_edit -> {
+                    rb_male_edit.setTextColor(resources.getColor(R.color.colorPrimary))
+                    rb_female_edit.setTextColor(resources.getColor(R.color.colorPrimary))
+                    rb_other_edit.setTextColor(resources.getColor(R.color.white))
+                }
+            }
+        }
     }
 
 }

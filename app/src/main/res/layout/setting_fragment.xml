@@ -16,7 +16,7 @@
 
         <TextView
             android:id="@+id/textView4"
-            style="@style/text_bold_normal"
+            style="@style/textNormalBold20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Thiết lập hiển thị đối tượng"
@@ -357,7 +357,7 @@
 
         <TextView
             android:id="@+id/tv_setting_app"
-            style="@style/text_bold_normal"
+            style="@style/textNormalBold20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
