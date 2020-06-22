@@ -40,7 +40,7 @@
 
                 <TextView
                     android:id="@+id/textView6"
-                    style="@style/text_normal_18"
+                    style="@style/textNormal18"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -110,7 +110,7 @@
 
                 <TextView
                     android:id="@+id/textView7"
-                    style="@style/text_normal_18"
+                    style="@style/textNormal18"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -172,7 +172,7 @@
 
                 <TextView
                     android:id="@+id/tv_location"
-                    style="@style/text_normal_18"
+                    style="@style/textNormal18"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Địa điểm"
@@ -181,7 +181,7 @@
 
                 <TextView
                     android:id="@+id/tv_my_location"
-                    style="@style/text_normal_18"
+                    style="@style/textNormal18"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -191,7 +191,7 @@
 
                 <TextView
                     android:id="@+id/tv_my_location2"
-                    style="@style/text_normal_18"
+                    style="@style/textNormal18"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -240,7 +240,7 @@
 
                 <TextView
                     android:id="@+id/tv_global"
-                    style="@style/text_normal_18"
+                    style="@style/textNormal18"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Toàn cầu"
@@ -275,7 +275,7 @@
 
                 <TextView
                     android:id="@+id/textView71"
-                    style="@style/text_normal_18"
+                    style="@style/textNormal18"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -337,7 +337,7 @@
 
                 <TextView
                     android:id="@+id/tv_show_me"
-                    style="@style/text_normal_18"
+                    style="@style/textNormal18"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Hiển thị tôi"
@@ -383,7 +383,7 @@
 
                 <TextView
                     android:id="@+id/tv_show_notification"
-                    style="@style/text_normal_18"
+                    style="@style/textNormal18"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Thông báo"
@@ -415,7 +415,7 @@
 
                 <TextView
                     android:id="@+id/tv_log_out"
-                    style="@style/text_normal_18"
+                    style="@style/textNormal18"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
@@ -443,7 +443,7 @@
 
             <TextView
                 android:id="@+id/tv_delete_account"
-                style="@style/text_normal_18"
+                style="@style/textNormal18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

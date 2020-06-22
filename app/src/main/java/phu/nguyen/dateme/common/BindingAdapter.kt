@@ -34,6 +34,14 @@ class BindingAdapter {
             }
         }
 
+//        @JvmStatic
+//        @BindingAdapter("loadImagesExplore")
+//        fun setupRecyclerViewImageExplore(recyclerView: RecyclerView, profile: Profile?) {
+//            profile?.let {
+//                recyclerView.adapter = ImageExploreAdapter(profile.images)
+//            }
+//        }
+
         @JvmStatic
         @BindingAdapter(value = ["loadImagesProfile", "withTabLayout", "withNonBorder"], requireAll = false)
         fun setViewPagerProperties(viewPager2: ViewPager2, profile: Profile?, tabLayout: TabLayout?, nonBorder: Boolean?) {

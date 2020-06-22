@@ -303,7 +303,7 @@
 
         <TextView
             android:id="@+id/tv_show_age"
-            style="@style/text_normal_18"
+            style="@style/textNormal18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -322,7 +322,7 @@
 
         <TextView
             android:id="@+id/tv_show_location"
-            style="@style/text_normal_18"
+            style="@style/textNormal18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"

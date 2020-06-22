@@ -86,13 +86,26 @@
         <item name="android:textSize">18sp</item>
     </style>
 
-    <style name="text_normal_18">
+    <style name="textNormal18">
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">18sp</item>
     </style>
 
-    <style name="text_normal_bold_18" parent="text_normal_18">
+    <style name="textNormal16" parent="textNormal18">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="textNormalBold16" parent="textNormal18">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="textNormal14" parent="textNormal18">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="text_normal_bold_18" parent="textNormal18">
         <item name="android:textStyle">bold</item>
     </style>
 
