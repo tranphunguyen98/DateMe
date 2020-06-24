@@ -9,12 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
-import kotlinx.android.synthetic.main.swipe_profile_fragment.*
-import phu.nguyen.dateme.databinding.SwipeProfileFragmentBinding
+import kotlinx.android.synthetic.main.fragment_swipe_profile.*
+import phu.nguyen.dateme.databinding.FragmentSwipeProfileBinding
 
 class SwipeProfileFragment : Fragment() {
     private val args: SwipeProfileFragmentArgs by navArgs()
-    private lateinit var binding : SwipeProfileFragmentBinding
+    private lateinit var binding : FragmentSwipeProfileBinding
     companion object {
         fun newInstance() = SwipeProfileFragment()
     }
@@ -38,7 +38,7 @@ class SwipeProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = SwipeProfileFragmentBinding.inflate(inflater, container, false)
+        binding = FragmentSwipeProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
 

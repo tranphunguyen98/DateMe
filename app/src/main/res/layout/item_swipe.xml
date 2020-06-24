@@ -3,9 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="profile"
             type="phu.nguyen.dateme.data.model.Profile" />
+
         <variable
             name="tabLayout"
             type="com.google.android.material.tabs.TabLayout" />
@@ -28,7 +30,8 @@
                 android:layout_gravity="end"
                 android:layout_marginTop="60dp"
                 android:layout_marginEnd="60dp"
-                android:src="@drawable/thumbs_down_128dp" />
+                android:src="@drawable/thumbs_down_128dp"
+                android:contentDescription="@string/image_ignore_profile" />
 
         </FrameLayout>
 
@@ -43,7 +46,8 @@
                 android:layout_height="128dp"
                 android:layout_marginStart="60dp"
                 android:layout_marginTop="60dp"
-                android:src="@drawable/thumbs_up_128dp" />
+                android:src="@drawable/thumbs_up_128dp"
+                android:contentDescription="@string/image_like_profile" />
         </FrameLayout>
 
         <FrameLayout
@@ -57,25 +61,28 @@
                 android:layout_height="128dp"
                 android:layout_gravity="bottom|center"
                 android:layout_marginBottom="220dp"
-                android:src="@drawable/thumbs_up_128dp" />
+                android:src="@drawable/thumbs_up_128dp"
+                android:contentDescription="@string/image_super_like" />
         </FrameLayout>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout_profile"
             style="@style/tabImageSwipe"
             app:tabBackground="@drawable/tab_selector"
+            android:background="#00ffffff"
             app:tabIndicatorHeight="0dp"
+            android:elevation="2dp"
             app:tabMode="fixed" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewpager_dashboard"
+            loadImagesProfile="@{profile}"
+            withTabLayout="@{tabLayout}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="64dp"
-            loadImagesProfile="@{profile}"
-            withTabLayout="@{tabLayout}"
+            android:layout_marginBottom="16dp"
             app:layout_anchor="@id/tab_layout_profile"
             app:layout_anchorGravity="top">
 
@@ -84,7 +91,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="64dp"
+            android:layout_marginBottom="16dp"
             android:elevation="5dp">
 
             <TextView
@@ -105,7 +112,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:elevation="5dp"
-                android:text="Cách xa Km"
+                android:text="@string/away_km"
                 app:layout_constraintBottom_toBottomOf="@+id/img_location"
                 app:layout_constraintStart_toEndOf="@+id/img_location"
                 app:layout_constraintTop_toTopOf="@+id/img_location" />
@@ -119,7 +126,8 @@
                 android:elevation="5dp"
                 android:src="@drawable/ic_location_white_16"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                android:contentDescription="@string/not_important" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline2"

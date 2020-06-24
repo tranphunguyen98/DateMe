@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import kotlinx.android.synthetic.main.setting_fragment.*
+import kotlinx.android.synthetic.main.fragment_setting.*
 import phu.nguyen.dateme.R
 
 class SettingFragment : Fragment() {
@@ -21,7 +21,7 @@ class SettingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.setting_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_setting, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

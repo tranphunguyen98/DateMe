@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="image"
             type="String" />
@@ -25,11 +26,11 @@
 
             <ImageView
                 android:id="@+id/img_profile_dashboard"
+                loadImageWithoutAnimation="@{image}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                loadImage="@{image}"
-                />
+                android:contentDescription="@string/image_profile"
+                android:scaleType="centerCrop" />
         </androidx.cardview.widget.CardView>
 
         <View

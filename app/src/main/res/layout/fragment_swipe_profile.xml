@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="profile"
             type="phu.nguyen.dateme.data.model.Profile" />
+
         <variable
             name="tabLayout"
             type="com.google.android.material.tabs.TabLayout" />
@@ -34,17 +36,19 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:tabBackground="@drawable/tab_selector"
                     app:tabIndicatorHeight="0dp"
+                    android:background="#00ffffff"
+                    android:elevation="2dp"
                     app:tabMode="fixed" />
 
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/viewpager_swipe_profile"
+                    loadImagesProfile="@{profile}"
+                    withNonBorder="@{true}"
+                    withTabLayout="@{tabLayout}"
                     android:layout_width="match_parent"
                     android:layout_height="420dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    loadImagesProfile="@{profile}"
-                    withTabLayout="@{tabLayout}"
-                    withNonBorder="@{true}"
                     app:layout_constraintTop_toTopOf="parent">
 
                 </androidx.viewpager2.widget.ViewPager2>
@@ -63,11 +67,11 @@
 
                 <TextView
                     android:id="@+id/tv_distance_swipe_profile"
+                    style="@style/textNormalGray"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="Cách xa 10Km"
-                    style="@style/textNormalGray"
+                    android:text="@string/fake_distance"
                     app:layout_constraintBottom_toBottomOf="@+id/img_location"
                     app:layout_constraintStart_toEndOf="@+id/img_location"
                     app:layout_constraintTop_toTopOf="@+id/img_location" />
@@ -80,7 +84,8 @@
                     android:tint="@color/gray"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_school"
                     app:layout_constraintStart_toStartOf="@+id/img_location"
-                    app:layout_constraintTop_toTopOf="@+id/tv_school" />
+                    app:layout_constraintTop_toTopOf="@+id/tv_school"
+                    android:contentDescription="@string/not_important" />
 
                 <TextView
                     android:id="@+id/tv_school"
@@ -89,7 +94,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:elevation="5dp"
-                    android:text="Trường Đại học Khoa học Tự nhiên"
+                    android:text="@string/fake_school"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/img_school"
                     app:layout_constraintTop_toBottomOf="@+id/tv_distance_swipe_profile" />
@@ -102,7 +107,8 @@
                     android:tint="@color/gray"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_hobby"
                     app:layout_constraintStart_toStartOf="@+id/img_school"
-                    app:layout_constraintTop_toTopOf="@+id/tv_hobby" />
+                    app:layout_constraintTop_toTopOf="@+id/tv_hobby"
+                    android:contentDescription="@string/not_important" />
 
                 <TextView
                     android:id="@+id/tv_hobby"
@@ -112,7 +118,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:elevation="5dp"
-                    android:text="Sở thích: Cầu lông, bóng đá."
+                    android:text="@string/fake_hobby"
                     app:layout_constraintStart_toEndOf="@+id/imageView"
                     app:layout_constraintTop_toBottomOf="@+id/tv_school" />
 
@@ -126,7 +132,8 @@
                     android:src="@drawable/ic_location_white_16"
                     android:tint="@color/gray"
                     app:layout_constraintStart_toStartOf="@+id/tv_name_wipe_profile"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_name_wipe_profile" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_name_wipe_profile"
+                    android:contentDescription="@string/not_important" />
 
                 <TextView
                     android:id="@+id/tv_name_wipe_profile"
@@ -138,9 +145,9 @@
                     android:layout_marginTop="8dp"
                     android:elevation="5dp"
                     android:text="@{profile.name}"
-                    tools:text="Selena Dương"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/viewpager_swipe_profile" />
+                    app:layout_constraintTop_toBottomOf="@+id/viewpager_swipe_profile"
+                    tools:text="Selena Dương" />
 
                 <View
                     android:id="@+id/v_separate"
@@ -166,18 +173,19 @@
                     android:layout_marginEnd="20dp"
                     android:src="@drawable/ic_redo_pink_24"
                     app:layout_constraintEnd_toEndOf="@+id/viewpager_swipe_profile"
-                    app:layout_constraintTop_toBottomOf="@+id/view" />
+                    app:layout_constraintTop_toBottomOf="@+id/view"
+                    android:contentDescription="@string/image_come_back_profile_swiped" />
 
 
                 <TextView
                     android:id="@+id/tv_introduction"
+                    style="@style/textNormalGray"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="16dp"
-                    style="@style/textNormalGray"
-                    android:text="Tấm ảnh chụp san hô lòng biển, vốn méo mó và mờ mịt vì ống kính phải nhìn xuyên làn nước, bỗng hiện ra sặc sỡ bất ngờ."
+                    android:text="@string/fake_description"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/v_separate" />
@@ -198,7 +206,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="16dp"
-                    android:text="CHIA SẺ HỒ SƠ CỦA LYLY"
+                    android:text="@string/share_profile_of"
                     android:textColor="@color/colorPrimary"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -220,7 +228,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="16dp"
-                    android:text="BÁO CÁO LYLY"
+                    android:text="@string/report_of"
                     android:textColor="@color/gray"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -250,7 +258,8 @@
         <ImageView
             android:id="@+id/img_replay_swiped"
             style="@style/btnWhite"
-            android:layout_marginBottom="84dp"
+            android:layout_marginBottom="32dp"
+            android:contentDescription="@string/image_replay"
             android:src="@drawable/ic_replay_green_24"
             android:transitionName="img_replay"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -267,7 +276,8 @@
             app:layout_constraintEnd_toStartOf="@+id/img_star_swiped"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/img_replay_swiped"
-            app:layout_constraintTop_toTopOf="@+id/img_replay_swiped" />
+            app:layout_constraintTop_toTopOf="@+id/img_replay_swiped"
+            android:contentDescription="@string/image_ignore_profile" />
 
         <ImageView
             android:id="@+id/img_star_swiped"
@@ -279,7 +289,8 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/img_cancel_swiped"
             app:layout_constraintTop_toTopOf="@+id/img_replay_swiped"
-            app:layout_constraintVertical_bias="0.461" />
+            app:layout_constraintVertical_bias="0.461"
+            android:contentDescription="@string/image_super_like" />
 
         <ImageView
             android:id="@+id/img_match_swiped"
@@ -291,7 +302,8 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/img_star_swiped"
             app:layout_constraintTop_toTopOf="@+id/img_cancel_swiped"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            android:contentDescription="@string/image_like_profile" />
 
         <ImageView
             android:id="@+id/img_speed_swiped"
@@ -303,7 +315,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/img_match_swiped"
             app:layout_constraintTop_toTopOf="@+id/img_replay_swiped"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            android:contentDescription="@string/image_boost_profile" />
 
         <View
             android:id="@+id/view3"
@@ -318,7 +331,6 @@
             android:id="@+id/view2"
             android:layout_width="0dp"
             android:layout_height="54dp"
-            android:layout_marginBottom="56dp"
             android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

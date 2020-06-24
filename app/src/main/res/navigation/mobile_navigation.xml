@@ -35,13 +35,13 @@
         tools:layout="@layout/fragment_likes" />
     <fragment
         android:id="@+id/navigation_chat"
-        android:name="phu.nguyen.dateme.ui.profile.ChatFragment"
+        android:name="phu.nguyen.dateme.ui.chat.ChatFragment"
         android:label="ChatFragment" />
     <fragment
         android:id="@+id/swipeProfileFragment"
         android:name="phu.nguyen.dateme.ui.swipeProfile.SwipeProfileFragment"
         android:label="swipe_profile_fragment"
-        tools:layout="@layout/swipe_profile_fragment">
+        tools:layout="@layout/fragment_swipe_profile">
         <argument
             android:name="profile"
             app:argType="phu.nguyen.dateme.data.model.Profile"
@@ -54,10 +54,10 @@
         android:id="@+id/settingFragment"
         android:name="phu.nguyen.dateme.ui.setting.SettingFragment"
         android:label="setting_fragment"
-        tools:layout="@layout/setting_fragment" />
+        tools:layout="@layout/fragment_setting" />
     <fragment
         android:id="@+id/editProfileFragment"
         android:name="phu.nguyen.dateme.ui.editProfile.EditProfileFragment"
         android:label="edit_profile_fragment"
-        tools:layout="@layout/edit_profile_fragment" />
+        tools:layout="@layout/fragment_edit_profile" />
 </navigation>

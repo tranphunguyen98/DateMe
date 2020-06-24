@@ -25,7 +25,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        android:contentDescription="@string/image_setting" />
 
     <ImageButton
         android:id="@+id/btb_my_profile"
@@ -35,7 +36,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btn_setting" />
+        app:layout_constraintTop_toTopOf="@+id/btn_setting"
+        android:contentDescription="@string/image_show_my_profile" />
 
     <ImageButton
         android:id="@+id/btn_edit"
@@ -44,12 +46,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.88"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btn_setting" />
+        app:layout_constraintTop_toTopOf="@+id/btn_setting"
+        android:contentDescription="@string/image_edit_profile" />
 
     <TextView
         style="@style/text_gray_medium_14"
         android:layout_marginTop="8dp"
-        android:text="THIẾT LẬP"
+        android:text="@string/SETTING"
         app:layout_constraintEnd_toEndOf="@+id/btn_setting"
         app:layout_constraintStart_toStartOf="@+id/btn_setting"
         app:layout_constraintTop_toBottomOf="@+id/btn_setting" />
@@ -58,7 +61,7 @@
         android:id="@+id/textView5"
         style="@style/text_gray_medium_14"
         android:layout_marginTop="8dp"
-        android:text="HỒ SƠ CỦA TÔI"
+        android:text="@string/MY_PROFILE"
         app:layout_constraintEnd_toEndOf="@+id/btb_my_profile"
         app:layout_constraintStart_toStartOf="@+id/btb_my_profile"
         app:layout_constraintTop_toBottomOf="@+id/btb_my_profile" />
@@ -66,7 +69,7 @@
     <TextView
         style="@style/text_gray_medium_14"
         android:layout_marginTop="8dp"
-        android:text="CHỈNH SỬA"
+        android:text="@string/EDIT"
         app:layout_constraintEnd_toEndOf="@+id/btn_edit"
         app:layout_constraintStart_toStartOf="@+id/btn_edit"
         app:layout_constraintTop_toBottomOf="@+id/btn_edit" />
@@ -77,7 +80,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/roboto_slab"
-        android:text="Selena Dương, 22"
+        android:text="@string/fake_name_age"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,21 +93,24 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/roboto"
-        android:text="Trường Đại học Khoa học Tự nhiên"
+        android:text="@string/fake_school"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="72dp"
-        android:background="@drawable/btn_white_border"
-        android:text="Nâng cấp tài khoản"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/white"
+        android:text="@string/upgrade_account"
+        app:cornerRadius="24dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -138,14 +144,15 @@
         android:src="@drawable/ic_check_dark_primary_24"
         app:layout_constraintBottom_toBottomOf="@+id/view_authentication"
         app:layout_constraintStart_toStartOf="@+id/view_authentication"
-        app:layout_constraintTop_toTopOf="@+id/view_authentication" />
+        app:layout_constraintTop_toTopOf="@+id/view_authentication"
+        android:contentDescription="@string/not_important" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Nỗi bật hơn khi chứng thực hình ảnh!"
+        android:text="@string/more_prominent_when_authenticating_your_account"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:fontFamily="@font/roboto"
@@ -161,5 +168,6 @@
         android:src="@drawable/ic_right_white_24"
         app:layout_constraintBottom_toBottomOf="@+id/view_authentication"
         app:layout_constraintEnd_toEndOf="@+id/view_authentication"
-        app:layout_constraintTop_toTopOf="@+id/view_authentication" />
+        app:layout_constraintTop_toTopOf="@+id/view_authentication"
+        android:contentDescription="@string/not_important" />
 </androidx.constraintlayout.widget.ConstraintLayout>

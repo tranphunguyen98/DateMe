@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
-import kotlinx.android.synthetic.main.edit_profile_fragment.*
+import kotlinx.android.synthetic.main.fragment_edit_profile.*
 import phu.nguyen.dateme.R
 
 class EditProfileFragment : Fragment() {
@@ -22,7 +22,7 @@ class EditProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.edit_profile_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_edit_profile, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

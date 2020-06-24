@@ -1,4 +1,4 @@
-package phu.nguyen.dateme.ui.profile
+package phu.nguyen.dateme.ui.chat
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import phu.nguyen.dateme.R
+import phu.nguyen.dateme.ui.profile.ChatViewModel
 
 class ChatFragment : Fragment() {
 

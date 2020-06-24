@@ -34,6 +34,27 @@ class BindingAdapter {
             }
         }
 
+        @JvmStatic
+        @BindingAdapter("loadImageWithoutAnimation")
+        fun loadImageSourceWithoutAnimation(view: ImageView, url: String?) {
+            url?.let {
+                Picasso.get()
+                    .load(it)
+                    .noFade()
+                    .placeholder(R.drawable.placeholder)
+                    .into(view,object : Callback {
+                        override fun onSuccess() {
+                            view.alpha = 0f
+                            view.animate().setDuration(200).alpha(1f).start()
+                        }
+
+                        override fun onError(e: Exception?) {
+                        }
+
+                    })
+            }
+        }
+
 //        @JvmStatic
 //        @BindingAdapter("loadImagesExplore")
 //        fun setupRecyclerViewImageExplore(recyclerView: RecyclerView, profile: Profile?) {

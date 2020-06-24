@@ -41,7 +41,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/background_edt_normal"
-                android:hint="Mô tả bản thân"
+                android:hint="@string/describe_yourself"
+                android:importantForAutofill="no"
                 android:inputType="textMultiLine"
                 android:minLines="2"
                 android:padding="16dp"
@@ -58,7 +59,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:padding="16dp"
-            android:text="Thêm hình ảnh"
+            android:text="@string/add_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rc_images" />
@@ -69,7 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Mô tả"
+            android:text="@string/describe"
             app:layout_constraintStart_toStartOf="@+id/btn_add_image"
             app:layout_constraintTop_toBottomOf="@+id/btn_add_image" />
 
@@ -79,7 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Trường"
+            android:text="@string/school"
             app:layout_constraintStart_toStartOf="@+id/btn_add_image"
             app:layout_constraintTop_toBottomOf="@+id/edt_description" />
 
@@ -99,7 +100,9 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/background_edt_normal"
                 android:cursorVisible="true"
-                android:hint="Trường học"
+                android:hint="@string/school"
+                android:importantForAutofill="no"
+                android:inputType="text"
                 android:padding="16dp"
                 android:textColor="@color/gray"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -113,7 +116,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Cơ quan"
+            android:text="@string/organization"
             app:layout_constraintStart_toStartOf="@+id/btn_add_image"
             app:layout_constraintTop_toBottomOf="@+id/til_school" />
 
@@ -133,7 +136,9 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/background_edt_normal"
                 android:cursorVisible="true"
-                android:hint="Cơ quan"
+                android:hint="@string/organization"
+                android:importantForAutofill="no"
+                android:inputType="text"
                 android:padding="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_school"
@@ -146,7 +151,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Công việc"
+            android:text="@string/job"
             app:layout_constraintStart_toStartOf="@+id/btn_add_image"
             app:layout_constraintTop_toBottomOf="@+id/til_organization" />
 
@@ -166,7 +171,9 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/background_edt_normal"
                 android:cursorVisible="true"
-                android:hint="Công việc"
+                android:hint="@string/job"
+                android:importantForAutofill="no"
+                android:inputType="text"
                 android:padding="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_school"
@@ -179,7 +186,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Sở thích"
+            android:text="@string/hobby"
             app:layout_constraintStart_toStartOf="@+id/btn_add_image"
             app:layout_constraintTop_toBottomOf="@+id/til_job" />
 
@@ -199,7 +206,9 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/background_edt_normal"
                 android:cursorVisible="true"
-                android:hint="Sở thích"
+                android:hint="@string/hobby"
+                android:importantForAutofill="no"
+                android:inputType="text"
                 android:padding="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_school"
@@ -212,7 +221,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Ngày sinh"
+            android:text="@string/birthday"
             app:layout_constraintStart_toStartOf="@+id/btn_add_image"
             app:layout_constraintTop_toBottomOf="@+id/til_hobby" />
 
@@ -232,7 +241,9 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/background_edt_normal"
                 android:cursorVisible="true"
-                android:hint="dd/mm/yyyy"
+                android:hint="@string/format_of_date"
+                android:importantForAutofill="no"
+                android:inputType="text"
                 android:padding="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_school"
@@ -245,7 +256,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Giới tính"
+            android:text="@string/gender"
             app:layout_constraintStart_toStartOf="@+id/btn_add_image"
             app:layout_constraintTop_toBottomOf="@+id/til_birthday" />
 
@@ -266,7 +277,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/radio_button_left_selector"
                 android:checked="true"
-                android:text="NAM" />
+                android:text="@string/MALE" />
 
             <RadioButton
                 android:id="@+id/rb_female_edit"
@@ -276,7 +287,7 @@
                 android:layout_marginStart="-1dp"
                 android:layout_marginEnd="-1dp"
                 android:background="@drawable/radio_button_center_selector"
-                android:text="NỮ"
+                android:text="@string/FEMALE"
                 android:textColor="@color/colorPrimary" />
 
             <RadioButton
@@ -285,7 +296,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/radio_button_right_selector"
-                android:text="Khác"
+                android:text="@string/other"
                 android:textColor="@color/colorPrimary" />
         </RadioGroup>
 
@@ -296,7 +307,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:text="Thiết lập nâng cao"
+            android:text="@string/advance_setting"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/radio_button_gender_edit" />
@@ -308,7 +319,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/roboto_light"
-            android:text="Không hiển thị độ tuổi"
+            android:text="@string/no_show_age"
             app:layout_constraintStart_toStartOf="@+id/tv_setting_advance"
             app:layout_constraintTop_toBottomOf="@+id/tv_setting_advance" />
 
@@ -328,7 +339,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="72dp"
             android:fontFamily="@font/roboto_light"
-            android:text="Không hiển thị vị trí"
+            android:text="@string/no_show_location"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_show_age"
             app:layout_constraintTop_toBottomOf="@+id/tv_show_age" />

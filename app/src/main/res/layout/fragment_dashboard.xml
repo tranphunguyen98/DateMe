@@ -15,17 +15,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton"
+        app:layout_constraintTop_toBottomOf="@+id/img_filter"
         app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
-        android:id="@+id/imageButton"
+        android:id="@+id/img_filter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/round_button_gray"
         android:clickable="true"
+        android:contentDescription="@string/image_filter"
         android:focusable="true"
         android:padding="6dp"
         android:src="@drawable/ic_filter_list_black_24"
@@ -35,7 +36,8 @@
     <ImageView
         android:id="@+id/img_replay"
         style="@style/btnWhiteTransparent"
-        android:layout_marginBottom="84dp"
+        android:layout_marginBottom="32dp"
+        android:contentDescription="@string/image_replay"
         android:src="@drawable/ic_replay_green_24"
         android:transitionName="img_replay"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -47,9 +49,10 @@
     <ImageView
         android:id="@+id/img_cancel"
         style="@style/btnWhiteTransparent"
+        android:contentDescription="@string/image_ignore_profile"
+        android:elevation="10dp"
         android:src="@drawable/ic_cancel_pink_24"
         android:transitionName="img_cancel"
-        android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/img_replay"
         app:layout_constraintEnd_toStartOf="@+id/img_star"
         app:layout_constraintHorizontal_bias="0.5"
@@ -59,6 +62,7 @@
     <ImageView
         android:id="@+id/img_star"
         style="@style/btnWhiteTransparent"
+        android:contentDescription="@string/image_super_like"
         android:src="@drawable/ic_star_blue_36"
         android:transitionName="img_star"
         app:layout_constraintBottom_toBottomOf="@+id/img_replay"
@@ -71,6 +75,7 @@
     <ImageView
         android:id="@+id/img_match"
         style="@style/btnWhiteTransparent"
+        android:contentDescription="@string/image_like_profile"
         android:src="@drawable/ic_favorite_pink_48"
         android:transitionName="img_match"
         app:layout_constraintBottom_toBottomOf="@+id/img_cancel"
@@ -83,6 +88,7 @@
     <ImageView
         android:id="@+id/img_speed"
         style="@style/btnWhiteTransparent"
+        android:contentDescription="@string/image_boost_profile"
         android:src="@drawable/ic_flash_on_green_24"
         android:transitionName="img_speed"
         app:layout_constraintBottom_toBottomOf="@+id/img_replay"
