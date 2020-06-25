@@ -1,6 +1,6 @@
 package phu.nguyen.dateme.data.source
 
-import phu.nguyen.dateme.data.repository.ProfileDataStore
+import phu.nguyen.dateme.data.repository.profile.ProfileDataStore
 import javax.inject.Inject
 
 /**

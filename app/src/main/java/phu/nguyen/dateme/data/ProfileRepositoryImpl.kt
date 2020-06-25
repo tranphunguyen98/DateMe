@@ -5,7 +5,7 @@ import phu.nguyen.dateme.data.model.Profile
 import phu.nguyen.dateme.data.source.ProfileDataStoreFactory
 import javax.inject.Inject
 
-class ProfileDataRepository @Inject constructor(
+class ProfileRepositoryImpl @Inject constructor(
     private val factory: ProfileDataStoreFactory
 ): ProfileRepository {
     override suspend fun saveMyProfile(profile: Profile) = factory.retrieveCacheDataStore().saveMyProfile(profile)

@@ -5,10 +5,10 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.FragmentComponent
 import phu.nguyen.dateme.cache.ProfileCacheDataSourceImpl
-import phu.nguyen.dateme.data.ProfileDataRepository
 import phu.nguyen.dateme.data.ProfileRepository
-import phu.nguyen.dateme.data.repository.ProfileCacheDataSource
-import phu.nguyen.dateme.data.repository.ProfileRemoteDataSource
+import phu.nguyen.dateme.data.ProfileRepositoryImpl
+import phu.nguyen.dateme.data.repository.profile.ProfileCacheDataSource
+import phu.nguyen.dateme.data.repository.profile.ProfileRemoteDataSource
 import phu.nguyen.dateme.remote.ProfileRemoteDataSourceImpl
 
 @Module
@@ -27,6 +27,6 @@ abstract class DataModule {
 
     @Binds
     abstract fun provideProfileRepository(
-        profileDataRepository: ProfileDataRepository
+        profileDataRepository: ProfileRepositoryImpl
     ): ProfileRepository
 }

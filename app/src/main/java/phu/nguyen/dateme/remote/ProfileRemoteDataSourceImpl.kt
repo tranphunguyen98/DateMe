@@ -1,7 +1,7 @@
 package phu.nguyen.dateme.remote
 
 import phu.nguyen.dateme.data.model.Profile
-import phu.nguyen.dateme.data.repository.ProfileRemoteDataSource
+import phu.nguyen.dateme.data.repository.profile.ProfileRemoteDataSource
 import phu.nguyen.dateme.remote.mapper.NetworkProfileMapper
 import javax.inject.Inject
 

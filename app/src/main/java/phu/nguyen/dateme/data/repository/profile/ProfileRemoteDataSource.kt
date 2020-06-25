@@ -1,4 +1,4 @@
-package phu.nguyen.dateme.data.repository
+package phu.nguyen.dateme.data.repository.profile
 
 import phu.nguyen.dateme.data.model.Profile
 
