@@ -14,6 +14,8 @@ import javax.inject.Inject
 class DashboardViewModel(private val profileRepository: ProfileRepository) : ViewModel() {
 
     private var _result: MutableLiveData<ResultProfile> = MutableLiveData<ResultProfile>()
+    val result: LiveData<ResultProfile>
+        get() = _result
 
     init {
 //        Log.d("testObserve", "DashboardViewModel created")
@@ -24,8 +26,7 @@ class DashboardViewModel(private val profileRepository: ProfileRepository) : Vie
     lateinit var networkProfileMapper: NetworkProfileMapper
 
 
-    val result: LiveData<ResultProfile>
-        get() = _result
+
 
     fun remove(position : Int) {
         if (_result.value is ResultProfile.Success && position > 0) {
