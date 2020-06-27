@@ -7,7 +7,7 @@
 
         <variable
             name="profile"
-            type="phu.nguyen.dateme.data.model.Profile" />
+            type="phu.nguyen.dateme.data.model.SwipeProfile" />
 
         <variable
             name="tabLayout"

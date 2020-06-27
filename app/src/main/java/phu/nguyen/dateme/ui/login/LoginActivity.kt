@@ -13,6 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import phu.nguyen.dateme.R
 import phu.nguyen.dateme.databinding.ActivityLoginBinding
 import phu.nguyen.dateme.ui.login.data.Result
+import phu.nguyen.dateme.ui.main.HomeActivity
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -31,13 +32,11 @@ class LoginActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this, factory)
             .get(LoginViewModel::class.java)
 
-//        viewModel.logout()
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
-//        if (viewModel.wasLogged()) {
-//            startActivity(Intent(this, HomeActivity::class.java))
-//        }
+        if (viewModel.wasLogged()) {
+            startActivity(Intent(this, HomeActivity::class.java))
+        }
 
         binding.btnSignInWithGoogle.setOnClickListener {
             val sign = viewModel.getSignInIntent()
@@ -113,7 +112,8 @@ class LoginActivity : AppCompatActivity() {
         viewModel.result.observe(this, Observer {result ->
             when (result) {
                 is Result.Success -> {
-                    Log.d("testLogin", "Success ${result.data.name}")
+                    Log.d("testLogin", "Success ${result.data.userBasicInfo.name}")
+                    startActivity(Intent(this, HomeActivity::class.java))
                 }
                 is Result.Waiting -> {
                     Log.d("testLogin", "Waiting...")

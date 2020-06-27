@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import phu.nguyen.dateme.common.ResultProfile
-import phu.nguyen.dateme.data.model.Profile
+import phu.nguyen.dateme.data.model.SwipeProfile
 import phu.nguyen.dateme.databinding.FragmentExploreBinding
 import javax.inject.Inject
 
@@ -45,11 +45,11 @@ class ExploreFragment : Fragment() {
 
     }
 
-    private fun setUpRecyclerView(listProfile: List<Profile>) {
+    private fun setUpRecyclerView(listSwipeProfile: List<SwipeProfile>) {
 
         binding.rcImagesExplore.apply {
             layoutManager = GridLayoutManager(context,3)
-            adapter = ImageExploreAdapter(listProfile) { _ ->
+            adapter = ImageExploreAdapter(listSwipeProfile) { _ ->
 
             }
         }
@@ -63,9 +63,9 @@ class ExploreFragment : Fragment() {
                     binding.prgExplore.visibility = View.VISIBLE
                 }
                 is ResultProfile.Success -> {
-                    Log.d("testObserver", "Success 1 - ${it.profiles.size}")
+                    Log.d("testObserver", "Success 1 - ${it.swipeProfiles.size}")
                     binding.prgExplore.visibility = View.GONE
-                    setUpRecyclerView(it.profiles)
+                    setUpRecyclerView(it.swipeProfiles)
                 }
                 is ResultProfile.Failure -> {
                     binding.prgExplore.visibility = View.GONE

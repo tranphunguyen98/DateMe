@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import phu.nguyen.dateme.data.model.Profile
+import phu.nguyen.dateme.data.model.SwipeProfile
 import phu.nguyen.dateme.databinding.ItemImageExploreBinding
 
 class ImageExploreAdapter(
-    private val listProfile: List<Profile>,
+    private val listSwipeProfile: List<SwipeProfile>,
     private val onItemActionListener: (Int) -> Unit
 ) :
     RecyclerView.Adapter<ImageExploreAdapter.ImageExploreVH>() {
@@ -22,17 +22,17 @@ class ImageExploreAdapter(
         return (ImageExploreVH(binding))
     }
 
-    override fun getItemCount(): Int = listProfile.size
+    override fun getItemCount(): Int = listSwipeProfile.size
 
     override fun onBindViewHolder(holder: ImageExploreVH, position: Int) {
-        holder.bind(listProfile[position], onItemActionListener, position, listProfile.size)
+        holder.bind(listSwipeProfile[position], onItemActionListener, position, listSwipeProfile.size)
     }
 
 
     class ImageExploreVH(private val binding : ItemImageExploreBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(profile: Profile, onItemActionListener: (Int) -> Unit, position: Int, size: Int) {
-            Log.d("textObserver", profile.name)
-            binding.profile = profile
+        fun bind(swipeProfile: SwipeProfile, onItemActionListener: (Int) -> Unit, position: Int, size: Int) {
+            Log.d("textObserver", swipeProfile.name)
+            binding.profile = swipeProfile
         }
     }
 }

@@ -48,12 +48,14 @@ class AuthenticationService @Inject constructor(
                 val authResult = firebaseAuth.signInWithCredential(authCredential).await()
                 Log.d("TestAuth", authResult.user.toString())
                 Log.d("TestAuth", authResult.user?.displayName ?: "null")
-                return@withContext NetworkUser(authResult.user?.displayName ?: "")
+                Log.d("TestAuth", authResult.user?.uid ?: "null")
+                Log.d("TestAuth",  authResult?.additionalUserInfo?.profile.toString())
+                return@withContext NetworkUser(name = authResult.user?.displayName ?: "")
 
             } catch (e: ApiException) {
                 Log.d("TestAuth", e.message ?: "null")
             }
-            return@withContext NetworkUser("")
+            return@withContext NetworkUser()
         }
 
     fun logout() {

@@ -1,5 +1,7 @@
 package phu.nguyen.dateme.data.model
 
 data class User(
-    val name: String
+    val myProfile: MyProfile,
+    val setting: Setting,
+    val userBasicInfo: UserBasicInfo
 )

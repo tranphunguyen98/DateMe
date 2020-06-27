@@ -1,6 +1,6 @@
 package phu.nguyen.dateme.data.repository.profile
 
-import phu.nguyen.dateme.data.model.Profile
+import phu.nguyen.dateme.data.model.SwipeProfile
 
 /**
  * Interface defining methods for the remoting of Profile. This is to be implemented by the
@@ -8,5 +8,5 @@ import phu.nguyen.dateme.data.model.Profile
  */
 
 interface ProfileRemoteDataSource {
-    suspend fun getTopProfiles() : List<Profile>
+    suspend fun getTopProfiles() : List<SwipeProfile>
 }

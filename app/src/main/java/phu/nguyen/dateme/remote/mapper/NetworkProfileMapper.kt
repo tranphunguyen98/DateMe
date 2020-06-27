@@ -1,11 +1,11 @@
 package phu.nguyen.dateme.remote.mapper
 
-import phu.nguyen.dateme.data.model.Profile
+import phu.nguyen.dateme.data.model.SwipeProfile
 import phu.nguyen.dateme.remote.model.NetworkProfile
 import javax.inject.Inject
 
-class NetworkProfileMapper @Inject constructor() : NetworkMapper<NetworkProfile, Profile> {
-    override fun mapFromRemote(type: NetworkProfile): Profile = Profile(
+class NetworkProfileMapper @Inject constructor() : NetworkMapper<NetworkProfile, SwipeProfile> {
+    override fun mapFromRemote(type: NetworkProfile): SwipeProfile = SwipeProfile(
         type.id,
         type.name + ",",
         type.age.toString(),

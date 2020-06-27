@@ -30,11 +30,11 @@ class DashboardViewModel(private val profileRepository: ProfileRepository) : Vie
 
     fun remove(position : Int) {
         if (_result.value is ResultProfile.Success && position > 0) {
-            Log.d("testCard", (_result.value as ResultProfile.Success).profiles.size.toString())
+            Log.d("testCard", (_result.value as ResultProfile.Success).swipeProfiles.size.toString())
             for(i in 0 until position) {
-                (_result.value as ResultProfile.Success).profiles.removeAt(0)
+                (_result.value as ResultProfile.Success).swipeProfiles.removeAt(0)
             }
-            Log.d("testCard", (_result.value as ResultProfile.Success).profiles.size.toString())
+            Log.d("testCard", (_result.value as ResultProfile.Success).swipeProfiles.size.toString())
         }
     }
 

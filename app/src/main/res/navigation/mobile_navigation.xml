@@ -44,7 +44,7 @@
         tools:layout="@layout/fragment_swipe_profile">
         <argument
             android:name="profile"
-            app:argType="phu.nguyen.dateme.data.model.Profile"
+            app:argType="phu.nguyen.dateme.data.model.SwipeProfile"
             app:nullable="true" />
         <argument
             android:name="currentItem"

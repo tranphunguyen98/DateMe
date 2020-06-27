@@ -13,7 +13,7 @@ import phu.nguyen.dateme.remote.ProfileRemoteDataSourceImpl
 
 @Module
 @InstallIn(FragmentComponent::class)
-abstract class DataModule {
+abstract class ProfileModule {
 
     @Binds
     abstract fun bindProfileRemoteSource(

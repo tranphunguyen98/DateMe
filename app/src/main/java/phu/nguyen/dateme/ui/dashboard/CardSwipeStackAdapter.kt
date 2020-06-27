@@ -4,12 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import phu.nguyen.dateme.data.model.Profile
+import phu.nguyen.dateme.data.model.SwipeProfile
 import phu.nguyen.dateme.databinding.ItemSwipeBinding
-import kotlin.random.Random
 
 class CardSwipeStackAdapter(
-    private val listProfiles: MutableList<Profile>,
+    private val listSwipeProfiles: MutableList<SwipeProfile>,
     private val onItemActionListener: (viewpager: ViewPager2, position: Int, currentItemVP: Int) -> Unit
 ) :
     RecyclerView.Adapter<CardSwipeStackAdapter.TinderViewHolder>() {
@@ -20,24 +19,24 @@ class CardSwipeStackAdapter(
         return TinderViewHolder(itemBinding)
     }
 
-    override fun getItemCount(): Int = listProfiles.size
+    override fun getItemCount(): Int = listSwipeProfiles.size
 
     override fun onBindViewHolder(holder: TinderViewHolder, position: Int) {
 //        Log.d("testBindCard", "bindC $position")
-        holder.bind(listProfiles[position], onItemActionListener, position)
+        holder.bind(listSwipeProfiles[position], onItemActionListener, position)
     }
 
     inner class TinderViewHolder(private val binding: ItemSwipeBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
-            _profile: Profile,
+            _Swipe_profile: SwipeProfile,
             onItemActionListener: (viewpager: ViewPager2, position: Int, currentItemVP: Int) -> Unit,
             position: Int
         ) =
             with(binding) {
-                profile = _profile
+                profile = _Swipe_profile
                 tabLayout = binding.tabLayoutProfile
-                tvDistance.text = "Cách bạn ${Random.nextInt(1, 20)}Km"
+                tvDistance.text = "Cách bạn 2Km"
 
                 viewBottom.setOnClickListener {
                     onItemActionListener(

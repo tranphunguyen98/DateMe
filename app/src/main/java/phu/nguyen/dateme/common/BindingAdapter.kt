@@ -8,7 +8,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import phu.nguyen.dateme.R
-import phu.nguyen.dateme.data.model.Profile
+import phu.nguyen.dateme.data.model.SwipeProfile
 import phu.nguyen.dateme.ui.dashboard.ImageProfileAdapter.Companion.NON_BORDER
 
 class BindingAdapter {
@@ -65,20 +65,20 @@ class BindingAdapter {
 
         @JvmStatic
         @BindingAdapter(value = ["loadImagesProfile", "withTabLayout", "withNonBorder"], requireAll = false)
-        fun setViewPagerProperties(viewPager2: ViewPager2, profile: Profile?, tabLayout: TabLayout?, nonBorder: Boolean?) {
-            profile?.let {
+        fun setViewPagerProperties(viewPager2: ViewPager2, swipeProfile: SwipeProfile?, tabLayout: TabLayout?, nonBorder: Boolean?) {
+            swipeProfile?.let {
                 with(viewPager2) {
                     offscreenPageLimit = 2
                     adapter = if(nonBorder != null && nonBorder == true) {
-                        phu.nguyen.dateme.ui.dashboard.ImageProfileAdapter(profile.images,NON_BORDER) { it ->
+                        phu.nguyen.dateme.ui.dashboard.ImageProfileAdapter(swipeProfile.images,NON_BORDER) { it ->
                             setCurrentItem(it, true)
                         }
                     } else {
-                        phu.nguyen.dateme.ui.dashboard.ImageProfileAdapter(profile.images) { it ->
+                        phu.nguyen.dateme.ui.dashboard.ImageProfileAdapter(swipeProfile.images) { it ->
                             setCurrentItem(it, true)
                         }
                     }
-                    transitionName = "profile${profile.id}"
+                    transitionName = "profile${swipeProfile.id}"
                     if(tabLayout != null) {
                         TabLayoutMediator(tabLayout, this,
                             TabLayoutMediator.TabConfigurationStrategy { _, _ ->

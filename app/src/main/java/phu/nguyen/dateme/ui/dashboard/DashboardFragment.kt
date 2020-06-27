@@ -17,7 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import phu.nguyen.dateme.R
 import phu.nguyen.dateme.common.ResultProfile
-import phu.nguyen.dateme.data.model.Profile
+import phu.nguyen.dateme.data.model.SwipeProfile
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -105,17 +105,17 @@ class DashboardFragment : Fragment() {
 
     }
 
-    private fun setUpCardStackView(profiles: List<Profile>) {
+    private fun setUpCardStackView(swipeProfiles: List<SwipeProfile>) {
 
-        cardAdapter = CardSwipeStackAdapter(profiles.toMutableList()) { viewpager, position, currentItemVP ->
-            Log.d("testCard", "$position - ${profiles.size}")
+        cardAdapter = CardSwipeStackAdapter(swipeProfiles.toMutableList()) { viewpager, position, currentItemVP ->
+            Log.d("testCard", "$position - ${swipeProfiles.size}")
             val extras = FragmentNavigatorExtras(
-                viewpager to "profile${profiles[position].id}",
+                viewpager to "profile${swipeProfiles[position].id}",
                 img_match to "image"
             )
             val action =
                 DashboardFragmentDirections.actionNavigationDashboardToSwipeProfileFragment(
-                    profiles[position], currentItemVP
+                    swipeProfiles[position], currentItemVP
                 )
 
             findNavController().navigate(action, extras)
@@ -160,9 +160,9 @@ class DashboardFragment : Fragment() {
                     prg_loading.visibility = View.VISIBLE
                 }
                 is ResultProfile.Success -> {
-                    Log.d("testObserver", "Success - ${it.profiles.size}")
+                    Log.d("testObserver", "Success - ${it.swipeProfiles.size}")
                     prg_loading.visibility = View.GONE
-                    setUpCardStackView(it.profiles)
+                    setUpCardStackView(it.swipeProfiles)
                 }
                 is ResultProfile.Failure -> {
                     prg_loading.visibility = View.GONE
