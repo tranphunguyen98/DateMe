@@ -25,25 +25,24 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-//
-//        with(window) {
-//            clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-//
-//            addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-//
-//            statusBarColor = resources.getColor(R.color.white)
-//        }
 
+        setUpViewModel()
+        setUpBottomNavigation()
+        setUpObserver()
+
+    }
+
+    private fun setUpViewModel() {
         viewModel =
             ViewModelProvider(this, factory).get(HomeViewModel::class.java)
 
-        viewModel.getData("oMTAcviWFZWEIuMv0HIbJyyIKIB2")
+        //viewModel.getData("oMTAcviWFZWEIuMv0HIbJyyIKIB2")
+    }
 
+    private fun setUpBottomNavigation() {
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
         val navController = findNavController(R.id.nav_host_fragment)
-
-        setUpObserver()
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
@@ -62,7 +61,7 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     }
 
     private fun setUpObserver() {
-        viewModel.result.observe(this, Observer {result ->
+        viewModel.result.observe(this, Observer { result ->
             when (result) {
                 is Result.Success -> {
                     Log.d("testLogin", "Success ${result.data.userBasicInfo.name}")
