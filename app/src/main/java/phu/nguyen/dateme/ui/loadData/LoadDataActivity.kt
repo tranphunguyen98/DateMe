@@ -4,7 +4,6 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.animation.BounceInterpolator
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -12,13 +11,18 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
 import phu.nguyen.dateme.R
+import phu.nguyen.dateme.data.model.User
 import phu.nguyen.dateme.databinding.ActivityLoadDataBinding
 import phu.nguyen.dateme.ui.login.data.Result
 import phu.nguyen.dateme.ui.main.HomeActivity
+import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class LoadDataActivity : AppCompatActivity() {
+    companion object {
+        const val USER_KEY = "user"
+    }
     @Inject
     lateinit var factory: LoadDataViewModelFactory
 
@@ -46,19 +50,24 @@ class LoadDataActivity : AppCompatActivity() {
         viewModel.result.observe(this, Observer { result ->
             when (result) {
                 is Result.Success -> {
-                    Log.d("testLogin", "Success ${result.data.userBasicInfo.name}")
-                    startActivity(Intent(this,HomeActivity::class.java))
+                    Timber.d("Success ${result.data.userBasicInfo.name}")
+                    passDataToHomeActivity(result.data)
                 }
                 is Result.Waiting -> {
-                    Log.d("testLogin", "Waiting...")
+                    Timber.d("Waiting...")
                 }
                 is Result.Error -> {
-                    Log.d("testLogin", "Error ${result.exception.message}")
+                    Timber.d("Error ${result.exception.message}")
                 }
             }
         })
     }
 
+    private fun passDataToHomeActivity(user: User) {
+        val intent = Intent(this,HomeActivity::class.java)
+        intent.putExtra(USER_KEY,user)
+        startActivity(intent)
+    }
 
     private fun animatedLogoLoading() {
 

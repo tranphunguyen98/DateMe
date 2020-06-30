@@ -1,48 +1,51 @@
 package phu.nguyen.dateme.ui.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import phu.nguyen.dateme.R
-import phu.nguyen.dateme.ui.login.data.Result
-import javax.inject.Inject
+import phu.nguyen.dateme.data.model.User
+import phu.nguyen.dateme.databinding.ActivityHomeBinding
+import phu.nguyen.dateme.ui.loadData.LoadDataActivity
+import timber.log.Timber
 
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
-    @Inject
-    lateinit var factory: HomeViewModelFactory
+//    @Inject
+//    lateinit var factory: HomeViewModelFactory
+//
+//    private lateinit var viewModel: HomeViewModel
 
-    private lateinit var viewModel: HomeViewModel
+    lateinit var user: User
+    lateinit var binding : ActivityHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
-
-        setUpViewModel()
-        setUpBottomNavigation()
-        setUpObserver()
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_home)
+        user = intent.extras?.get(LoadDataActivity.USER_KEY) as User
+        Timber.d(user.userBasicInfo.name)
+//        setUpViewModel()
+        setUpBottomNavigation(user)
 
     }
 
-    private fun setUpViewModel() {
-        viewModel =
-            ViewModelProvider(this, factory).get(HomeViewModel::class.java)
+//    private fun setUpViewModel() {
+//        viewModel =
+//            ViewModelProvider(this, factory).get(HomeViewModel::class.java)
 
         //viewModel.getData("oMTAcviWFZWEIuMv0HIbJyyIKIB2")
-    }
+//    }
 
-    private fun setUpBottomNavigation() {
-        val navView: BottomNavigationView = findViewById(R.id.nav_view)
-
+    private fun setUpBottomNavigation(user: User?) {
         val navController = findNavController(R.id.nav_host_fragment)
+        navController.setGraph(
+            R.navigation.mobile_navigation)
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
@@ -54,29 +57,15 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             )
         )
 
-        navView.setOnNavigationItemSelectedListener(this)
-        navView.menu.findItem(R.id.navigation_dashboard).isChecked = true
+        binding.navView.apply {
+            setOnNavigationItemSelectedListener(this@HomeActivity)
+            menu.findItem(R.id.navigation_dashboard).isChecked = true
+            setupWithNavController(navController)
+        }
 
-        navView.setupWithNavController(navController)
     }
 
-    private fun setUpObserver() {
-        viewModel.result.observe(this, Observer { result ->
-            when (result) {
-                is Result.Success -> {
-                    Log.d("testLogin", "Success ${result.data.userBasicInfo.name}")
-                }
-                is Result.Waiting -> {
-                    Log.d("testLogin", "Waiting...")
-                }
-                is Result.Error -> {
-                    Log.d("testLogin", "Error ${result.exception.message}")
-                }
-            }
-        })
-    }
-
-    override fun onNavigationItemSelected(p0: MenuItem): Boolean {
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
         TODO("Not yet implemented")
     }
 }

@@ -1,173 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.profile.ProfileFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/circleImageView"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:layout_marginTop="24dp"
-        android:src="@drawable/image_avatar1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
+        <variable
+            name="userBasicInfo"
+            type="phu.nguyen.dateme.data.model.UserBasicInfo" />
+    </data>
 
-    <ImageButton
-        android:id="@+id/btn_setting"
-        style="@style/btn_circle_gray_normal"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/ic_settings_gray_32"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.12"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        android:contentDescription="@string/image_setting" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.profile.ProfileFragment">
 
-    <ImageButton
-        android:id="@+id/btb_my_profile"
-        style="@style/btn_circle_gray_normal"
-        android:layout_marginTop="24dp"
-        android:src="@drawable/ic_person_gray_32"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btn_setting"
-        android:contentDescription="@string/image_show_my_profile" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circleImageView"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="24dp"
+            loadImage="@{userBasicInfo.avatarImage}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/btn_edit"
-        style="@style/btn_circle_gray_normal"
-        android:src="@drawable/ic_edit_gray_32"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.88"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btn_setting"
-        android:contentDescription="@string/image_edit_profile" />
+        <ImageButton
+            android:id="@+id/btn_setting"
+            style="@style/btn_circle_gray_normal"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_settings_gray_32"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.12"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_school"
+            android:contentDescription="@string/image_setting" />
 
-    <TextView
-        style="@style/text_gray_medium_14"
-        android:layout_marginTop="8dp"
-        android:text="@string/SETTING"
-        app:layout_constraintEnd_toEndOf="@+id/btn_setting"
-        app:layout_constraintStart_toStartOf="@+id/btn_setting"
-        app:layout_constraintTop_toBottomOf="@+id/btn_setting" />
+        <ImageButton
+            android:id="@+id/btb_my_profile"
+            style="@style/btn_circle_gray_normal"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/ic_person_gray_32"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btn_setting"
+            android:contentDescription="@string/image_show_my_profile" />
 
-    <TextView
-        android:id="@+id/textView5"
-        style="@style/text_gray_medium_14"
-        android:layout_marginTop="8dp"
-        android:text="@string/MY_PROFILE"
-        app:layout_constraintEnd_toEndOf="@+id/btb_my_profile"
-        app:layout_constraintStart_toStartOf="@+id/btb_my_profile"
-        app:layout_constraintTop_toBottomOf="@+id/btb_my_profile" />
+        <ImageButton
+            android:id="@+id/btn_edit"
+            style="@style/btn_circle_gray_normal"
+            android:src="@drawable/ic_edit_gray_32"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.88"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btn_setting"
+            android:contentDescription="@string/image_edit_profile" />
 
-    <TextView
-        style="@style/text_gray_medium_14"
-        android:layout_marginTop="8dp"
-        android:text="@string/EDIT"
-        app:layout_constraintEnd_toEndOf="@+id/btn_edit"
-        app:layout_constraintStart_toStartOf="@+id/btn_edit"
-        app:layout_constraintTop_toBottomOf="@+id/btn_edit" />
+        <TextView
+            style="@style/text_gray_medium_14"
+            android:layout_marginTop="8dp"
+            android:text="@string/SETTING"
+            app:layout_constraintEnd_toEndOf="@+id/btn_setting"
+            app:layout_constraintStart_toStartOf="@+id/btn_setting"
+            app:layout_constraintTop_toBottomOf="@+id/btn_setting" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/roboto_slab"
-        android:text="@string/fake_name_age"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
+        <TextView
+            android:id="@+id/textView5"
+            style="@style/text_gray_medium_14"
+            android:layout_marginTop="8dp"
+            android:text="@string/MY_PROFILE"
+            app:layout_constraintEnd_toEndOf="@+id/btb_my_profile"
+            app:layout_constraintStart_toStartOf="@+id/btb_my_profile"
+            app:layout_constraintTop_toBottomOf="@+id/btb_my_profile" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/roboto"
-        android:text="@string/fake_school"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        <TextView
+            style="@style/text_gray_medium_14"
+            android:layout_marginTop="8dp"
+            android:text="@string/EDIT"
+            app:layout_constraintEnd_toEndOf="@+id/btn_edit"
+            app:layout_constraintStart_toStartOf="@+id/btn_edit"
+            app:layout_constraintTop_toBottomOf="@+id/btn_edit" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/white"
-        android:text="@string/upgrade_account"
-        app:cornerRadius="24dp"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/tv_name_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/roboto_slab"
+            android:text="@{userBasicInfo.nameAndAge}"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
+
+        <TextView
+            android:id="@+id/tv_school"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/roboto"
+            android:text="@{userBasicInfo.school}"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name_age" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/white"
+            android:text="@string/upgrade_account"
+            app:cornerRadius="24dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
 
-    <View
-        android:id="@+id/view_authentication"
-        android:layout_width="0dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/btn_gradient_primary_border"
-        android:padding="16dp"
+        <View
+            android:id="@+id/view_authentication"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/btn_gradient_primary_border"
+            android:padding="16dp"
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/btn_circle_white"
-        android:padding="4dp"
-        android:src="@drawable/ic_check_dark_primary_24"
-        app:layout_constraintBottom_toBottomOf="@+id/view_authentication"
-        app:layout_constraintStart_toStartOf="@+id/view_authentication"
-        app:layout_constraintTop_toTopOf="@+id/view_authentication"
-        android:contentDescription="@string/not_important" />
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/btn_circle_white"
+            android:padding="4dp"
+            android:src="@drawable/ic_check_dark_primary_24"
+            app:layout_constraintBottom_toBottomOf="@+id/view_authentication"
+            app:layout_constraintStart_toStartOf="@+id/view_authentication"
+            app:layout_constraintTop_toTopOf="@+id/view_authentication"
+            android:contentDescription="@string/not_important" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="@string/more_prominent_when_authenticating_your_account"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:fontFamily="@font/roboto"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="@+id/imageView2" />
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/more_prominent_when_authenticating_your_account"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:fontFamily="@font/roboto"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:src="@drawable/ic_right_white_24"
-        app:layout_constraintBottom_toBottomOf="@+id/view_authentication"
-        app:layout_constraintEnd_toEndOf="@+id/view_authentication"
-        app:layout_constraintTop_toTopOf="@+id/view_authentication"
-        android:contentDescription="@string/not_important" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_right_white_24"
+            app:layout_constraintBottom_toBottomOf="@+id/view_authentication"
+            app:layout_constraintEnd_toEndOf="@+id/view_authentication"
+            app:layout_constraintTop_toTopOf="@+id/view_authentication"
+            android:contentDescription="@string/not_important" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

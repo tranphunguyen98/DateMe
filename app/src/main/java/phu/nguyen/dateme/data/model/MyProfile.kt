@@ -1,5 +1,9 @@
 package phu.nguyen.dateme.data.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class MyProfile(
     val uid: String = "",
     val name: String = "",
@@ -13,4 +17,4 @@ data class MyProfile(
     val gender: Int = 0,
     val notShowAge: Boolean = false,
     val notShowLocation: Boolean = false
-)
+): Parcelable

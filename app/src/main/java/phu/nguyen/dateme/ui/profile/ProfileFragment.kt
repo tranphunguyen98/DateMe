@@ -9,19 +9,26 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_profile.*
 import phu.nguyen.dateme.R
+import phu.nguyen.dateme.data.model.User
+import phu.nguyen.dateme.databinding.FragmentProfileBinding
+import phu.nguyen.dateme.ui.main.HomeActivity
+import timber.log.Timber
 
 class ProfileFragment : Fragment() {
 
-    private lateinit var homeViewModel: ChatViewModel
+    private lateinit var viewModel: ProfileViewModel
+    private lateinit var binding: FragmentProfileBinding
+    private lateinit var user : User
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-            ViewModelProviders.of(this).get(ChatViewModel::class.java)
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        viewModel =
+            ViewModelProviders.of(this).get(ProfileViewModel::class.java)
+        binding = FragmentProfileBinding.inflate(inflater,container,false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -32,5 +39,13 @@ class ProfileFragment : Fragment() {
         btn_edit.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_profile_to_editProfileFragment)
         }
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        user = (activity as HomeActivity).user
+        Timber.d(user.userBasicInfo.name)
+
+        binding.userBasicInfo = user.userBasicInfo
     }
 }
