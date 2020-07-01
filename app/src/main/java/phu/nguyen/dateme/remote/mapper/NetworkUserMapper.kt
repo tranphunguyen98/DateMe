@@ -11,11 +11,11 @@ class NetworkUserMapper @Inject constructor() : NetworkMapper<NetworkUser, User>
     override fun mapFromRemote(type: NetworkUser): User {
 
         val setting = Setting(
-            displayGenderObject = type.displayObject,
-            displayRangeLocation = type.displayRangeLocation,
-            displayRangeAgeMax = type.displayRangeAgeMax,
-            displayRangeAgeMin = type.displayRangeAgeMin,
-            isGlobal = type.isGlobal,
+            displayGenderObject = type.displayGenderObject,
+            displayRangeLocation = type.displayRangeLocation.toFloat(),
+            displayRangeAgeMax = type.displayRangeAgeMax.toFloat(),
+            displayRangeAgeMin = type.displayRangeAgeMin.toFloat(),
+            isGlobal = type.showGlobal,
             locations = type.locations,
             showMe = type.showMe,
             showNotification = type.showNotification

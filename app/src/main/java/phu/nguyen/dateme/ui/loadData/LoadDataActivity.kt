@@ -51,6 +51,7 @@ class LoadDataActivity : AppCompatActivity() {
             when (result) {
                 is Result.Success -> {
                     Timber.d("Success ${result.data.userBasicInfo.name}")
+                    Timber.d("Success ${result.data.setting.displayGenderObject}")
                     passDataToHomeActivity(result.data)
                 }
                 is Result.Waiting -> {

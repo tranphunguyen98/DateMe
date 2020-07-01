@@ -6,6 +6,7 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import phu.nguyen.dateme.remote.model.NetworkUser
+import timber.log.Timber
 import java.io.IOException
 import javax.inject.Inject
 import kotlinx.coroutines.tasks.await as myAwait
@@ -18,6 +19,8 @@ class UserService @Inject constructor() {
         val snapshotUser = db.collection("users").document(uid).get().myAwait()
 
         val user = snapshotUser.toObject<NetworkUser>()
+
+        Timber.d("isGlobal = ${user?.showGlobal}")
 
         user?.let {
             val images = getImagesById(uid)

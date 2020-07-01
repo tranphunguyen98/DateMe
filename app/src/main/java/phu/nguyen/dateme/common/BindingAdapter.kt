@@ -5,6 +5,7 @@ import androidx.databinding.BindingAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.jaygoo.widget.RangeSeekBar
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import phu.nguyen.dateme.R
@@ -42,7 +43,7 @@ class BindingAdapter {
                     .load(it)
                     .noFade()
                     .placeholder(R.drawable.placeholder)
-                    .into(view,object : Callback {
+                    .into(view, object : Callback {
                         override fun onSuccess() {
                             view.alpha = 0f
                             view.animate().setDuration(200).alpha(1f).start()
@@ -64,13 +65,24 @@ class BindingAdapter {
 //        }
 
         @JvmStatic
-        @BindingAdapter(value = ["loadImagesProfile", "withTabLayout", "withNonBorder"], requireAll = false)
-        fun setViewPagerProperties(viewPager2: ViewPager2, swipeProfile: SwipeProfile?, tabLayout: TabLayout?, nonBorder: Boolean?) {
+        @BindingAdapter(
+            value = ["loadImagesProfile", "withTabLayout", "withNonBorder"],
+            requireAll = false
+        )
+        fun setViewPagerProperties(
+            viewPager2: ViewPager2,
+            swipeProfile: SwipeProfile?,
+            tabLayout: TabLayout?,
+            nonBorder: Boolean?
+        ) {
             swipeProfile?.let {
                 with(viewPager2) {
                     offscreenPageLimit = 2
-                    adapter = if(nonBorder != null && nonBorder == true) {
-                        phu.nguyen.dateme.ui.dashboard.ImageProfileAdapter(swipeProfile.images,NON_BORDER) { it ->
+                    adapter = if (nonBorder != null && nonBorder == true) {
+                        phu.nguyen.dateme.ui.dashboard.ImageProfileAdapter(
+                            swipeProfile.images,
+                            NON_BORDER
+                        ) { it ->
                             setCurrentItem(it, true)
                         }
                     } else {
@@ -79,12 +91,28 @@ class BindingAdapter {
                         }
                     }
                     transitionName = "profile${swipeProfile.id}"
-                    if(tabLayout != null) {
+                    if (tabLayout != null) {
                         TabLayoutMediator(tabLayout, this,
                             TabLayoutMediator.TabConfigurationStrategy { _, _ ->
                             }).attach()
                     }
                 }
+            }
+        }
+
+        @JvmStatic
+        @BindingAdapter(value = ["valueLeft", "valueRight"])
+        fun setProgressLRRSB(rangeSeekBar: RangeSeekBar, valueLeft: Float?, valueRight: Float?) {
+            if (valueLeft != null && valueRight != null) {
+                rangeSeekBar.setProgress(valueLeft, valueRight)
+            }
+        }
+
+        @JvmStatic
+        @BindingAdapter("progress")
+        fun setProgressRSB(rangeSeekBar: RangeSeekBar, progress: Float?) {
+            progress?.let {
+                rangeSeekBar.setProgress(it)
             }
         }
 
