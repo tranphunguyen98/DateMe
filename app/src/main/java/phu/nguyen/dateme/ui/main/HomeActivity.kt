@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
@@ -21,7 +22,7 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 //    lateinit var factory: HomeViewModelFactory
 //
 //    private lateinit var viewModel: HomeViewModel
-
+    lateinit var navController: NavController
     lateinit var user: User
     lateinit var binding : ActivityHomeBinding
 
@@ -43,7 +44,8 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 //    }
 
     private fun setUpBottomNavigation(user: User?) {
-        val navController = findNavController(R.id.nav_host_fragment)
+        navController = findNavController(R.id.nav_host_fragment)
+
         navController.setGraph(
             R.navigation.mobile_navigation)
 

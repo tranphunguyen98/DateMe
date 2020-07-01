@@ -15,7 +15,7 @@ class NetworkUserMapper @Inject constructor() : NetworkMapper<NetworkUser, User>
             displayRangeLocation = type.displayRangeLocation.toFloat(),
             displayRangeAgeMax = type.displayRangeAgeMax.toFloat(),
             displayRangeAgeMin = type.displayRangeAgeMin.toFloat(),
-            isGlobal = type.showGlobal,
+            showGlobal = type.showGlobal,
             locations = type.locations,
             showMe = type.showMe,
             showNotification = type.showNotification

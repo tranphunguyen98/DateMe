@@ -10,7 +10,7 @@ data class Setting(
     val displayRangeAgeMax: Float = 22f,
     val displayRangeLocation: Float = 100f,
     val locations: Map<String, Boolean> = emptyMap(),
-    val isGlobal: Boolean = true,
+    val showGlobal: Boolean = true,
     val showMe: Boolean = true,
     val showNotification: Boolean = true
 ) : Parcelable {

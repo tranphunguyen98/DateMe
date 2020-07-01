@@ -1,19 +1,28 @@
 package phu.nguyen.dateme.ui.setting
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import com.jaygoo.widget.OnRangeChangedListener
 import com.jaygoo.widget.RangeSeekBar
 import dagger.hilt.android.AndroidEntryPoint
 import phu.nguyen.dateme.R
+import phu.nguyen.dateme.common.ResultCompletable
+import phu.nguyen.dateme.common.snack
+import phu.nguyen.dateme.data.model.User
 import phu.nguyen.dateme.databinding.FragmentSettingBinding
 import phu.nguyen.dateme.ui.main.HomeActivity
 import timber.log.Timber
 import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class SettingFragment : Fragment() {
@@ -27,6 +36,13 @@ class SettingFragment : Fragment() {
 
     private lateinit var viewModel: SettingViewModel
     private lateinit var binding: FragmentSettingBinding
+    private lateinit var user: User
+    private lateinit var progressDialog: ProgressDialog
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,14 +56,51 @@ class SettingFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        viewModel.setSetting((activity as HomeActivity).user.setting)
+        user = (activity as HomeActivity).user
+        viewModel.setSetting(user.setting)
         binding.viewModel = viewModel
-        setUpUI()
 
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true /* enabled by default */) {
+                override fun handleOnBackPressed() {
+                    viewModel.saveUser(user)
+                }
+            }
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
+
+        setUpUI()
+        setUpObserver()
+    }
+
+    private fun setUpObserver() {
+
+        viewModel.result.observe(viewLifecycleOwner, Observer { result ->
+            when (result) {
+                is ResultCompletable.Waiting -> {
+                    Timber.d("save Waiting...")
+                    progressDialog.show()
+                }
+                is ResultCompletable.Success -> {
+                    Timber.d("save Success")
+                    progressDialog.cancel()
+                    NavHostFragment.findNavController(this).popBackStack()
+                    (activity as HomeActivity).user = user.copy(setting = viewModel.setting.value!!)
+                }
+                is ResultCompletable.Error -> {
+                    (activity as AppCompatActivity).snack(result.exception.message!!)
+                    progressDialog.cancel()
+                }
+            }
+        })
     }
 
     private fun setUpUI() {
+
+        progressDialog = ProgressDialog(context).apply {
+            setTitle("Waiting...")
+        }
+
         binding.rsbAge.setOnRangeChangedListener(object : OnRangeChangedListener {
             override fun onStartTrackingTouch(view: RangeSeekBar?, isLeft: Boolean) {
                 Timber.d("onStartTrackingTouch")
@@ -61,7 +114,7 @@ class SettingFragment : Fragment() {
             ) {
                 Timber.d("$leftValue - $rightValue - $isFromUser")
                 if (isFromUser) {
-                    viewModel.setDisplayRangeAge(leftValue,rightValue)
+                    viewModel.setDisplayRangeAge(leftValue, rightValue)
                 }
             }
 
@@ -88,7 +141,7 @@ class SettingFragment : Fragment() {
 
             override fun onStopTrackingTouch(view: RangeSeekBar?, isLeft: Boolean) {}
 
-        } )
+        })
 
         binding.radioButtonGender.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {

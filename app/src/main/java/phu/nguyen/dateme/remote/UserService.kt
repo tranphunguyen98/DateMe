@@ -1,5 +1,6 @@
 package phu.nguyen.dateme.remote
 
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
@@ -24,10 +25,16 @@ class UserService @Inject constructor() {
 
         user?.let {
             val images = getImagesById(uid)
-            return@withContext user.copy(uid = uid,images = images)
+            return@withContext user.copy(uid = uid, images = images)
         }
 
         throw IOException("Can't get User by id = $uid")
+    }
+
+    suspend fun saveUser(user: NetworkUser) {
+        db.collection("users").document(user.uid).set(
+            user, SetOptions.merge()
+        ).myAwait()
     }
 
 
