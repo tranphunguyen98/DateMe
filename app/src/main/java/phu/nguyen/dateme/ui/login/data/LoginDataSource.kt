@@ -1,8 +1,8 @@
 package phu.nguyen.dateme.ui.login.data
 
+import phu.nguyen.dateme.common.Result
 import phu.nguyen.dateme.ui.login.data.model.LoggedInUser
 import java.io.IOException
-
 /**
  * Class that handles authentication w/ login credentials and retrieves user information.
  */

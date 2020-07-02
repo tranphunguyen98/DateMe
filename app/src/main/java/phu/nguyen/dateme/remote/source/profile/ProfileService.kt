@@ -1,4 +1,4 @@
-package phu.nguyen.dateme.remote
+package phu.nguyen.dateme.remote.source.profile
 
 import android.util.Log
 import com.google.firebase.firestore.ktx.firestore

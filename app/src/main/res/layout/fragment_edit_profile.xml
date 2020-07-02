@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="phu.nguyen.dateme.ui.editProfile.EditProfileViewModel" />
@@ -46,6 +47,7 @@
                 app:shapeAppearance="?attr/shapeAppearanceSmallComponent">
 
                 <EditText
+                    android:id="@+id/edt_introduction"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/background_edt_normal"
@@ -53,8 +55,8 @@
                     android:importantForAutofill="no"
                     android:inputType="textMultiLine"
                     android:minLines="2"
-                    android:text="@{viewModel.myProfile.introduction}"
                     android:padding="16dp"
+                    android:text="@{viewModel.myProfile.introduction}"
                     android:textColor="@color/gray"
                     android:textCursorDrawable="@null" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -105,6 +107,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_school">
 
                 <EditText
+                    android:id="@+id/edt_school"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/background_edt_normal"
@@ -142,6 +145,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_organization">
 
                 <EditText
+                    android:id="@+id/edt_organization"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/background_edt_normal"
@@ -150,6 +154,7 @@
                     android:importantForAutofill="no"
                     android:inputType="text"
                     android:padding="16dp"
+                    android:textColor="@color/gray"
                     android:text="@{viewModel.myProfile.organization}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/tv_school"
@@ -178,6 +183,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_job">
 
                 <EditText
+                    android:id="@+id/edt_job"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/background_edt_normal"
@@ -185,6 +191,7 @@
                     android:hint="@string/job"
                     android:importantForAutofill="no"
                     android:inputType="text"
+                    android:textColor="@color/gray"
                     android:padding="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/tv_school"
@@ -213,11 +220,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_hobby">
 
                 <EditText
+                    android:id="@+id/edt_hobby"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/background_edt_normal"
                     android:cursorVisible="true"
                     android:hint="@string/hobby"
+                    android:textColor="@color/gray"
                     android:importantForAutofill="no"
                     android:inputType="text"
                     android:padding="16dp"
@@ -249,6 +258,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_birthday">
 
                 <EditText
+                    android:id="@+id/edt_birthday"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/background_edt_normal"
@@ -256,6 +266,7 @@
                     android:hint="@string/format_of_date"
                     android:importantForAutofill="no"
                     android:inputType="text"
+                    android:textColor="@color/gray"
                     android:padding="16dp"
                     android:text="@{viewModel.myProfile.birthday}"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -288,10 +299,10 @@
                     style="@style/radioButtonGender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="@{viewModel.myProfile.gender == 0}"
-                    android:textColor="@{viewModel.myProfile.gender == 0 ? @color/white : @color/colorPrimary}"
                     android:background="@drawable/radio_button_left_selector"
-                    android:text="@string/MALE" />
+                    android:checked="@{viewModel.myProfile.gender == 0}"
+                    android:text="@string/MALE"
+                    android:textColor="@{viewModel.myProfile.gender == 0 ? @color/white : @color/colorPrimary}" />
 
                 <RadioButton
                     android:id="@+id/rb_female_edit"
@@ -301,10 +312,9 @@
                     android:layout_marginStart="-1dp"
                     android:layout_marginEnd="-1dp"
                     android:background="@drawable/radio_button_center_selector"
-                    android:text="@string/FEMALE"
                     android:checked="@{viewModel.myProfile.gender == 1}"
-                    android:textColor="@{viewModel.myProfile.gender == 1 ? @color/white : @color/colorPrimary}"
-                    />
+                    android:text="@string/FEMALE"
+                    android:textColor="@{viewModel.myProfile.gender == 1 ? @color/white : @color/colorPrimary}" />
 
                 <RadioButton
                     android:id="@+id/rb_other_edit"
@@ -312,10 +322,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/radio_button_right_selector"
-                    android:text="@string/other"
                     android:checked="@{viewModel.myProfile.gender == 2}"
-                    android:textColor="@{viewModel.myProfile.gender == 2 ? @color/white : @color/colorPrimary}"
-                    />
+                    android:text="@string/other"
+                    android:textColor="@{viewModel.myProfile.gender == 2 ? @color/white : @color/colorPrimary}" />
             </RadioGroup>
 
             <TextView
@@ -369,8 +378,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:checked="@{viewModel.myProfile.notShowLocation}"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tv_show_location" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

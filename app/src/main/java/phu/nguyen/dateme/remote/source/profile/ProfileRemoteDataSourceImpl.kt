@@ -1,4 +1,4 @@
-package phu.nguyen.dateme.remote
+package phu.nguyen.dateme.remote.source.profile
 
 import phu.nguyen.dateme.data.model.SwipeProfile
 import phu.nguyen.dateme.data.repository.profile.ProfileRemoteDataSource

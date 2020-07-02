@@ -5,9 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
+import phu.nguyen.dateme.common.Result
 import phu.nguyen.dateme.data.UserRepository
 import phu.nguyen.dateme.data.model.User
-import phu.nguyen.dateme.ui.login.data.Result
 import timber.log.Timber
 
 class LoadDataViewModel(private val userRepository: UserRepository) : ViewModel() {

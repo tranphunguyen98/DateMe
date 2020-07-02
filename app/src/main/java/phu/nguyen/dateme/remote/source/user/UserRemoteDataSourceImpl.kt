@@ -1,5 +1,6 @@
-package phu.nguyen.dateme.remote
+package phu.nguyen.dateme.remote.source.user
 
+import android.net.Uri
 import phu.nguyen.dateme.data.model.User
 import phu.nguyen.dateme.data.repository.user.UserRemoteDataSource
 import phu.nguyen.dateme.remote.mapper.NetworkUserMapper
@@ -17,5 +18,7 @@ class UserRemoteDataSourceImpl @Inject constructor(
     override suspend fun saveUser(user: NetworkUser) {
         userService.saveUser(user)
     }
+
+    override suspend fun uploadImage(path: String, uri: Uri): String = userService.saveImage(path,uri)
 
 }

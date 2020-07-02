@@ -7,7 +7,7 @@ import dagger.hilt.android.components.ActivityComponent
 import phu.nguyen.dateme.data.AuthenticationRepository
 import phu.nguyen.dateme.data.AuthenticationRepositoryImpl
 import phu.nguyen.dateme.data.repository.authentication.AuthenticationDataSource
-import phu.nguyen.dateme.remote.AuthenticationDataSourceImpl
+import phu.nguyen.dateme.remote.source.auth.AuthenticationDataSourceImpl
 
 @Module
 @InstallIn(ActivityComponent::class)

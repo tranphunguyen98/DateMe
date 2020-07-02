@@ -9,7 +9,7 @@ import phu.nguyen.dateme.data.UserRepository
 import phu.nguyen.dateme.data.UserRepositoryImpl
 import phu.nguyen.dateme.data.repository.user.UserCacheDataSource
 import phu.nguyen.dateme.data.repository.user.UserRemoteDataSource
-import phu.nguyen.dateme.remote.UserRemoteDataSourceImpl
+import phu.nguyen.dateme.remote.source.user.UserRemoteDataSourceImpl
 
 @Module
 @InstallIn(ActivityComponent::class)

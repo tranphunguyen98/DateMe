@@ -1,20 +1,31 @@
-package phu.nguyen.dateme.remote
+package phu.nguyen.dateme.remote.source.user
 
+import android.net.Uri
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import phu.nguyen.dateme.remote.model.NetworkUser
 import timber.log.Timber
 import java.io.IOException
 import javax.inject.Inject
+import javax.inject.Singleton
 import kotlinx.coroutines.tasks.await as myAwait
 
+@Singleton
 class UserService @Inject constructor() {
 
     private val db = Firebase.firestore
+    private val storage: FirebaseStorage by lazy {
+        FirebaseStorage.getInstance()
+    }
+
+    init {
+        Timber.d("init UserService")
+    }
 
     suspend fun getUser(uid: String): NetworkUser = withContext(Dispatchers.IO) {
         val snapshotUser = db.collection("users").document(uid).get().myAwait()
@@ -24,8 +35,8 @@ class UserService @Inject constructor() {
         Timber.d("isGlobal = ${user?.showGlobal}")
 
         user?.let {
-            val images = getImagesById(uid)
-            return@withContext user.copy(uid = uid, images = images)
+            //val images = getImagesById(uid)
+            return@withContext user.copy(uid = uid)
         }
 
         throw IOException("Can't get User by id = $uid")
@@ -37,6 +48,12 @@ class UserService @Inject constructor() {
         ).myAwait()
     }
 
+    suspend fun saveImage(path: String, uri: Uri): String = withContext(Dispatchers.IO) {
+        val task =
+            storage.reference.child(path)
+                .putFile(uri).myAwait()
+        return@withContext task.storage.downloadUrl.myAwait().toString()
+    }
 
     private suspend fun getImagesById(id: String): List<String> {
         val images = mutableListOf<String>()

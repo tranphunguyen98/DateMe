@@ -13,8 +13,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import phu.nguyen.dateme.R
 import phu.nguyen.dateme.databinding.ActivityLoginBinding
 import phu.nguyen.dateme.ui.loadData.LoadDataActivity
-import phu.nguyen.dateme.ui.login.data.Result
 import javax.inject.Inject
+import phu.nguyen.dateme.common.Result
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
@@ -111,7 +111,7 @@ class LoginActivity : AppCompatActivity() {
     private fun setUpObserver() {
         viewModel.result.observe(this, Observer {result ->
             when (result) {
-                is Result.Success -> {
+                is phu.nguyen.dateme.common.Result.Success -> {
                     Log.d("testLogin", "Success ${result.data.userBasicInfo.name}")
                     startActivity(Intent(this, LoadDataActivity::class.java))
                 }

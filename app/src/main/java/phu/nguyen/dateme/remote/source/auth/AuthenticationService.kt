@@ -1,4 +1,4 @@
-package phu.nguyen.dateme.remote
+package phu.nguyen.dateme.remote.source.auth
 
 import android.content.Context
 import android.content.Intent

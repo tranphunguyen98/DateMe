@@ -11,9 +11,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
 import phu.nguyen.dateme.R
+import phu.nguyen.dateme.common.Result
 import phu.nguyen.dateme.data.model.User
 import phu.nguyen.dateme.databinding.ActivityLoadDataBinding
-import phu.nguyen.dateme.ui.login.data.Result
 import phu.nguyen.dateme.ui.main.HomeActivity
 import timber.log.Timber
 import javax.inject.Inject
@@ -49,7 +49,7 @@ class LoadDataActivity : AppCompatActivity() {
     private fun setUpObserver() {
         viewModel.result.observe(this, Observer { result ->
             when (result) {
-                is Result.Success -> {
+                is  Result.Success-> {
                     Timber.d("Success ${result.data.userBasicInfo.name}")
                     Timber.d("Success ${result.data.setting.displayGenderObject}")
                     passDataToHomeActivity(result.data)

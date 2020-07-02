@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import phu.nguyen.dateme.data.UserRepository
 import phu.nguyen.dateme.data.model.User
-import phu.nguyen.dateme.ui.login.data.Result
+import phu.nguyen.dateme.common.Result
 
 class HomeViewModel(private val userRepository: UserRepository) : ViewModel() {
 

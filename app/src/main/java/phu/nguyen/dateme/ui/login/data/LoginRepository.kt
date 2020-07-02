@@ -1,6 +1,7 @@
 package phu.nguyen.dateme.ui.login.data
 
 import phu.nguyen.dateme.ui.login.data.model.LoggedInUser
+import phu.nguyen.dateme.common.Result
 
 /**
  * Class that requests authentication and user information from the remote data source and

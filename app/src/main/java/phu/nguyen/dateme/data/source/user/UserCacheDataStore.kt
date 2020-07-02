@@ -1,4 +1,5 @@
 package phu.nguyen.dateme.data.source.user
+import android.net.Uri
 import phu.nguyen.dateme.data.model.User
 import phu.nguyen.dateme.data.repository.user.UserDataStore
 import phu.nguyen.dateme.remote.model.NetworkUser
@@ -17,6 +18,10 @@ class UserCacheDataStore @Inject constructor() :
     }
 
     override suspend fun saveUser(user: NetworkUser) {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun uploadImage(path: String, uri: Uri): String {
         TODO("Not yet implemented")
     }
 }

@@ -9,7 +9,7 @@ import phu.nguyen.dateme.data.ProfileRepository
 import phu.nguyen.dateme.data.ProfileRepositoryImpl
 import phu.nguyen.dateme.data.repository.profile.ProfileCacheDataSource
 import phu.nguyen.dateme.data.repository.profile.ProfileRemoteDataSource
-import phu.nguyen.dateme.remote.ProfileRemoteDataSourceImpl
+import phu.nguyen.dateme.remote.source.profile.ProfileRemoteDataSourceImpl
 
 @Module
 @InstallIn(FragmentComponent::class)
