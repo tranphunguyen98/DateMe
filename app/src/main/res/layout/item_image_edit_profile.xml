@@ -29,11 +29,12 @@
                 android:id="@+id/img_edit"
                 style="@style/imageEditProfile"
                 loadImage="@{image}"
+                android:background="@color/grayLight"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/image_profile"
                 android:cropToPadding="true"
-                android:src="@drawable/image_avatar1" />
+                />
 
 
         </androidx.cardview.widget.CardView>

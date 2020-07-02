@@ -1,33 +1,33 @@
 package phu.nguyen.dateme.ui.editProfile
 
-import android.app.Activity
-import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import phu.nguyen.dateme.databinding.ItemImageEditProfileBinding
 
 
-class ImageEditProfileAdapter(private val listImage: List<String>) : RecyclerView.Adapter<ImageEditProfileAdapter.ImageEditVH>() {
+class ImageEditProfileAdapter(private val listImage: List<String>, private val heightPixel: Int) : RecyclerView.Adapter<ImageEditProfileAdapter.ImageEditVH>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageEditVH {
         val layoutInflater = LayoutInflater.from(parent.context)
+
         val binding = ItemImageEditProfileBinding.inflate(layoutInflater,parent, false)
         val lp = binding.root.layoutParams
-
-        val displayMetrics = DisplayMetrics()
-        (parent.context as Activity).windowManager.defaultDisplay.getMetrics(displayMetrics)
-
-        lp.height = (displayMetrics.heightPixels) / 4
+        lp.height = heightPixel / 4
 
         binding.root.layoutParams = lp
         return ImageEditVH(binding)
     }
 
-    override fun getItemCount(): Int = listImage.size
+    override fun getItemCount(): Int = 9
 
     override fun onBindViewHolder(holder: ImageEditVH, position: Int) {
-        holder.bind(listImage[position])
+        if(position >= listImage.size) {
+            holder.bind("")
+        } else {
+            holder.bind(listImage[position])
+        }
+
     }
 
     class ImageEditVH(private val binding: ItemImageEditProfileBinding) : RecyclerView.ViewHolder(binding.root) {

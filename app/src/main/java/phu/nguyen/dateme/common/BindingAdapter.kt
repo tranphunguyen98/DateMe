@@ -17,9 +17,9 @@ class BindingAdapter {
         @JvmStatic
         @BindingAdapter("loadImage")
         fun loadImageSource(view: ImageView, url: String?) {
-            url?.let {
+            if(url != null && url.isNotEmpty()) {
                 Picasso.get()
-                    .load(it)
+                    .load(url)
                     .noFade()
                     .placeholder(R.drawable.placeholder)
                     .into(view, object : Callback {

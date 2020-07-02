@@ -17,4 +17,4 @@ data class MyProfile(
     val gender: Int = 0,
     val notShowAge: Boolean = false,
     val notShowLocation: Boolean = false
-): Parcelable
+) : Parcelable

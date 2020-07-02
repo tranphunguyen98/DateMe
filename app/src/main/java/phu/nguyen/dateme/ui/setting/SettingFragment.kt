@@ -68,7 +68,6 @@ class SettingFragment : Fragment() {
             }
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
-
         setUpUI()
         setUpObserver()
     }
