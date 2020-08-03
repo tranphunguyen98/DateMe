@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
 import phu.nguyen.dateme.R
 import phu.nguyen.dateme.common.Result
+import phu.nguyen.dateme.common.snack
 import phu.nguyen.dateme.data.model.User
 import phu.nguyen.dateme.databinding.ActivityLoadDataBinding
 import phu.nguyen.dateme.ui.main.HomeActivity
@@ -28,6 +29,7 @@ class LoadDataActivity : AppCompatActivity() {
 
     private lateinit var viewModel: LoadDataViewModel
     private lateinit var binding: ActivityLoadDataBinding
+    private lateinit var animatorSet: AnimatorSet
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +61,8 @@ class LoadDataActivity : AppCompatActivity() {
                 }
                 is Result.Error -> {
                     Timber.d("Error ${result.exception.message}")
+                    this.snack(result.exception.message ?: "Error")
+                    animatorSet.cancel()
                 }
             }
         })
@@ -71,6 +75,7 @@ class LoadDataActivity : AppCompatActivity() {
     }
 
     private fun animatedLogoLoading() {
+        animatorSet = AnimatorSet()
 
         val xAnimator = ObjectAnimator.ofFloat(binding.imgLogoLoading, "scaleX", 0f, 1f).apply {
             duration = 500
@@ -89,6 +94,7 @@ class LoadDataActivity : AppCompatActivity() {
                 repeatMode = ObjectAnimator.REVERSE
                 interpolator = BounceInterpolator()
             }
+
         val yHeartbeatAnimator =
             ObjectAnimator.ofFloat(binding.imgLogoLoading, "scaleY", 1f, 0.75f).apply {
                 duration = 500
@@ -96,6 +102,7 @@ class LoadDataActivity : AppCompatActivity() {
                 repeatMode = ObjectAnimator.REVERSE
                 interpolator = BounceInterpolator()
             }
+
         val alphaHeartbeatAnimator =
             ObjectAnimator.ofFloat(binding.imgLogoLoading, "alpha", 0.5f, 1f).apply {
                 repeatCount = ObjectAnimator.INFINITE
@@ -104,10 +111,11 @@ class LoadDataActivity : AppCompatActivity() {
                 duration = 500
             }
 
-        AnimatorSet().apply {
-//            play(xAnimator).with(yAnimator).with(alphaAnimator).before(xHeartbeatAnimator).with(yHeartbeatAnimator)
+        animatorSet.apply {
             play(xHeartbeatAnimator).with(yHeartbeatAnimator).with(alphaHeartbeatAnimator)
             start()
         }
+
+        //TODO Handle timeout
     }
 }

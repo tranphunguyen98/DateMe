@@ -1,18 +1,19 @@
 package phu.nguyen.dateme.ui.explore
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import phu.nguyen.dateme.common.ResultProfile
 import phu.nguyen.dateme.data.model.SwipeProfile
 import phu.nguyen.dateme.databinding.FragmentExploreBinding
+import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -47,10 +48,22 @@ class ExploreFragment : Fragment() {
 
     private fun setUpRecyclerView(listSwipeProfile: List<SwipeProfile>) {
 
+        fun onJumpToProfileFragment(position: Int, currentItemVP: Int) {
+
+            Timber.d("$position - ${listSwipeProfile.size}")
+
+            val action =
+                ExploreFragmentDirections.actionNavigationExploreToSwipeProfileFragment(
+                    listSwipeProfile[position], currentItemVP
+                )
+
+            findNavController().navigate(action)
+        }
+
         binding.rcImagesExplore.apply {
             layoutManager = GridLayoutManager(context,3)
-            adapter = ImageExploreAdapter(listSwipeProfile) { _ ->
-
+            adapter = ImageExploreAdapter(listSwipeProfile) { position ->
+                onJumpToProfileFragment(position, 0)
             }
         }
     }
@@ -59,17 +72,17 @@ class ExploreFragment : Fragment() {
         exploreViewModel.result.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is ResultProfile.Waiting -> {
-                    Log.d("testObserver", "Waiting 1")
+                    Timber.d("Waiting 1")
                     binding.prgExplore.visibility = View.VISIBLE
                 }
                 is ResultProfile.Success -> {
-                    Log.d("testObserver", "Success 1 - ${it.swipeProfiles.size}")
+                    Timber.d("Success 1 - ${it.swipeProfiles.size}")
                     binding.prgExplore.visibility = View.GONE
                     setUpRecyclerView(it.swipeProfiles)
                 }
                 is ResultProfile.Failure -> {
                     binding.prgExplore.visibility = View.GONE
-                    Log.d("testObserver", "Failure 1")
+                    Timber.d("Failure 1")
                 }
             }
         })

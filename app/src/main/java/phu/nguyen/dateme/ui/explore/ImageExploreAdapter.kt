@@ -1,12 +1,12 @@
 package phu.nguyen.dateme.ui.explore
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import phu.nguyen.dateme.data.model.SwipeProfile
 import phu.nguyen.dateme.databinding.ItemImageExploreBinding
+import timber.log.Timber
 
 class ImageExploreAdapter(
     private val listSwipeProfile: List<SwipeProfile>,
@@ -31,8 +31,11 @@ class ImageExploreAdapter(
 
     class ImageExploreVH(private val binding : ItemImageExploreBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(swipeProfile: SwipeProfile, onItemActionListener: (Int) -> Unit, position: Int, size: Int) {
-            Log.d("textObserver", swipeProfile.name)
+            Timber.d(swipeProfile.name)
             binding.profile = swipeProfile
+            binding.cvImageEdit.setOnClickListener {
+                onItemActionListener(position)
+            }
         }
     }
 }

@@ -1,16 +1,15 @@
 package phu.nguyen.dateme.ui.swipeProfile
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
-import androidx.transition.TransitionInflater
 import kotlinx.android.synthetic.main.fragment_swipe_profile.*
 import phu.nguyen.dateme.databinding.FragmentSwipeProfileBinding
+import timber.log.Timber
 
 class SwipeProfileFragment : Fragment() {
     private val args: SwipeProfileFragmentArgs by navArgs()
@@ -21,14 +20,15 @@ class SwipeProfileFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedElementEnterTransition =
-            TransitionInflater.from(context).inflateTransition(android.R.transition.move)
+
+//        sharedElementEnterTransition =
+//            TransitionInflater.from(context).inflateTransition(android.R.transition.move)
 
     }
 
     override fun onDetach() {
         super.onDetach()
-        Log.d("testObserver", "Swipe onDetach")
+        Timber.d("Swipe onDetach")
 
     }
 

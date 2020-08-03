@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
+import androidx.viewpager2.widget.ViewPager2
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.CardStackListener
 import com.yuyakaido.android.cardstackview.Direction
@@ -18,6 +19,7 @@ import kotlinx.android.synthetic.main.fragment_dashboard.*
 import phu.nguyen.dateme.R
 import phu.nguyen.dateme.common.ResultProfile
 import phu.nguyen.dateme.data.model.SwipeProfile
+import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -37,14 +39,14 @@ class DashboardFragment : Fragment() {
         dashboardViewModel =
             ViewModelProvider(this, factory).get(DashboardViewModel::class.java)
 
-        Log.d("testObserver", "onCreateView")
+        Timber.d("onCreateView")
 
 
         return inflater.inflate(R.layout.fragment_dashboard, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        Log.d("testObserver", "onViewCreated")
+        Timber.d("onViewCreated")
         img_match.transitionName = "image"
         setUpObserver()
         super.onViewCreated(view, savedInstanceState)
@@ -52,7 +54,7 @@ class DashboardFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        Log.d("testObserver", "onActivityCreated")
+        Timber.d("onActivityCreated")
 //        if(savedInstanceState == null) {
 //            dashboardViewModel.getData()
 //        }
@@ -77,19 +79,19 @@ class DashboardFragment : Fragment() {
             when (direction) {
                 Direction.Left -> {
 //                    dashboardViewModel.removeTop()
-                    Log.d("testCardSwiped", "left - ${cardAdapter.itemCount}")
+                    Timber.d("left - ${cardAdapter.itemCount}")
                 }
                 Direction.Top -> {
-                    Log.d("testCardSwiped", "Top")
+                    Timber.d("Top")
 
                 }
                 Direction.Bottom -> {
-                    Log.d("testCardSwiped", "Bottom")
+                    Timber.d("Bottom")
 
                 }
                 Direction.Right -> {
 //                    dashboardViewModel.removeTop()
-                    Log.d("testCardSwiped", "Right")
+                    Timber.d("Right")
                 }
             }
         }
@@ -106,9 +108,8 @@ class DashboardFragment : Fragment() {
     }
 
     private fun setUpCardStackView(swipeProfiles: List<SwipeProfile>) {
-
-        cardAdapter = CardSwipeStackAdapter(swipeProfiles.toMutableList()) { viewpager, position, currentItemVP ->
-            Log.d("testCard", "$position - ${swipeProfiles.size}")
+        fun onJumpToProfileFragment(viewpager: ViewPager2, position: Int, currentItemVP: Int) {
+            Timber.d("$position - ${swipeProfiles.size}")
             val extras = FragmentNavigatorExtras(
                 viewpager to "profile${swipeProfiles[position].id}",
                 img_match to "image"
@@ -121,6 +122,11 @@ class DashboardFragment : Fragment() {
             findNavController().navigate(action, extras)
             dashboardViewModel.remove(position)
         }
+
+        cardAdapter =
+            CardSwipeStackAdapter(swipeProfiles.toMutableList()) { viewpager, position, currentItemVP ->
+                onJumpToProfileFragment(viewpager,position,currentItemVP)
+            }
 
         val cardManager = CardStackLayoutManager(context, cardStackLListener)
         cardManager.setDirections(Direction.FREEDOM)
