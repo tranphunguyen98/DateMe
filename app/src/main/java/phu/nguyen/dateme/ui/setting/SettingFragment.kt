@@ -1,6 +1,7 @@
 package phu.nguyen.dateme.ui.setting
 
 import android.app.ProgressDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,7 @@ import phu.nguyen.dateme.common.ResultCompletable
 import phu.nguyen.dateme.common.snack
 import phu.nguyen.dateme.data.model.User
 import phu.nguyen.dateme.databinding.FragmentSettingBinding
+import phu.nguyen.dateme.ui.login.LoginActivity
 import phu.nguyen.dateme.ui.main.HomeActivity
 import timber.log.Timber
 import javax.inject.Inject
@@ -26,11 +28,6 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class SettingFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = SettingFragment()
-    }
-
     @Inject
     lateinit var factory: SettingViewModelFactory
 
@@ -41,7 +38,6 @@ class SettingFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -94,10 +90,27 @@ class SettingFragment : Fragment() {
         })
     }
 
+    private fun jumpToLoginActivity() {
+        val intent = Intent(requireActivity(), LoginActivity::class.java)
+        intent.flags =
+            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+        startActivity(intent)
+        requireActivity().finish()
+    }
+
     private fun setUpUI() {
 
         progressDialog = ProgressDialog(context).apply {
             setTitle("Waiting...")
+        }
+
+        binding.btnDeleteAccount.setOnClickListener {
+            (activity as AppCompatActivity).snack("Function haven't completed!")
+        }
+
+        binding.btnLogOut.setOnClickListener {
+            viewModel.logOut()
+            jumpToLoginActivity()
         }
 
         binding.rsbAge.setOnRangeChangedListener(object : OnRangeChangedListener {

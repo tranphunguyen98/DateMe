@@ -28,8 +28,9 @@ class AuthenticationService @Inject constructor(
     }
 
     fun wasLogged(): Boolean {
-        val signInAccount = GoogleSignIn.getLastSignedInAccount(context)
-        return signInAccount != null || firebaseAuth.currentUser != null
+        return firebaseAuth.currentUser != null
+        //val signInAccount = GoogleSignIn.getLastSignedInAccount(context)
+        //return signInAccount != null || firebaseAuth.currentUser != null
     }
 
     fun getSignInIntent(): Intent = signInClient.signInIntent

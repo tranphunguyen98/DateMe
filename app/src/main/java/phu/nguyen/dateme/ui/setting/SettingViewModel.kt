@@ -2,6 +2,7 @@ package phu.nguyen.dateme.ui.setting
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 import phu.nguyen.dateme.common.ResultCompletable
 import phu.nguyen.dateme.data.UserRepository
@@ -70,6 +71,9 @@ class SettingViewModel @ViewModelInject constructor(
         )
     }
 
+    fun logOut() {
+        FirebaseAuth.getInstance().signOut()
+    }
 }
 
 @Suppress("UNCHECKED_CAST")
