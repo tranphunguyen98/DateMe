@@ -1,15 +1,15 @@
 package phu.nguyen.dateme.remote.model
 
 data class NetworkProfile(
-    var id: String,
-    val name: String,
-    val age: Int,
-    val introduction: String,
-    var images: List<String>,
-    val latitude: Double,
-    val longitude: Double
+    var uid: String = "",
+    val name: String = "",
+    val birthday: String = "",
+    val introduction: String = "",
+    var images: List<String> = emptyList(),
+    val latitude: Double = 0.0,
+    val longitude: Double = 0.0
 ) {
     constructor() : this(
-        "", "", 0, "", emptyList(), 0.0, 0.0
+        "", "", "", "", emptyList(), 0.0, 0.0
     )
 }
