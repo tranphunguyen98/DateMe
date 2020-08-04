@@ -15,6 +15,7 @@ import phu.nguyen.dateme.common.Result
 import phu.nguyen.dateme.common.snack
 import phu.nguyen.dateme.data.model.User
 import phu.nguyen.dateme.databinding.ActivityLoadDataBinding
+import phu.nguyen.dateme.ui.login.LoginActivity
 import phu.nguyen.dateme.ui.main.HomeActivity
 import timber.log.Timber
 import javax.inject.Inject
@@ -24,15 +25,19 @@ class LoadDataActivity : AppCompatActivity() {
     companion object {
         const val USER_KEY = "user"
     }
+
     @Inject
     lateinit var factory: LoadDataViewModelFactory
 
     private lateinit var viewModel: LoadDataViewModel
     private lateinit var binding: ActivityLoadDataBinding
     private lateinit var animatorSet: AnimatorSet
+    private var uid: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        uid = intent.getStringExtra(LoginActivity.UID_KEY)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_load_data)
 
@@ -45,13 +50,16 @@ class LoadDataActivity : AppCompatActivity() {
         viewModel =
             ViewModelProvider(this, factory).get(LoadDataViewModel::class.java)
 
-        viewModel.getData("oMTAcviWFZWEIuMv0HIbJyyIKIB2")
+        uid?.let {
+            viewModel.getData(it)
+        }
+
     }
 
     private fun setUpObserver() {
         viewModel.result.observe(this, Observer { result ->
             when (result) {
-                is  Result.Success-> {
+                is Result.Success -> {
                     Timber.d("Success ${result.data.userBasicInfo.name}")
                     Timber.d("Success ${result.data.setting.displayGenderObject}")
                     passDataToHomeActivity(result.data)
@@ -69,8 +77,9 @@ class LoadDataActivity : AppCompatActivity() {
     }
 
     private fun passDataToHomeActivity(user: User) {
-        val intent = Intent(this,HomeActivity::class.java)
-        intent.putExtra(USER_KEY,user)
+        val intent = Intent(this, HomeActivity::class.java)
+        intent.putExtra(USER_KEY, user)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
         startActivity(intent)
     }
 

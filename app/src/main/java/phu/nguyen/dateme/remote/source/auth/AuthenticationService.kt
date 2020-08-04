@@ -2,7 +2,6 @@ package phu.nguyen.dateme.remote.source.auth
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -13,7 +12,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import phu.nguyen.dateme.remote.model.NetworkUser
+import timber.log.Timber
+import java.io.IOException
 import javax.inject.Inject
+
 
 class AuthenticationService @Inject constructor(
     @ActivityContext private val context: Context,
@@ -27,15 +29,28 @@ class AuthenticationService @Inject constructor(
         GoogleSignIn.getClient(context, gsc)
     }
 
-    fun wasLogged(): Boolean {
-        return firebaseAuth.currentUser != null
+    fun isFirstTimeLogin(): Boolean {
+        Timber.d("Check First Time")
+        val metadata = firebaseAuth.currentUser?.metadata
+            ?: throw IOException("User doesn't exist metadata!")
+
+        Timber.d("${metadata.creationTimestamp} - ${metadata.lastSignInTimestamp}")
+
+        metadata.let {
+            return  metadata.lastSignInTimestamp - metadata.creationTimestamp <= 5
+        }
+
+    }
+
+    fun wasLogged(): String? {
+        return firebaseAuth.currentUser?.uid
         //val signInAccount = GoogleSignIn.getLastSignedInAccount(context)
         //return signInAccount != null || firebaseAuth.currentUser != null
     }
 
     fun getSignInIntent(): Intent = signInClient.signInIntent
 
-    suspend fun signInWithGoogle(intent: Intent):NetworkUser =
+    suspend fun signInWithGoogle(intent: Intent): NetworkUser =
         withContext(Dispatchers.IO) {
             val signInTask =
                 GoogleSignIn.getSignedInAccountFromIntent(intent)
@@ -47,15 +62,16 @@ class AuthenticationService @Inject constructor(
                     GoogleAuthProvider.getCredential(signInAcc!!.idToken, null)
 
                 val authResult = firebaseAuth.signInWithCredential(authCredential).await()
-                Log.d("TestAuth", authResult.user.toString())
-                Log.d("TestAuth", authResult.user?.displayName ?: "null")
-                Log.d("TestAuth", authResult.user?.uid ?: "null")
-                Log.d("TestAuth",  authResult?.additionalUserInfo?.profile.toString())
-                return@withContext NetworkUser(name = authResult.user?.displayName ?: "")
+                Timber.d(authResult.user.toString())
+                Timber.d(authResult.user?.displayName ?: "null")
+                Timber.d(authResult.user?.uid ?: "null")
+                Timber.d(authResult?.additionalUserInfo?.profile.toString())
+                return@withContext NetworkUser(uid = authResult.user?.uid!! ,name = authResult.user?.displayName ?: "")
 
-            } catch (e: ApiException) {
-                Log.d("TestAuth", e.message ?: "null")
+            } catch (e: Exception) {
+                Timber.d(e.message ?: "null")
             }
+
             return@withContext NetworkUser()
         }
 

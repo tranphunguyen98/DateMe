@@ -4,7 +4,8 @@ import android.content.Intent
 import phu.nguyen.dateme.data.model.User
 
 interface AuthenticationRepository {
-    fun wasLogged(): Boolean
+    fun wasLogged(): String?
+    fun isFirstTimeLogIn(): Boolean
     suspend fun signInWithGoogle(intent: Intent) : User
     fun getIntentGoogle(): Intent
     fun logout()

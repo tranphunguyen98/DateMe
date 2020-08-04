@@ -8,6 +8,8 @@ class AuthenticationRepositoryImpl @Inject constructor(private val authenticatio
     override fun wasLogged() =
         authenticationDataSource.wasLogged()
 
+    override fun isFirstTimeLogIn(): Boolean = authenticationDataSource.isFirstTimeLogIn()
+
     override suspend fun signInWithGoogle(intent: Intent) =
         authenticationDataSource.signInWithGoogle(intent)
 

@@ -22,6 +22,9 @@ class AuthenticationDataSourceImpl @Inject constructor(
     override suspend fun signInWithGoogle(intent: Intent): User =
         networkUserMapper.mapFromRemote(authenticationService.signInWithGoogle(intent))
 
-    override fun wasLogged(): Boolean = authenticationService.wasLogged()
+    override fun wasLogged(): String? = authenticationService.wasLogged()
+
+    override fun isFirstTimeLogIn(): Boolean = authenticationService.isFirstTimeLogin()
+
 
 }

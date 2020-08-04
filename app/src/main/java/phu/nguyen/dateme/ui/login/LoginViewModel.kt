@@ -6,11 +6,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import phu.nguyen.dateme.data.AuthenticationRepository
-import phu.nguyen.dateme.data.model.User
 import phu.nguyen.dateme.common.Result
+import phu.nguyen.dateme.data.AuthenticationRepository
+import phu.nguyen.dateme.data.UserRepository
+import phu.nguyen.dateme.data.mapper.UserMapper
+import phu.nguyen.dateme.data.model.User
+import timber.log.Timber
 
-class LoginViewModel(private val repository: AuthenticationRepository) : ViewModel() {
+class LoginViewModel(private val repository: AuthenticationRepository,
+                     private val userRepository: UserRepository,
+                   private val mapper: UserMapper) : ViewModel() {
 
 //    private val _loginForm = MutableLiveData<LoginFormState>()
 //    val loginFormState: LiveData<LoginFormState> = _loginForm
@@ -22,16 +27,30 @@ class LoginViewModel(private val repository: AuthenticationRepository) : ViewMod
     val result: LiveData<Result<User>>
         get() = _result
 
-    fun wasLogged(): Boolean = repository.wasLogged()
+    fun wasLogged(): String? = repository.wasLogged()
+
     fun getSignInIntent(): Intent = repository.getIntentGoogle()
+
+    fun isFirstTimeLogIn(): Boolean = repository.isFirstTimeLogIn()
+
     fun logout() {
         repository.logout()
     }
+
     fun loginWithGoogle(intent: Intent) {
         _result.value = Result.Waiting
         viewModelScope.launch {
             try {
                val user = repository.signInWithGoogle(intent)
+
+                Timber.d("check First")
+                if(repository.isFirstTimeLogIn()) {
+                    Timber.d("check First 1")
+                    userRepository.saveUser(mapper.mapFromUI(user))
+                    Timber.d("check First 2")
+                }
+                Timber.d("check First 3")
+
                 _result.value = Result.Success(user)
             } catch (e: Exception){
                 _result.value = Result.Error(e)

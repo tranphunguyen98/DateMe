@@ -6,6 +6,7 @@ import phu.nguyen.dateme.data.model.User
 interface AuthenticationDataSource {
     fun getIntentSignIn(): Intent
     suspend fun signInWithGoogle(intent: Intent) : User
-    fun wasLogged(): Boolean
+    fun wasLogged(): String?
+    fun isFirstTimeLogIn(): Boolean
     fun logout()
 }

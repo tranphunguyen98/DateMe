@@ -2,7 +2,6 @@ package phu.nguyen.dateme.ui.login
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
@@ -11,13 +10,17 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
 import phu.nguyen.dateme.R
+import phu.nguyen.dateme.common.Result
 import phu.nguyen.dateme.databinding.ActivityLoginBinding
 import phu.nguyen.dateme.ui.loadData.LoadDataActivity
+import timber.log.Timber
 import javax.inject.Inject
-import phu.nguyen.dateme.common.Result
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
+    companion object {
+        const val UID_KEY = "uid"
+    }
     private val GOOGLE_SIGN_IN_CODE = 10005
 
     @Inject
@@ -28,14 +31,14 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         viewModel = ViewModelProvider(this, factory)
             .get(LoginViewModel::class.java)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
+        val uid = viewModel.wasLogged()
 
-        if (viewModel.wasLogged()) {
-            startActivity(Intent(this, LoadDataActivity::class.java))
+        uid?.let {
+           jumpToLoadDataActivity(it)
         }
 
         binding.btnSignInWithGoogle.setOnClickListener {
@@ -108,18 +111,24 @@ class LoginActivity : AppCompatActivity() {
 //        }
     }
 
+    private fun jumpToLoadDataActivity(uid: String) {
+        val intent = Intent(this, LoadDataActivity::class.java)
+        intent.putExtra(UID_KEY,uid)
+        startActivity(intent)
+    }
+
     private fun setUpObserver() {
-        viewModel.result.observe(this, Observer {result ->
+        viewModel.result.observe(this, Observer { result ->
             when (result) {
-                is phu.nguyen.dateme.common.Result.Success -> {
-                    Log.d("testLogin", "Success ${result.data.userBasicInfo.name}")
-                    startActivity(Intent(this, LoadDataActivity::class.java))
+                is Result.Success -> {
+                    Timber.d( "Success ${result.data.userBasicInfo.name}")
+                    jumpToLoadDataActivity(result.data.myProfile.uid)
                 }
                 is Result.Waiting -> {
-                    Log.d("testLogin", "Waiting...")
+                    Timber.d( "Waiting...")
                 }
                 is Result.Error -> {
-                    Log.d("testLogin", "Error ${result.exception.message}")
+                    Timber.d( "Error ${result.exception.message}")
                 }
             }
         })
