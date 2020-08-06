@@ -27,4 +27,8 @@ class NetworkProfileMapper @Inject constructor() : NetworkMapper<NetworkProfile,
             return ""
         }
     }
+
+    override fun mapToRemote(type: SwipeProfile): NetworkProfile {
+        TODO("Not yet implemented")
+    }
 }

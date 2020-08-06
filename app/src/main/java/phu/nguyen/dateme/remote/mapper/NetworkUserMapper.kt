@@ -45,4 +45,8 @@ class NetworkUserMapper @Inject constructor() : NetworkMapper<NetworkUser, User>
 
         return User(myProfile,setting,userBasicInfo)
     }
+
+    override fun mapToRemote(type: User): NetworkUser {
+        TODO("Not yet implemented")
+    }
 }

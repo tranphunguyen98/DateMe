@@ -18,6 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import phu.nguyen.dateme.R
 import phu.nguyen.dateme.common.ResultProfile
+import phu.nguyen.dateme.data.model.Matching
 import phu.nguyen.dateme.data.model.SwipeProfile
 import timber.log.Timber
 import javax.inject.Inject
@@ -28,15 +29,17 @@ class DashboardFragment : Fragment() {
     @Inject
     lateinit var factory: DashboardViewModelFactory
 
-    private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var viewModel: DashboardViewModel
     private lateinit var cardAdapter: CardSwipeStackAdapter
+    private lateinit var cardManager: CardStackLayoutManager
+    private lateinit var swipeProfiles: List<SwipeProfile>
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel =
+        viewModel =
             ViewModelProvider(this, factory).get(DashboardViewModel::class.java)
 
         Timber.d("onCreateView")
@@ -78,8 +81,13 @@ class DashboardFragment : Fragment() {
         override fun onCardSwiped(direction: Direction?) {
             when (direction) {
                 Direction.Left -> {
-//                    dashboardViewModel.removeTop()
-                    Timber.d("left - ${cardAdapter.itemCount}")
+
+                    viewModel.saveMatching(
+                        Matching(
+                            swipeProfiles[cardManager.topPosition - 1].id,
+                            Matching.DISLIKE
+                        )
+                    )
                 }
                 Direction.Top -> {
                     Timber.d("Top")
@@ -107,7 +115,7 @@ class DashboardFragment : Fragment() {
 
     }
 
-    private fun setUpCardStackView(swipeProfiles: List<SwipeProfile>) {
+    private fun setUpCardStackView() {
         fun onJumpToProfileFragment(viewpager: ViewPager2, position: Int, currentItemVP: Int) {
             Timber.d("$position - ${swipeProfiles.size}")
             val extras = FragmentNavigatorExtras(
@@ -120,15 +128,15 @@ class DashboardFragment : Fragment() {
                 )
 
             findNavController().navigate(action, extras)
-            dashboardViewModel.remove(position)
+            viewModel.removeProfile(position)
         }
 
         cardAdapter =
             CardSwipeStackAdapter(swipeProfiles.toMutableList()) { viewpager, position, currentItemVP ->
-                onJumpToProfileFragment(viewpager,position,currentItemVP)
+                onJumpToProfileFragment(viewpager, position, currentItemVP)
             }
 
-        val cardManager = CardStackLayoutManager(context, cardStackLListener)
+        cardManager = CardStackLayoutManager(context, cardStackLListener)
         cardManager.setDirections(Direction.FREEDOM)
 
         with(card_swipe_stack) {
@@ -158,7 +166,7 @@ class DashboardFragment : Fragment() {
     }
 
     private fun setUpObserver() {
-        dashboardViewModel.result.observe(viewLifecycleOwner, Observer {
+        viewModel.result.observe(viewLifecycleOwner, Observer {
             Log.d("testObserver", "observe")
             when (it) {
                 is ResultProfile.Waiting -> {
@@ -168,7 +176,8 @@ class DashboardFragment : Fragment() {
                 is ResultProfile.Success -> {
                     Log.d("testObserver", "Success - ${it.swipeProfiles.size}")
                     prg_loading.visibility = View.GONE
-                    setUpCardStackView(it.swipeProfiles)
+                    swipeProfiles = it.swipeProfiles
+                    setUpCardStackView()
                 }
                 is ResultProfile.Failure -> {
                     prg_loading.visibility = View.GONE
