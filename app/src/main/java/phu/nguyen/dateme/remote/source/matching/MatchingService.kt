@@ -40,7 +40,7 @@ class MatchingService @Inject constructor() {
         db.collection("users").document(uidSource)
             .collection("matchings").document(matching.uid)
             .set(
-                matching.copy(isMatch = true), SetOptions.merge()
+                matching.copy(match = true), SetOptions.merge()
             ).myAwait()
     }
 

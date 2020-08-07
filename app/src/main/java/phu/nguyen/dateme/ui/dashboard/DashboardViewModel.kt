@@ -52,7 +52,7 @@ class DashboardViewModel(
             try {
                 if(matchingRepository.checkMatching(matching.uid)) {
                     Timber.d("MATCHING........................")
-                    matchingRepository.saveMatching(matching.copy(isMatch = true))
+                    matchingRepository.saveMatching(matching.copy(match = true))
                 } else {
                     matchingRepository.saveMatching(matching)
                 }
