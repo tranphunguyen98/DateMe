@@ -20,4 +20,8 @@ class MatchingCacheDataStore @Inject constructor() :
         TODO("Not yet implemented")
     }
 
+    override suspend fun checkMatching(uidSource: String): Boolean {
+        TODO("Not yet implemented")
+    }
+
 }

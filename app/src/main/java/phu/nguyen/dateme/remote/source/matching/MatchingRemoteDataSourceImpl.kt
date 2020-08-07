@@ -14,8 +14,11 @@ class MatchingRemoteDataSourceImpl @Inject constructor(
         TODO("Not yet implemented")
     }
 
-    override suspend fun saveMatching( matching: Matching) {
+    override suspend fun saveMatching( matching: Matching) =
         matchingService.saveMatching(matchingMapper.mapToRemote(matching))
-    }
+
+
+    override suspend fun checkMatching(uidSource: String): Boolean =
+        matchingService.checkAndSaveMatching(uidSource)
 
 }

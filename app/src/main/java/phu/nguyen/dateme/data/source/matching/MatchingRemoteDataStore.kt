@@ -13,4 +13,7 @@ import javax.inject.Inject
     override suspend fun saveMatching( matching: Matching) =
         matchingRemote.saveMatching(matching)
 
-}
+     override suspend fun checkMatching(uidSource: String): Boolean =
+         matchingRemote.checkMatching(uidSource)
+
+ }

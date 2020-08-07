@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class MatchingMapper @Inject constructor() : UIMapper<Matching,NetworkMatching> {
     override fun mapFromUI(type: Matching): NetworkMatching {
-        return NetworkMatching(type.uid,type.typeSwipe,type.wasMatched)
+        return NetworkMatching(type.uid,type.typeSwipe,type.match)
     }
 
 }

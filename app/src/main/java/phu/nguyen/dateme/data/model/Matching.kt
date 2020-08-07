@@ -3,7 +3,7 @@ package phu.nguyen.dateme.data.model
 data class Matching(
     val uid: String = "",
     val typeSwipe: Int = -1,
-    val wasMatched: Boolean = false
+    val match: Boolean = false
 ) {
     companion object {
         const val DISLIKE = 0

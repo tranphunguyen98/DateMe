@@ -11,8 +11,10 @@ class MatchingRepositoryImpl @Inject constructor(
     override suspend fun getMatching(): List<Matching> =
         factory.retrieveRemoteDataStore().getMatching()
 
-
     override suspend fun saveMatching(matching: Matching) =
         factory.retrieveRemoteDataStore().saveMatching(matching)
+
+    override suspend fun checkMatching(uidSource: String): Boolean =
+        factory.retrieveRemoteDataStore().checkMatching(uidSource)
 
 }

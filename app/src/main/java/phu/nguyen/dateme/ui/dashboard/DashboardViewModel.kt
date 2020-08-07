@@ -50,7 +50,12 @@ class DashboardViewModel(
     fun saveMatching(matching: Matching) {
         viewModelScope.launch {
             try {
-                matchingRepository.saveMatching(matching)
+                if(matchingRepository.checkMatching(matching.uid)) {
+                    Timber.d("MATCHING........................")
+                    matchingRepository.saveMatching(matching.copy(isMatch = true))
+                } else {
+                    matchingRepository.saveMatching(matching)
+                }
             } catch (e: Exception) {
                 _result.value = ResultProfile.Failure(e)
             }

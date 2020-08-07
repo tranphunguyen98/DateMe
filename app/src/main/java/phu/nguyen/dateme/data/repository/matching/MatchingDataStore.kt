@@ -11,4 +11,5 @@ import phu.nguyen.dateme.data.model.Matching
 interface MatchingDataStore {
     suspend fun getMatching() : List<Matching>
     suspend fun saveMatching(matching: Matching)
+    suspend fun checkMatching(uidSource: String): Boolean
 }

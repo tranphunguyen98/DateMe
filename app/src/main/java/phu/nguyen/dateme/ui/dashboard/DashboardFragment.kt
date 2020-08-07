@@ -98,7 +98,7 @@ class DashboardFragment : Fragment() {
                     )
                 }
                 Direction.Bottom -> {
-
+                    Timber.d("Bottom")
                 }
                 Direction.Right -> {
 //                    dashboardViewModel.removeTop()
