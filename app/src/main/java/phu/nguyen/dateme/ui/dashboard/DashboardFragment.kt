@@ -1,7 +1,6 @@
 package phu.nguyen.dateme.ui.dashboard
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -81,7 +80,6 @@ class DashboardFragment : Fragment() {
         override fun onCardSwiped(direction: Direction?) {
             when (direction) {
                 Direction.Left -> {
-
                     viewModel.saveMatching(
                         Matching(
                             swipeProfiles[cardManager.topPosition - 1].id,
@@ -91,15 +89,26 @@ class DashboardFragment : Fragment() {
                 }
                 Direction.Top -> {
                     Timber.d("Top")
-
+                    Timber.d("Bottom")
+                    viewModel.saveMatching(
+                        Matching(
+                            swipeProfiles[cardManager.topPosition - 1].id,
+                            Matching.SUPER_LIKE
+                        )
+                    )
                 }
                 Direction.Bottom -> {
-                    Timber.d("Bottom")
 
                 }
                 Direction.Right -> {
 //                    dashboardViewModel.removeTop()
                     Timber.d("Right")
+                    viewModel.saveMatching(
+                        Matching(
+                            swipeProfiles[cardManager.topPosition - 1].id,
+                            Matching.LIKE
+                        )
+                    )
                 }
             }
         }
@@ -167,21 +176,26 @@ class DashboardFragment : Fragment() {
 
     private fun setUpObserver() {
         viewModel.result.observe(viewLifecycleOwner, Observer {
-            Log.d("testObserver", "observe")
+            Timber.d( "observe")
             when (it) {
                 is ResultProfile.Waiting -> {
-                    Log.d("testObserver", "Waiting")
+                    Timber.d("Waiting")
                     prg_loading.visibility = View.VISIBLE
                 }
+
                 is ResultProfile.Success -> {
-                    Log.d("testObserver", "Success - ${it.swipeProfiles.size}")
+                    Timber.d("Success - ${it.swipeProfiles.size}")
                     prg_loading.visibility = View.GONE
                     swipeProfiles = it.swipeProfiles
+
+                    tv_nodata.visibility = if (swipeProfiles.isEmpty()) View.VISIBLE else  View.GONE
+
                     setUpCardStackView()
                 }
+
                 is ResultProfile.Failure -> {
                     prg_loading.visibility = View.GONE
-                    Log.d("testObserver", "Failure")
+                    Timber.d("Failure")
                 }
             }
         })

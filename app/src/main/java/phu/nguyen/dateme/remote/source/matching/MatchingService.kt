@@ -22,26 +22,23 @@ class MatchingService @Inject constructor() {
 
     suspend fun getMatching(): List<NetworkMatching> = withContext(Dispatchers.IO) {
         val matchings = mutableListOf<NetworkMatching>()
-        val snapshotMatchings = db.collection("users").document(auth.uid!!).
-        collection("matchings").get().myAwait()
+        val snapshotMatchings =
+            db.collection("users").document(auth.uid!!).collection("matchings").get().myAwait()
 
         for (document in snapshotMatchings.documents) {
-
             val matching = document.toObject<NetworkMatching>()
 
             matching?.let {
-                if (it.uid != auth.uid) {
-                    matchings.add(it)
-                }
+                matchings.add(it)
             }
         }
         return@withContext matchings
     }
 
     suspend fun saveMatching(matching: NetworkMatching) {
-        db.collection("users").document(auth.uid!!).
-        collection("matchings").document(matching.uid).set(
-            matching, SetOptions.merge()
-        ).myAwait()
+        db.collection("users").document(auth.uid!!).collection("matchings").document(matching.uid)
+            .set(
+                matching, SetOptions.merge()
+            ).myAwait()
     }
 }

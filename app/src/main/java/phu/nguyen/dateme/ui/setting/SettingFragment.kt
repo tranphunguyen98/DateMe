@@ -109,7 +109,7 @@ class SettingFragment : Fragment() {
         }
 
         binding.btnLogOut.setOnClickListener {
-            viewModel.logOut()
+            viewModel.logOut(requireContext())
             jumpToLoginActivity()
         }
 
