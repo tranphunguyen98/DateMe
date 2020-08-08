@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="phu.nguyen.dateme">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".DateMeApplication"
@@ -13,8 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.matching.MatchingActivity"></activity>
         <activity android:name=".ui.loadData.LoadDataActivity" />
-
         <activity
             android:name=".ui.login.LoginActivity"
             android:label="@string/title_activity_login">
@@ -24,7 +24,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.main.HomeActivity"
             android:label="@string/title_activity_home" />

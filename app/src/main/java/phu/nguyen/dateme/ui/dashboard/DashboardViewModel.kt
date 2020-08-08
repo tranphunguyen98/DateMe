@@ -9,28 +9,34 @@ import kotlinx.coroutines.launch
 import phu.nguyen.dateme.common.ResultProfile
 import phu.nguyen.dateme.data.MatchingRepository
 import phu.nguyen.dateme.data.ProfileRepository
+import phu.nguyen.dateme.data.UserRepository
 import phu.nguyen.dateme.data.model.Matching
+import phu.nguyen.dateme.data.model.UserBasicInfo
 import phu.nguyen.dateme.remote.mapper.NetworkProfileMapper
 import timber.log.Timber
 import javax.inject.Inject
 
 class DashboardViewModel(
     private val profileRepository: ProfileRepository,
-    private val matchingRepository: MatchingRepository
+    private val matchingRepository: MatchingRepository,
+    private val userRepository: UserRepository
+
     ) : ViewModel() {
 
-    private var _result: MutableLiveData<ResultProfile> = MutableLiveData<ResultProfile>()
+    private var _result: MutableLiveData<ResultProfile> = MutableLiveData()
     val result: LiveData<ResultProfile>
         get() = _result
 
+    private var _userMatching: MutableLiveData<UserBasicInfo> = MutableLiveData()
+    val matchingUser: LiveData<UserBasicInfo>
+        get() = _userMatching
+
     init {
-//        Log.d("testObserve", "DashboardViewModel created")
         getData()
     }
 
     @Inject
     lateinit var networkProfileMapper: NetworkProfileMapper
-
 
     fun removeProfile(position: Int) {
         if (_result.value is ResultProfile.Success && position > 0) {
@@ -40,7 +46,6 @@ class DashboardViewModel(
             for (i in 0 until position) {
                 (_result.value as ResultProfile.Success).swipeProfiles.removeAt(0)
             }
-
             Timber.d(
                 (_result.value as ResultProfile.Success).swipeProfiles.size.toString()
             )
@@ -51,8 +56,11 @@ class DashboardViewModel(
         viewModelScope.launch {
             try {
                 if(matchingRepository.checkMatching(matching.uid)) {
-                    Timber.d("MATCHING........................")
+                    Timber.d("TestCheckMatching1")
                     matchingRepository.saveMatching(matching.copy(match = true))
+                    Timber.d("TestCheckMatching2")
+                    _userMatching.value = userRepository.getUser(matching.uid).userBasicInfo
+                    Timber.d("TestCheckMatching3")
                 } else {
                     matchingRepository.saveMatching(matching)
                 }

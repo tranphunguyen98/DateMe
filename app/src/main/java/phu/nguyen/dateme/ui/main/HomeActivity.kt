@@ -31,6 +31,8 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
+        binding.lifecycleOwner = this
+
         user = intent.extras?.get(LoadDataActivity.USER_KEY) as User
         Timber.d(user.userBasicInfo.name)
 //        setUpViewModel()

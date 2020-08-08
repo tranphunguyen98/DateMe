@@ -5,11 +5,11 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class UserBasicInfo(
-    val name: String,
-    val age: String,
-    val school: String,
-    val avatarImage: String
-): Parcelable {
+    val name: String = "",
+    val age: String = "",
+    val school: String = "",
+    val avatarImage: String = ""
+) : Parcelable {
     val nameAndAge: String
-    get() = "$name, $age"
+        get() = "$name, $age"
 }

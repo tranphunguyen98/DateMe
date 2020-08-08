@@ -33,16 +33,13 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         btn_setting.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_profile_to_settingFragment)
         }
 
         btn_edit.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_profile_to_editProfileFragment)
-        }
-
-        btn_upgrade_account.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_profile_to_matchingFragment)
         }
 
     }

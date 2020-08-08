@@ -1,5 +1,6 @@
 package phu.nguyen.dateme.ui.dashboard
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,9 @@ import phu.nguyen.dateme.R
 import phu.nguyen.dateme.common.ResultProfile
 import phu.nguyen.dateme.data.model.Matching
 import phu.nguyen.dateme.data.model.SwipeProfile
+import phu.nguyen.dateme.data.model.UserBasicInfo
+import phu.nguyen.dateme.ui.main.HomeActivity
+import phu.nguyen.dateme.ui.matching.MatchingActivity
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -32,6 +36,7 @@ class DashboardFragment : Fragment() {
     private lateinit var cardAdapter: CardSwipeStackAdapter
     private lateinit var cardManager: CardStackLayoutManager
     private lateinit var swipeProfiles: List<SwipeProfile>
+    private lateinit var myUser: UserBasicInfo
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -57,6 +62,7 @@ class DashboardFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         Timber.d("onActivityCreated")
+        myUser = (activity as HomeActivity).user.userBasicInfo
 //        if(savedInstanceState == null) {
 //            dashboardViewModel.getData()
 //        }
@@ -198,6 +204,13 @@ class DashboardFragment : Fragment() {
                     Timber.d("Failure")
                 }
             }
+        })
+
+        viewModel.matchingUser.observe(viewLifecycleOwner, Observer { matchingUser ->
+            val intent = Intent(activity, MatchingActivity::class.java)
+            intent.putExtra(MatchingActivity.MY_USER_KEY,myUser)
+            intent.putExtra(MatchingActivity.MATCHING_USER_KEY,matchingUser)
+            startActivity(intent)
         })
     }
 }
