@@ -18,6 +18,9 @@
             android:name="basicInfo"
             app:argType="phu.nguyen.dateme.data.model.UserBasicInfo"
             app:nullable="true"/>
+        <action
+            android:id="@+id/action_navigation_profile_to_matchingFragment"
+            app:destination="@id/matchingFragment" />
     </fragment>
     <fragment
         android:id="@+id/navigation_explore"
@@ -68,4 +71,8 @@
         android:name="phu.nguyen.dateme.ui.editProfile.EditProfileFragment"
         android:label="edit_profile_fragment"
         tools:layout="@layout/fragment_edit_profile" />
+    <fragment
+        android:id="@+id/matchingFragment"
+        android:name="phu.nguyen.dateme.ui.matching.MatchingFragment"
+        android:label="MatchingFragment" />
 </navigation>
