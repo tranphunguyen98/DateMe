@@ -6,6 +6,8 @@ import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import phu.nguyen.dateme.data.model.Interaction
+import phu.nguyen.dateme.remote.model.NetworkInteraction
 import phu.nguyen.dateme.remote.model.NetworkProfile
 import timber.log.Timber
 import javax.inject.Inject
@@ -27,7 +29,7 @@ class ProfileService @Inject constructor() {
         val snapshotProfiles = db.collection("users").get().myAwait()
 
 //            Log.d("testCoroutine1", Thread.currentThread().name)
-        val listMatching = getListProfileIdSwiped()
+        val listMatching = getListInteraction(-1)
 
         for (document in snapshotProfiles.documents) {
 //            Log.d("testCoroutine2", Thread.currentThread().name)
@@ -36,7 +38,7 @@ class ProfileService @Inject constructor() {
 //            Log.d("TestCoroutine", profile?.name ?: "null ne")
 
             profile?.let {
-                if (it.uid != auth.uid && !listMatching.contains(it.uid)) {
+                if (it.uid != auth.uid && !isSwiped(listMatching, it.uid)) {
                     profiles.add(it)
                 }
             }
@@ -45,17 +47,59 @@ class ProfileService @Inject constructor() {
         return@withContext profiles
     }
 
-    private suspend fun getListProfileIdSwiped(): List<String> = withContext(Dispatchers.IO) {
-        val matchingIds = mutableListOf<String>()
-        val snapshotMatchings =
-            db.collection("users").document(auth.uid!!).collection("matchings").get().myAwait()
+    suspend fun getInteractiveProfiles(interactiveType: Int): List<NetworkProfile> = withContext(Dispatchers.IO) {
+        val profiles = mutableListOf<NetworkProfile>()
 
-        for (document in snapshotMatchings.documents) {
-            matchingIds.add(document.id)
+        val listInteraction = getListInteraction(interactiveType)
+
+        listInteraction.forEach {
+            val snapshotProfile = db.collection("users").document(it.uid).get().myAwait()
+            val profile = snapshotProfile.toObject(NetworkProfile::class.java)
+
+            if(profile != null) {
+                profiles.add(profile)
+            }
         }
 
-        return@withContext matchingIds
+        return@withContext profiles
     }
+
+    private fun isSwiped(listInteraction: List<NetworkInteraction>, id: String): Boolean {
+        listInteraction.forEach {
+            if (it.uid == id &&
+                (it.interactiveType == Interaction.LIKE || it.interactiveType == Interaction.DISLIKE)
+            ) {
+                return true
+            }
+        }
+        return false
+    }
+
+    private suspend fun getListInteraction(interactiveType: Int): List<NetworkInteraction> =
+        withContext(Dispatchers.IO) {
+            val interactions = mutableListOf<NetworkInteraction>()
+            val snapshotMatchings =
+                db.collection("users").document(auth.uid!!).collection("interactions").get()
+                    .myAwait()
+
+            for (document in snapshotMatchings.documents) {
+                val interaction = document.toObject(NetworkInteraction::class.java)
+                if(interaction != null) {
+                    if(interactiveType == -1) {
+                        interactions.add(interaction)
+                    } else
+                    {
+                        if (interaction.interactiveType == interactiveType) {
+                            interactions.add(interaction)
+                        }
+                    }
+                }
+
+
+            }
+
+            return@withContext interactions
+        }
 
 //    private suspend fun getImagesById(id: String) : List<String> {
 //        val images = mutableListOf<String>()

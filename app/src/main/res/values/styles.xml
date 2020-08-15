@@ -82,30 +82,64 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="textNormalBold18" parent="textNormalBold20">
+    <style name="textNormal18Bold" parent="textNormalBold20">
         <item name="android:textSize">18sp</item>
     </style>
 
-    <style name="textNormal18">
+
+    <style name="textNormal18BoldWhite" parent="textNormalBold20">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="textNormal">
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">18sp</item>
     </style>
 
-    <style name="textNormal16" parent="textNormal18">
+    <style name="textNormal16" parent="textNormal">
         <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="textNormalBold16" parent="textNormal18">
+    <style name="textNormal16White" parent="textNormal16">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="textNormal16Bold" parent="textNormal">
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="textNormal14" parent="textNormal18">
+    <style name="textNormal16BoldWhite" parent="textNormal16Bold">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="textNormal14BoldWhite" parent="textNormal">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="textNormal14White" parent="textNormal">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="textNormal12" parent="textNormal">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="textNormal12White" parent="textNormal">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="textBold14" parent="textNormal">
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="text_normal_bold_18" parent="textNormal18">
+    <style name="text_normal_bold_18" parent="textNormal">
         <item name="android:textStyle">bold</item>
     </style>
 

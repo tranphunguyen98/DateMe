@@ -4,12 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import phu.nguyen.dateme.data.model.SwipeProfile
+import phu.nguyen.dateme.data.model.Profile
 import phu.nguyen.dateme.databinding.ItemImageExploreBinding
 import timber.log.Timber
 
 class ImageExploreAdapter(
-    private val listSwipeProfile: List<SwipeProfile>,
+    private val listSwipeProfile: List<Profile>,
     private val onItemActionListener: (Int) -> Unit
 ) :
     RecyclerView.Adapter<ImageExploreAdapter.ImageExploreVH>() {
@@ -28,9 +28,8 @@ class ImageExploreAdapter(
         holder.bind(listSwipeProfile[position], onItemActionListener, position, listSwipeProfile.size)
     }
 
-
     class ImageExploreVH(private val binding : ItemImageExploreBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(swipeProfile: SwipeProfile, onItemActionListener: (Int) -> Unit, position: Int, size: Int) {
+        fun bind(swipeProfile: Profile, onItemActionListener: (Int) -> Unit, position: Int, size: Int) {
             Timber.d(swipeProfile.name)
             binding.profile = swipeProfile
             binding.cvImageEdit.setOnClickListener {

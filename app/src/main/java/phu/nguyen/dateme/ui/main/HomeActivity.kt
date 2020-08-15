@@ -2,7 +2,6 @@ package phu.nguyen.dateme.ui.main
 
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
@@ -11,7 +10,6 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_home.*
 import phu.nguyen.dateme.R
 import phu.nguyen.dateme.data.model.User
 import phu.nguyen.dateme.databinding.ActivityHomeBinding
@@ -74,12 +72,12 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             Timber.d(destination.id.toString())
             Timber.d("addOnDestinationChangedListener")
             when (destination.id) {
-                R.id.matchingFragment -> {
-                    nav_view.visibility = View.GONE
-                }
-                else -> {
-                    nav_view.visibility = View.VISIBLE
-                }
+//                R.id.matchingFragment -> {
+//                    nav_view.visibility = View.GONE
+//                }
+//                else -> {
+//                    nav_view.visibility = View.VISIBLE
+//                }
             }
         }
 

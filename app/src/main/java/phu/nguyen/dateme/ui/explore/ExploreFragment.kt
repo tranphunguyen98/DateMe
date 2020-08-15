@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import phu.nguyen.dateme.common.ResultProfile
-import phu.nguyen.dateme.data.model.SwipeProfile
+import phu.nguyen.dateme.data.model.Profile
 import phu.nguyen.dateme.databinding.FragmentExploreBinding
 import timber.log.Timber
 import javax.inject.Inject
@@ -46,14 +46,14 @@ class ExploreFragment : Fragment() {
 
     }
 
-    private fun setUpRecyclerView(listSwipeProfile: List<SwipeProfile>) {
+    private fun setUpRecyclerView(listSwipeProfile: List<Profile>) {
 
         fun onJumpToProfileFragment(position: Int, currentItemVP: Int) {
 
             Timber.d("$position - ${listSwipeProfile.size}")
 
             val action =
-                ExploreFragmentDirections.actionNavigationExploreToSwipeProfileFragment(
+                ExploreFragmentDirections.actionNavigationExploreToUserProfileDetailFragment(
                     listSwipeProfile[position], currentItemVP
                 )
 
@@ -76,9 +76,9 @@ class ExploreFragment : Fragment() {
                     binding.prgExplore.visibility = View.VISIBLE
                 }
                 is ResultProfile.Success -> {
-                    Timber.d("Success 1 - ${it.swipeProfiles.size}")
+                    Timber.d("Success 1 - ${it.profiles.size}")
                     binding.prgExplore.visibility = View.GONE
-                    setUpRecyclerView(it.swipeProfiles)
+                    setUpRecyclerView(it.profiles)
                 }
                 is ResultProfile.Failure -> {
                     binding.prgExplore.visibility = View.GONE

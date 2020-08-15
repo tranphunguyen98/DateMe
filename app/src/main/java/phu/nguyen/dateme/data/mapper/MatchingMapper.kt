@@ -1,12 +1,12 @@
 package phu.nguyen.dateme.data.mapper
 
-import phu.nguyen.dateme.data.model.Matching
-import phu.nguyen.dateme.remote.model.NetworkMatching
+import phu.nguyen.dateme.data.model.Interaction
+import phu.nguyen.dateme.remote.model.NetworkInteraction
 import javax.inject.Inject
 
-class MatchingMapper @Inject constructor() : UIMapper<Matching,NetworkMatching> {
-    override fun mapFromUI(type: Matching): NetworkMatching {
-        return NetworkMatching(type.uid,type.typeSwipe,type.match)
+class MatchingMapper @Inject constructor() : UIMapper<Interaction,NetworkInteraction> {
+    override fun mapFromUI(type: Interaction): NetworkInteraction {
+        return NetworkInteraction(type.uid,type.typeSwipe,type.match)
     }
 
 }

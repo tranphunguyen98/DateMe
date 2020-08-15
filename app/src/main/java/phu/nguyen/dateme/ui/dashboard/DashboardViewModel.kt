@@ -10,7 +10,7 @@ import phu.nguyen.dateme.common.ResultProfile
 import phu.nguyen.dateme.data.MatchingRepository
 import phu.nguyen.dateme.data.ProfileRepository
 import phu.nguyen.dateme.data.UserRepository
-import phu.nguyen.dateme.data.model.Matching
+import phu.nguyen.dateme.data.model.Interaction
 import phu.nguyen.dateme.data.model.UserBasicInfo
 import phu.nguyen.dateme.remote.mapper.NetworkProfileMapper
 import timber.log.Timber
@@ -21,7 +21,7 @@ class DashboardViewModel(
     private val matchingRepository: MatchingRepository,
     private val userRepository: UserRepository
 
-    ) : ViewModel() {
+) : ViewModel() {
 
     private var _result: MutableLiveData<ResultProfile> = MutableLiveData()
     val result: LiveData<ResultProfile>
@@ -41,21 +41,23 @@ class DashboardViewModel(
     fun removeProfile(position: Int) {
         if (_result.value is ResultProfile.Success && position > 0) {
             Timber.d(
-                (_result.value as ResultProfile.Success).swipeProfiles.size.toString()
+                (_result.value as ResultProfile.Success).profiles.size.toString()
             )
             for (i in 0 until position) {
-                (_result.value as ResultProfile.Success).swipeProfiles.removeAt(0)
+                (_result.value as ResultProfile.Success).profiles.removeAt(0)
             }
             Timber.d(
-                (_result.value as ResultProfile.Success).swipeProfiles.size.toString()
+                (_result.value as ResultProfile.Success).profiles.size.toString()
             )
         }
     }
 
-    fun saveMatching(matching: Matching) {
+    fun saveMatching(matching: Interaction) {
         viewModelScope.launch {
             try {
-                if(matchingRepository.checkMatching(matching.uid)) {
+                if ((matching.typeSwipe == Interaction.LIKE || matching.typeSwipe == Interaction.SUPER_LIKE)
+                    && matchingRepository.checkMatching(matching.uid)
+                ) {
                     Timber.d("TestCheckMatching1")
                     matchingRepository.saveMatching(matching.copy(match = true))
                     Timber.d("TestCheckMatching2")

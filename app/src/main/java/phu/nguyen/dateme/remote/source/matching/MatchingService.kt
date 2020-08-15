@@ -7,8 +7,8 @@ import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import phu.nguyen.dateme.data.model.Matching
-import phu.nguyen.dateme.remote.model.NetworkMatching
+import phu.nguyen.dateme.data.model.Interaction
+import phu.nguyen.dateme.remote.model.NetworkInteraction
 import timber.log.Timber
 import javax.inject.Inject
 import kotlinx.coroutines.tasks.await as myAwait
@@ -21,13 +21,13 @@ class MatchingService @Inject constructor() {
     private val db = Firebase.firestore
     private val auth = FirebaseAuth.getInstance()
 
-    suspend fun getMatching(): List<NetworkMatching> = withContext(Dispatchers.IO) {
-        val matchings = mutableListOf<NetworkMatching>()
+    suspend fun getMatching(): List<NetworkInteraction> = withContext(Dispatchers.IO) {
+        val matchings = mutableListOf<NetworkInteraction>()
         val snapshotMatchings =
-            db.collection("users").document(auth.uid!!).collection("matchings").get().myAwait()
+            db.collection("users").document(auth.uid!!).collection("interactions").get().myAwait()
 
         for (document in snapshotMatchings.documents) {
-            val matching = document.toObject<NetworkMatching>()
+            val matching = document.toObject<NetworkInteraction>()
 
             matching?.let {
                 matchings.add(it)
@@ -36,34 +36,47 @@ class MatchingService @Inject constructor() {
         return@withContext matchings
     }
 
-    private suspend fun markIsMatch(matching: NetworkMatching, uidSource: String) {
+    private suspend fun markIsMatch(matching: NetworkInteraction, uidSource: String) {
         db.collection("users").document(uidSource)
-            .collection("matchings").document(matching.uid)
+            .collection("interactions").document(matching.uid)
             .set(
                 matching.copy(match = true), SetOptions.merge()
             ).myAwait()
     }
 
+    private suspend fun markIsLike(matching: NetworkInteraction, uidSource: String) {
+        db.collection("users").document(uidSource)
+            .collection("interactions").document(matching.uid)
+            .set(
+                matching, SetOptions.merge()
+            ).myAwait()
+    }
+
     suspend fun checkAndSaveMatching(uidSource: String): Boolean {
+
+        //get matching of swiped user
         val snapshotMatching =
             db.collection("users").document(uidSource)
-                .collection("matchings").document(auth.uid!!).get().myAwait()
+                .collection("interactions").document(auth.uid!!).get().myAwait()
 
-        val matching = snapshotMatching.toObject<NetworkMatching>()
+        val matching = snapshotMatching.toObject<NetworkInteraction>()
 
-        if (matching != null && (matching.typeSwipe == Matching.LIKE || matching.typeSwipe == Matching.SUPER_LIKE)) {
-            Timber.d("MATCH ne! $matching")
-            markIsMatch(matching,uidSource)
-            return true
+        if (matching != null) {
+            if (matching.interactiveType == Interaction.LIKE || matching.interactiveType == Interaction.SUPER_LIKE) {
+                Timber.d("MATCH ne! $matching")
+                markIsMatch(matching, uidSource)
+                return true
+            }
+        } else {
+            markIsLike(NetworkInteraction(auth.uid!!, Interaction.LIKE_YOU, match = false), uidSource)
         }
-
 
         Timber.d("FAIL MATCH roi ne! :(")
         return false
     }
 
-    suspend fun saveMatching(matching: NetworkMatching) {
-        db.collection("users").document(auth.uid!!).collection("matchings").document(matching.uid)
+    suspend fun saveMatching(matching: NetworkInteraction) {
+        db.collection("users").document(auth.uid!!).collection("interactions").document(matching.uid)
             .set(
                 matching, SetOptions.merge()
             ).myAwait()

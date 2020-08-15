@@ -25,16 +25,16 @@
         android:label="fragment_explore"
         tools:layout="@layout/fragment_explore">
         <action
-            android:id="@+id/action_navigation_explore_to_swipeProfileFragment"
-            app:destination="@id/swipeProfileFragment" />
+            android:id="@+id/action_navigation_explore_to_userProfileDetailFragment"
+            app:destination="@id/userProfileDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="phu.nguyen.dateme.ui.dashboard.DashboardFragment"
         android:label="DashboardFragment">
         <action
-            android:id="@+id/action_navigation_dashboard_to_swipeProfileFragment"
-            app:destination="@id/swipeProfileFragment" />
+            android:id="@+id/action_navigation_dashboard_to_userProfileDetailFragment"
+            app:destination="@id/userProfileDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/navigation_likes"
@@ -46,13 +46,13 @@
         android:name="phu.nguyen.dateme.ui.chat.ChatFragment"
         android:label="ChatFragment" />
     <fragment
-        android:id="@+id/swipeProfileFragment"
-        android:name="phu.nguyen.dateme.ui.swipeProfile.SwipeProfileFragment"
-        android:label="swipe_profile_fragment"
-        tools:layout="@layout/fragment_swipe_profile">
+        android:id="@+id/userProfileDetailFragment"
+        android:name="phu.nguyen.dateme.ui.userProfileDetail.UserProfileDetailFragment"
+        android:label="profile_fragment"
+        tools:layout="@layout/fragment_user_profile_detail">
         <argument
             android:name="profile"
-            app:argType="phu.nguyen.dateme.data.model.SwipeProfile"
+            app:argType="phu.nguyen.dateme.data.model.Profile"
             app:nullable="true" />
         <argument
             android:name="currentItem"
@@ -69,16 +69,11 @@
         android:label="edit_profile_fragment"
         tools:layout="@layout/fragment_edit_profile" />
     <fragment
-        android:id="@+id/matchingFragment"
-        android:name="phu.nguyen.dateme.ui.matching.MatchingFragment"
-        android:label="MatchingFragment">
-        <argument
-            android:name="myUser"
-            app:argType="phu.nguyen.dateme.data.model.UserBasicInfo"
-            app:nullable="true" />
-        <argument
-            android:name="userMatching"
-            app:argType="phu.nguyen.dateme.data.model.UserBasicInfo"
-            app:nullable="true" />
+        android:id="@+id/interactionFragment"
+        android:name="phu.nguyen.dateme.ui.likes.InteractionFragment"
+        android:label="InteractionFragment" >
+        <action
+            android:id="@+id/action_interactionFragment_to_userProfileDetailFragment"
+            app:destination="@id/userProfileDetailFragment" />
     </fragment>
 </navigation>

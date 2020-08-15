@@ -18,8 +18,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import phu.nguyen.dateme.R
 import phu.nguyen.dateme.common.ResultProfile
-import phu.nguyen.dateme.data.model.Matching
-import phu.nguyen.dateme.data.model.SwipeProfile
+import phu.nguyen.dateme.data.model.Interaction
+import phu.nguyen.dateme.data.model.Profile
 import phu.nguyen.dateme.data.model.UserBasicInfo
 import phu.nguyen.dateme.ui.main.HomeActivity
 import phu.nguyen.dateme.ui.matching.MatchingActivity
@@ -35,7 +35,7 @@ class DashboardFragment : Fragment() {
     private lateinit var viewModel: DashboardViewModel
     private lateinit var cardAdapter: CardSwipeStackAdapter
     private lateinit var cardManager: CardStackLayoutManager
-    private lateinit var swipeProfiles: List<SwipeProfile>
+    private lateinit var swipeProfiles: List<Profile>
     private lateinit var myUser: UserBasicInfo
 
     override fun onCreateView(
@@ -87,19 +87,18 @@ class DashboardFragment : Fragment() {
             when (direction) {
                 Direction.Left -> {
                     viewModel.saveMatching(
-                        Matching(
+                        Interaction(
                             swipeProfiles[cardManager.topPosition - 1].id,
-                            Matching.DISLIKE
+                            Interaction.DISLIKE
                         )
                     )
                 }
                 Direction.Top -> {
                     Timber.d("Top")
-                    Timber.d("Bottom")
                     viewModel.saveMatching(
-                        Matching(
+                        Interaction(
                             swipeProfiles[cardManager.topPosition - 1].id,
-                            Matching.SUPER_LIKE
+                            Interaction.SUPER_LIKE
                         )
                     )
                 }
@@ -110,9 +109,9 @@ class DashboardFragment : Fragment() {
 //                    dashboardViewModel.removeTop()
                     Timber.d("Right")
                     viewModel.saveMatching(
-                        Matching(
+                        Interaction(
                             swipeProfiles[cardManager.topPosition - 1].id,
-                            Matching.LIKE
+                            Interaction.LIKE
                         )
                     )
                 }
@@ -138,7 +137,7 @@ class DashboardFragment : Fragment() {
                 img_match to "image"
             )
             val action =
-                DashboardFragmentDirections.actionNavigationDashboardToSwipeProfileFragment(
+                DashboardFragmentDirections.actionNavigationDashboardToUserProfileDetailFragment(
                     swipeProfiles[position], currentItemVP
                 )
 
@@ -190,9 +189,9 @@ class DashboardFragment : Fragment() {
                 }
 
                 is ResultProfile.Success -> {
-                    Timber.d("Success - ${it.swipeProfiles.size}")
+                    Timber.d("Success - ${it.profiles.size}")
                     prg_loading.visibility = View.GONE
-                    swipeProfiles = it.swipeProfiles
+                    swipeProfiles = it.profiles
 
                     tv_nodata.visibility = if (swipeProfiles.isEmpty()) View.VISIBLE else  View.GONE
 

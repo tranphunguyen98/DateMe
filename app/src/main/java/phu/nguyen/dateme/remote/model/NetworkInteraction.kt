@@ -1,7 +1,7 @@
 package phu.nguyen.dateme.remote.model
 
-data class NetworkMatching(
+data class NetworkInteraction(
     val uid: String = "",
-    val typeSwipe: Int = -1,
+    val interactiveType: Int = -1,
     val match: Boolean = false
 )

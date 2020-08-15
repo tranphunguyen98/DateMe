@@ -15,12 +15,13 @@ class ImageProfileAdapter(
 ) :
     RecyclerView.Adapter<ImageProfileAdapter.ImageProfileVH>() {
 
-    constructor( listImage: List<String>,
-                onItemActionListener: (Int) -> Unit) : this(
+    constructor(
+        listImage: List<String>,
+        onItemActionListener: (Int) -> Unit
+    ) : this(
         listImage, BORDER, onItemActionListener
-    ) {
+    )
 
-    }
     companion object {
         const val NON_BORDER = 0
         const val BORDER = 1
@@ -28,13 +29,13 @@ class ImageProfileAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageProfileVH {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding :  ViewDataBinding
+        val binding: ViewDataBinding
         val view: View
 
         binding = if (type == BORDER) {
-            ItemViewpagerImageBorderBinding.inflate(layoutInflater,parent,false)
+            ItemViewpagerImageBorderBinding.inflate(layoutInflater, parent, false)
         } else {
-            ItemViewpagerImageNonBorderBinding.inflate(layoutInflater,parent,false)
+            ItemViewpagerImageNonBorderBinding.inflate(layoutInflater, parent, false)
         }
 
         return ImageProfileVH(binding)
@@ -47,30 +48,30 @@ class ImageProfileAdapter(
         holder.bind(listImage[position], onItemActionListener, position, listImage.size)
     }
 
-
-    class ImageProfileVH(private val binding : ViewDataBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ImageProfileVH(private val binding: ViewDataBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(image: String, onItemActionListener: (Int) -> Unit, position: Int, size: Int) {
 
-            if(binding is ItemViewpagerImageBorderBinding) {
+            if (binding is ItemViewpagerImageBorderBinding) {
                 binding.image = image
                 binding.viewLeft.setOnClickListener {
-                    onLeftClicked(onItemActionListener,position,size)
+                    onLeftClicked(onItemActionListener, position, size)
                 }
                 binding.viewRight.setOnClickListener {
-                    onRightClicked(onItemActionListener,position,size)
+                    onRightClicked(onItemActionListener, position, size)
                 }
-            } else if (binding is ItemViewpagerImageNonBorderBinding){
+            } else if (binding is ItemViewpagerImageNonBorderBinding) {
                 binding.image = image
                 binding.viewLeft.setOnClickListener {
-                    onLeftClicked(onItemActionListener,position,size)
+                    onLeftClicked(onItemActionListener, position, size)
                 }
                 binding.viewRight.setOnClickListener {
-                    onRightClicked(onItemActionListener,position,size)
+                    onRightClicked(onItemActionListener, position, size)
                 }
             }
         }
 
-        private fun onLeftClicked( onItemActionListener: (Int) -> Unit, position: Int, size: Int) {
+        private fun onLeftClicked(onItemActionListener: (Int) -> Unit, position: Int, size: Int) {
             var previousPosition = 0
             if (position > 1) {
                 previousPosition = position - 1
@@ -81,7 +82,7 @@ class ImageProfileAdapter(
             onItemActionListener(previousPosition)
         }
 
-        private fun onRightClicked( onItemActionListener: (Int) -> Unit, position: Int, size: Int) {
+        private fun onRightClicked(onItemActionListener: (Int) -> Unit, position: Int, size: Int) {
             var nextPosition = size - 1
             if (position < size - 2) {
                 nextPosition = position + 1

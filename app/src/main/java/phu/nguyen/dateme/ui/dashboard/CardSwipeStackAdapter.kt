@@ -4,11 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import phu.nguyen.dateme.data.model.SwipeProfile
+import phu.nguyen.dateme.data.model.Profile
 import phu.nguyen.dateme.databinding.ItemSwipeBinding
 
 class CardSwipeStackAdapter(
-    private val listSwipeProfiles: MutableList<SwipeProfile>,
+    private val listSwipeProfiles: MutableList<Profile>,
     private val onItemActionListener: (viewpager: ViewPager2, position: Int, currentItemVP: Int) -> Unit
 ) :
     RecyclerView.Adapter<CardSwipeStackAdapter.TinderViewHolder>() {
@@ -29,7 +29,7 @@ class CardSwipeStackAdapter(
     inner class TinderViewHolder(private val binding: ItemSwipeBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
-            _Swipe_profile: SwipeProfile,
+            _Swipe_profile: Profile,
             onItemActionListener: (viewpager: ViewPager2, position: Int, currentItemVP: Int) -> Unit,
             position: Int
         ) =

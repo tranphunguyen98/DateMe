@@ -9,7 +9,7 @@ import com.jaygoo.widget.RangeSeekBar
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import phu.nguyen.dateme.R
-import phu.nguyen.dateme.data.model.SwipeProfile
+import phu.nguyen.dateme.data.model.Profile
 import phu.nguyen.dateme.ui.dashboard.ImageProfileAdapter.Companion.NON_BORDER
 
 class BindingAdapter {
@@ -71,7 +71,7 @@ class BindingAdapter {
         )
         fun setViewPagerProperties(
             viewPager2: ViewPager2,
-            swipeProfile: SwipeProfile?,
+            swipeProfile: Profile?,
             tabLayout: TabLayout?,
             nonBorder: Boolean?
         ) {

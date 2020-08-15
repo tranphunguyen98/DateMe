@@ -1,6 +1,6 @@
 package phu.nguyen.dateme.data.source.profile
 
-import phu.nguyen.dateme.data.model.SwipeProfile
+import phu.nguyen.dateme.data.model.Profile
 import phu.nguyen.dateme.data.repository.profile.ProfileDataStore
 import javax.inject.Inject
 
@@ -11,15 +11,19 @@ import javax.inject.Inject
 
 class ProfileCacheDataStore @Inject constructor() :
     ProfileDataStore {
-    override suspend fun saveMyProfile(swipeProfile: SwipeProfile) {
+    override suspend fun saveMyProfile(swipeProfile: Profile) {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getMyProfile(): SwipeProfile {
+    override suspend fun getMyProfile(): Profile {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getTopProfiles(): List<SwipeProfile> {
+    override suspend fun getTopProfiles(): List<Profile> {
+        throw UnsupportedOperationException()
+    }
+
+    override suspend fun getLikeYouProfiles(interactiveType: Int): List<Profile> {
         throw UnsupportedOperationException()
     }
 }

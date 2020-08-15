@@ -1,4 +1,4 @@
-package phu.nguyen.dateme.ui.swipeProfile
+package phu.nguyen.dateme.ui.userProfileDetail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,15 +7,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
-import kotlinx.android.synthetic.main.fragment_swipe_profile.*
-import phu.nguyen.dateme.databinding.FragmentSwipeProfileBinding
+import kotlinx.android.synthetic.main.fragment_user_profile_detail.*
+import phu.nguyen.dateme.databinding.FragmentUserProfileDetailBinding
 import timber.log.Timber
 
-class SwipeProfileFragment : Fragment() {
-    private val args: SwipeProfileFragmentArgs by navArgs()
-    private lateinit var binding : FragmentSwipeProfileBinding
+class UserProfileDetailFragment : Fragment() {
+    private val args: UserProfileDetailFragmentArgs by navArgs()
+    private lateinit var binding : FragmentUserProfileDetailBinding
     companion object {
-        fun newInstance() = SwipeProfileFragment()
+        fun newInstance() = UserProfileDetailFragment()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,13 +32,13 @@ class SwipeProfileFragment : Fragment() {
 
     }
 
-    private lateinit var viewModel: SwipeProfileViewModel
+    private lateinit var viewModel: UserProfileDetailViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentSwipeProfileBinding.inflate(inflater, container, false)
+        binding = FragmentUserProfileDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -58,7 +58,7 @@ class SwipeProfileFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(SwipeProfileViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(UserProfileDetailViewModel::class.java)
         // TODO: Use the ViewModel
         img_back.setOnClickListener {
             activity?.onBackPressed()

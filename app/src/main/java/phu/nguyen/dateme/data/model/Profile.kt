@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class SwipeProfile(
+data class Profile(
     val id: String,
     val name: String,
     val age: String,

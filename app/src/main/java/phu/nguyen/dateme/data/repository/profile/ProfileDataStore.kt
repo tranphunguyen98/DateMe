@@ -1,6 +1,6 @@
 package phu.nguyen.dateme.data.repository.profile
 
-import phu.nguyen.dateme.data.model.SwipeProfile
+import phu.nguyen.dateme.data.model.Profile
 
 /**
  * Interface defining methods for the data operations related to Profile.
@@ -8,7 +8,8 @@ import phu.nguyen.dateme.data.model.SwipeProfile
  * operations that need to be implemented
  */
 interface ProfileDataStore {
-    suspend fun saveMyProfile(swipeProfile: SwipeProfile)
-    suspend fun getMyProfile(): SwipeProfile
-    suspend fun getTopProfiles() : List<SwipeProfile>
+    suspend fun saveMyProfile(swipeProfile: Profile)
+    suspend fun getMyProfile(): Profile
+    suspend fun getTopProfiles() : List<Profile>
+    suspend fun getLikeYouProfiles(interactiveType: Int): List<Profile>
 }

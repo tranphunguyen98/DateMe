@@ -1,14 +1,14 @@
 package phu.nguyen.dateme.remote.mapper
 
-import phu.nguyen.dateme.data.model.Matching
-import phu.nguyen.dateme.remote.model.NetworkMatching
+import phu.nguyen.dateme.data.model.Interaction
+import phu.nguyen.dateme.remote.model.NetworkInteraction
 import javax.inject.Inject
 
-class NetworkMatchingMapper @Inject constructor() : NetworkMapper<NetworkMatching, Matching> {
-    override fun mapFromRemote(type: NetworkMatching): Matching =
-        Matching(type.uid,type.typeSwipe, type.match)
+class NetworkMatchingMapper @Inject constructor() : NetworkMapper<NetworkInteraction, Interaction> {
+    override fun mapFromRemote(type: NetworkInteraction): Interaction =
+        Interaction(type.uid,type.interactiveType, type.match)
 
-    override fun mapToRemote(type: Matching): NetworkMatching =
-        NetworkMatching(type.uid,type.typeSwipe, type.match)
+    override fun mapToRemote(type: Interaction): NetworkInteraction =
+        NetworkInteraction(type.uid,type.typeSwipe, type.match)
 
 }

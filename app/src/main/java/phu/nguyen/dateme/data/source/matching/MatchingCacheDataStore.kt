@@ -1,6 +1,6 @@
 package phu.nguyen.dateme.data.source.matching
 
-import phu.nguyen.dateme.data.model.Matching
+import phu.nguyen.dateme.data.model.Interaction
 import phu.nguyen.dateme.data.repository.matching.MatchingDataStore
 import javax.inject.Inject
 
@@ -12,11 +12,11 @@ import javax.inject.Inject
 class MatchingCacheDataStore @Inject constructor() :
     MatchingDataStore {
 
-    override suspend fun getMatching(): List<Matching> {
+    override suspend fun getMatching(): List<Interaction> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun saveMatching(matching: Matching) {
+    override suspend fun saveMatching(matching: Interaction) {
         TODO("Not yet implemented")
     }
 
