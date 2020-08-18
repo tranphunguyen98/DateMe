@@ -32,12 +32,14 @@
         <item name="android:elevation">6dp</item>
     </style>
 
+    <!--  TEXT  -->
+
     <style name="textNormalWhite">
+        <item name="android:fontFamily">@font/roboto_slab_light</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">18sp</item>
         <item name="android:layout_marginStart">8dp</item>
         <item name="android:layout_marginEnd">8dp</item>
-        <item name="android:fontFamily">@font/roboto_slab_light</item>
     </style>
 
     <style name="textNormalGray" parent="textNormalWhite">
@@ -82,23 +84,29 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="textNormal18Bold" parent="textNormalBold20">
-        <item name="android:textSize">18sp</item>
-    </style>
 
 
-    <style name="textNormal18BoldWhite" parent="textNormalBold20">
-        <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/white</item>
-    </style>
 
-    <style name="textNormal">
+
+    <style name="textNormal18">
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">18sp</item>
     </style>
 
-    <style name="textNormal16" parent="textNormal">
+    <style name="textBold18" parent="textNormal18">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="textBold18White" parent="textBold18">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="textBold18Primary" parent="textBold18">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="textNormal16" parent="textNormal18">
         <item name="android:textSize">16sp</item>
     </style>
 
@@ -106,40 +114,53 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="textNormal16Bold" parent="textNormal">
+    <style name="textBold16" parent="textBold18">
         <item name="android:textSize">16sp</item>
-        <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="textNormal16BoldWhite" parent="textNormal16Bold">
+    <style name="textBold16Primary" parent="textBold16">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="textNormal16BoldWhite" parent="textBold16">
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="textNormal14BoldWhite" parent="textNormal">
+    <style name="textNormal14" parent="textNormal18">
         <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="textNormal14Gray" parent="textNormal14">
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="textNormal14BoldWhite" parent="textNormal14">
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="textNormal14White" parent="textNormal">
+    <style name="textNormal14White" parent="textNormal18">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="textNormal12" parent="textNormal">
+    <style name="textNormal12" parent="textNormal18">
         <item name="android:textSize">12sp</item>
     </style>
 
-    <style name="textNormal12White" parent="textNormal">
-        <item name="android:textSize">12sp</item>
+    <style name="textNormal12White" parent="textNormal12">
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="textBold14" parent="textNormal">
+    <style name="textNormal12Gray" parent="textNormal14">
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="textBold14" parent="textBold18">
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="text_normal_bold_18" parent="textNormal">
+    <style name="text_normal_bold_18" parent="textNormal18">
         <item name="android:textStyle">bold</item>
     </style>
 
@@ -156,4 +177,5 @@
     <style name="imageEditProfile">
         <item name="android:scaleType">centerCrop</item>
     </style>
+
 </resources>

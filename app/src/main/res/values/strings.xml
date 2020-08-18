@@ -78,4 +78,5 @@
     <string name="message_matching">You and %1$s have liked each other!</string>
     <string name="send_a_message">Send a message</string>
     <string name="keep_swiping">keep swiping</string>
+    <string name="messages">Messages</string>
 </resources>

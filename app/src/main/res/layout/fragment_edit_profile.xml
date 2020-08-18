@@ -77,7 +77,7 @@
 
             <TextView
                 android:id="@+id/tv_description"
-                style="@style/textNormal18Bold"
+                style="@style/textBold18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -87,7 +87,7 @@
 
             <TextView
                 android:id="@+id/tv_school"
-                style="@style/textNormal18Bold"
+                style="@style/textBold18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -125,7 +125,7 @@
 
             <TextView
                 android:id="@+id/tv_organization"
-                style="@style/textNormal18Bold"
+                style="@style/textBold18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -163,7 +163,7 @@
 
             <TextView
                 android:id="@+id/tv_job"
-                style="@style/textNormal18Bold"
+                style="@style/textBold18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -200,7 +200,7 @@
 
             <TextView
                 android:id="@+id/tv_hobby"
-                style="@style/textNormal18Bold"
+                style="@style/textBold18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -238,7 +238,7 @@
 
             <TextView
                 android:id="@+id/tv_birthday"
-                style="@style/textNormal18Bold"
+                style="@style/textBold18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -276,7 +276,7 @@
 
             <TextView
                 android:id="@+id/tv_gender"
-                style="@style/textNormal18Bold"
+                style="@style/textBold18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -341,7 +341,7 @@
 
             <TextView
                 android:id="@+id/tv_show_age"
-                style="@style/textNormal"
+                style="@style/textNormal18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -362,7 +362,7 @@
 
             <TextView
                 android:id="@+id/tv_show_location"
-                style="@style/textNormal"
+                style="@style/textNormal18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"

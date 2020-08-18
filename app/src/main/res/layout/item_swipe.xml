@@ -102,8 +102,8 @@
                 android:layout_marginStart="8dp"
                 android:elevation="5dp"
                 android:text="@{profile.age}"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_name"
-                app:layout_constraintStart_toEndOf="@+id/tv_name" />
+                app:layout_constraintBottom_toBottomOf="@+id/tv_user_name_message"
+                app:layout_constraintStart_toEndOf="@+id/tv_user_name_message" />
 
             <TextView
                 android:id="@+id/tv_distance"
@@ -136,7 +136,7 @@
                 android:orientation="horizontal" />
 
             <TextView
-                android:id="@+id/tv_name"
+                android:id="@+id/tv_user_name_message"
                 style="@style/textTitleBoldWhite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

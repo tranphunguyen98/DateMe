@@ -4,16 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import phu.nguyen.dateme.R
+import androidx.recyclerview.widget.LinearLayoutManager
+import phu.nguyen.dateme.databinding.FragmentChatBinding
 import phu.nguyen.dateme.ui.profile.ChatViewModel
 
 class ChatFragment : Fragment() {
 
     private lateinit var homeViewModel: ChatViewModel
+    private lateinit var binding: FragmentChatBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,11 +22,24 @@ class ChatFragment : Fragment() {
     ): View? {
         homeViewModel =
             ViewModelProviders.of(this).get(ChatViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_chat, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
+        binding = FragmentChatBinding.inflate(inflater,container,false)
+
+        setUpUI()
+
+        return binding.root
+    }
+
+    private fun setUpUI() {
+        binding.rcNewMatch.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            adapter = NewMatchAdapter()
+
+        }
+
+        binding.rcMessage.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = MessageAdapter()
+            isNestedScrollingEnabled = false
+        }
     }
 }
