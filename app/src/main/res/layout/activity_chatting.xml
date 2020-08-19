@@ -15,6 +15,7 @@
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
             android:theme="@style/AppTheme.AppBarOverlay">
 
             <androidx.appcompat.widget.Toolbar
@@ -22,6 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/white"
+                android:fitsSystemWindows="true"
                 app:popupTheme="@style/AppTheme.PopupOverlay">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -110,7 +112,7 @@
                 android:paddingStart="12dp"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
-                android:paddingEnd="40dp"
+                android:paddingEnd="36dp"
                 style="@style/textNormal16"
                 android:text="Tran Phu Nguyen\"
                 app:layout_constraintBottom_toBottomOf="parent"
