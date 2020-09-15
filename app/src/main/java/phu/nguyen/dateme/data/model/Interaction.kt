@@ -3,7 +3,8 @@ package phu.nguyen.dateme.data.model
 data class Interaction(
     val uid: String = "",
     val typeSwipe: Int = -1,
-    val match: Boolean = false
+    val match: Boolean = false,
+    val matchingTime: Long = 0
 ) {
     companion object {
         const val DISLIKE = 0

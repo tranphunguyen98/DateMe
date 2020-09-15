@@ -24,6 +24,7 @@ import phu.nguyen.dateme.data.model.UserBasicInfo
 import phu.nguyen.dateme.ui.main.HomeActivity
 import phu.nguyen.dateme.ui.matching.MatchingActivity
 import timber.log.Timber
+import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -110,8 +111,9 @@ class DashboardFragment : Fragment() {
                     Timber.d("Right")
                     viewModel.saveMatching(
                         Interaction(
-                            swipeProfiles[cardManager.topPosition - 1].id,
-                            Interaction.LIKE
+                            uid = swipeProfiles[cardManager.topPosition - 1].id,
+                            typeSwipe = Interaction.LIKE,
+                            matchingTime = Date().time
                         )
                     )
                 }
@@ -181,7 +183,7 @@ class DashboardFragment : Fragment() {
 
     private fun setUpObserver() {
         viewModel.result.observe(viewLifecycleOwner, Observer {
-            Timber.d( "observe")
+            Timber.d("observe")
             when (it) {
                 is ResultProfile.Waiting -> {
                     Timber.d("Waiting")
@@ -193,7 +195,7 @@ class DashboardFragment : Fragment() {
                     prg_loading.visibility = View.GONE
                     swipeProfiles = it.profiles
 
-                    tv_nodata.visibility = if (swipeProfiles.isEmpty()) View.VISIBLE else  View.GONE
+                    tv_nodata.visibility = if (swipeProfiles.isEmpty()) View.VISIBLE else View.GONE
 
                     setUpCardStackView()
                 }
@@ -207,8 +209,8 @@ class DashboardFragment : Fragment() {
 
         viewModel.matchingUser.observe(viewLifecycleOwner, Observer { matchingUser ->
             val intent = Intent(activity, MatchingActivity::class.java)
-            intent.putExtra(MatchingActivity.MY_USER_KEY,myUser)
-            intent.putExtra(MatchingActivity.MATCHING_USER_KEY,matchingUser)
+            intent.putExtra(MatchingActivity.MY_USER_KEY, myUser)
+            intent.putExtra(MatchingActivity.MATCHING_USER_KEY, matchingUser)
             startActivity(intent)
         })
     }

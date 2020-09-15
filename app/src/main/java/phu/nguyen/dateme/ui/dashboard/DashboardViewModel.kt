@@ -10,6 +10,7 @@ import phu.nguyen.dateme.common.ResultProfile
 import phu.nguyen.dateme.data.MatchingRepository
 import phu.nguyen.dateme.data.ProfileRepository
 import phu.nguyen.dateme.data.UserRepository
+import phu.nguyen.dateme.data.chat.ChatRepository
 import phu.nguyen.dateme.data.model.Interaction
 import phu.nguyen.dateme.data.model.UserBasicInfo
 import phu.nguyen.dateme.remote.mapper.NetworkProfileMapper
@@ -19,8 +20,8 @@ import javax.inject.Inject
 class DashboardViewModel(
     private val profileRepository: ProfileRepository,
     private val matchingRepository: MatchingRepository,
-    private val userRepository: UserRepository
-
+    private val userRepository: UserRepository,
+    private val chatRepository: ChatRepository
 ) : ViewModel() {
 
     private var _result: MutableLiveData<ResultProfile> = MutableLiveData()
@@ -52,19 +53,21 @@ class DashboardViewModel(
         }
     }
 
-    fun saveMatching(matching: Interaction) {
+    fun saveMatching(interaction: Interaction) {
         viewModelScope.launch {
             try {
-                if ((matching.typeSwipe == Interaction.LIKE || matching.typeSwipe == Interaction.SUPER_LIKE)
-                    && matchingRepository.checkMatching(matching.uid)
+                if ((interaction.typeSwipe == Interaction.LIKE || interaction.typeSwipe == Interaction.SUPER_LIKE)
+                    && matchingRepository.checkMatching(interaction.uid)
                 ) {
                     Timber.d("TestCheckMatching1")
-                    matchingRepository.saveMatching(matching.copy(match = true))
+                    matchingRepository.saveMatching(interaction.copy(match = true))
                     Timber.d("TestCheckMatching2")
-                    _userMatching.value = userRepository.getUser(matching.uid).userBasicInfo
+                    chatRepository.saveFirstChat(interaction)
                     Timber.d("TestCheckMatching3")
+                    _userMatching.value = userRepository.getUser(interaction.uid).userBasicInfo
+                    Timber.d("TestCheckMatching4")
                 } else {
-                    matchingRepository.saveMatching(matching)
+                    matchingRepository.saveMatching(interaction)
                 }
             } catch (e: Exception) {
                 _result.value = ResultProfile.Failure(e)

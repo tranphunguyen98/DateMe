@@ -6,9 +6,9 @@ import javax.inject.Inject
 
 class NetworkMatchingMapper @Inject constructor() : NetworkMapper<NetworkInteraction, Interaction> {
     override fun mapFromRemote(type: NetworkInteraction): Interaction =
-        Interaction(type.uid,type.interactiveType, type.match)
+        Interaction(type.uid, type.interactiveType, type.match, type.matchingTime)
 
     override fun mapToRemote(type: Interaction): NetworkInteraction =
-        NetworkInteraction(type.uid,type.typeSwipe, type.match)
+        NetworkInteraction(type.uid, type.typeSwipe, type.match, type.matchingTime)
 
 }
