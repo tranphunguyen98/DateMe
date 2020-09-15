@@ -1,10 +1,10 @@
 package phu.nguyen.dateme.ui.chatting
 
 import androidx.lifecycle.ViewModel
-import phu.nguyen.dateme.data.MatchingRepository
+import phu.nguyen.dateme.data.chat.ChatRepository
 
 class ChattingViewModel(
-    private val matchingRepository: MatchingRepository
+    private val chatRepository: ChatRepository
 ) : ViewModel() {
 
 }

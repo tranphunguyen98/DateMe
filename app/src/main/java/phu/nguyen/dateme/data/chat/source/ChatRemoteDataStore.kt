@@ -6,26 +6,21 @@ import phu.nguyen.dateme.data.chat.repository.ChatRemoteDataSource
 import phu.nguyen.dateme.data.model.Interaction
 import javax.inject.Inject
 
- class ChatRemoteDataStore @Inject constructor(private val chatRemoteDataSource: ChatRemoteDataSource) :
-     ChatDataStore {
-     override suspend fun getChats(): List<Chat> {
-         TODO("Not yet implemented")
-     }
+class ChatRemoteDataStore @Inject constructor(private val chatRemoteDataSource: ChatRemoteDataSource) :
+    ChatDataStore {
+    override suspend fun getChats(): List<Chat> =
+        chatRemoteDataSource.getChats()
 
-     override suspend fun saveChat(chat: Chat) {
-         TODO("Not yet implemented")
-     }
 
-     override suspend fun getMoreChat(idChat: String): Chat {
-         TODO("Not yet implemented")
-     }
+    override suspend fun saveChat(chat: Chat) = chatRemoteDataSource.saveChat(chat)
 
-     override suspend fun getChat(idChat: String): Chat {
-         TODO("Not yet implemented")
-     }
+    override suspend fun getMoreChat(idChat: String): Chat =
+        chatRemoteDataSource.getMoreChat(idChat)
 
-     override suspend fun saveFirstChat(interaction: Interaction) {
-         chatRemoteDataSource.saveFirstChat(interaction)
-     }
+    override suspend fun getChat(idChat: String): Chat = chatRemoteDataSource.getChat(idChat)
 
- }
+    override suspend fun saveFirstChat(interaction: Interaction) {
+        chatRemoteDataSource.saveFirstChat(interaction)
+    }
+
+}

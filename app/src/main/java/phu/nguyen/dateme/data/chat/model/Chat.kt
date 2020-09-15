@@ -2,6 +2,7 @@ package phu.nguyen.dateme.data.chat.model
 
 data class Chat(
     val id: String = "",
+    val ids: List<String> = emptyList(),
     val new: Boolean = false,
     val matchingTime: Long = 0,
     val matchingAvatar: String = "",

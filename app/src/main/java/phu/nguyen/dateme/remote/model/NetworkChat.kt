@@ -4,6 +4,7 @@ import phu.nguyen.dateme.data.chat.model.Message
 
 data class NetworkChat(
     val id: String = "",
+    val ids: List<String> = emptyList(),
     val new: Boolean = false,
     val matchingTime: Long = 0,
     val matchingAvatar: String = "",
