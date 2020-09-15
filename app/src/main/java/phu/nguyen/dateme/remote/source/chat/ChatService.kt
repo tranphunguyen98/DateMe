@@ -8,11 +8,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import phu.nguyen.dateme.data.model.Interaction
 import phu.nguyen.dateme.remote.model.NetworkChat
+import phu.nguyen.dateme.remote.model.NetworkProfile
 import javax.inject.Inject
 import kotlinx.coroutines.tasks.await as myAwait
 
 class ChatService @Inject constructor() {
     private val dbMessage = Firebase.firestore.collection("messages")
+    private val dbUser = Firebase.firestore.collection("users")
     private val auth = FirebaseAuth.getInstance()
 
     suspend fun saveFirstChat(interaction: Interaction) = withContext(Dispatchers.IO) {
@@ -35,11 +37,13 @@ class ChatService @Inject constructor() {
 
     suspend fun getChats(): List<NetworkChat> = withContext(Dispatchers.IO) {
         val chats = mutableListOf<NetworkChat>()
+
         val snapshotChats =
             dbMessage
-                .whereArrayContains("ids",auth.uid!!)
+                .whereArrayContains("ids", auth.uid!!)
                 .get()
                 .myAwait()
+
         snapshotChats.documents.forEach { document ->
             val networkChat = document.toObject(NetworkChat::class.java)
             networkChat?.let {
@@ -47,6 +51,19 @@ class ChatService @Inject constructor() {
             }
         }
 
+        for (i in chats.indices) {
+            val idPartner = if (chats[i].ids[0] == auth.uid!!) chats[i].ids[1] else chats[i].ids[0]
+
+            val userSnapshot = dbUser.document(idPartner).get().myAwait()
+
+            val profile = userSnapshot.toObject(NetworkProfile::class.java)
+            profile?.let {
+                chats[i] = chats[i].copy(
+                    matchingName = profile.name,
+                    matchingAvatar = profile.images[0]
+                )
+            }
+        }
 //        val matchingIds = mutableListOf<String>()
 //        val snapshotMatchings =
 //            dbMessage.collection("users")

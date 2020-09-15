@@ -92,4 +92,5 @@
     <string name="report">Report</string>
     <string name="matched_with">Bạn match với <b>%1$s</b></string>
     <string name="fake_matching_day">15/06/2020</string>
+    <string name="send_hello">Hãy gửi lời chào tới <b>%1$s</b> nào!</string>
 </resources>

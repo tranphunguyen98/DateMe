@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="profile"
-            type="phu.nguyen.dateme.data.model.Profile" />
+            name="chat"
+            type="phu.nguyen.dateme.data.chat.model.Chat" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,6 +23,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            loadImage="@{chat.matchingAvatar}"
+            android:layout_marginEnd="8dp"
             android:src="@drawable/image_avatar1"
             tools:src="@drawable/image_avatar1"
             />
@@ -34,24 +36,26 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:ellipsize="end"
-            android:maxLines="1"
+            android:maxLines="2"
+            android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/img_new_match"
             app:layout_constraintStart_toStartOf="@+id/img_new_match"
             app:layout_constraintTop_toBottomOf="@+id/img_new_match"
             tools:text="Trần Phú Nguyện"
-            android:text="Trần Phú Nguyện"
+            android:text="@{chat.matchingName}"
             />
 
         <ImageView
-            android:id="@+id/imageView6"
+            android:id="@+id/img_status"
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:layout_marginEnd="2dp"
-            android:layout_marginBottom="2dp"
             app:layout_constraintBottom_toBottomOf="@+id/img_new_match"
-            app:layout_constraintEnd_toEndOf="@+id/img_new_match"
-            app:srcCompat="@drawable/icon_circle_online" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/img_new_match"
+            app:srcCompat="@drawable/icon_circle_new" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

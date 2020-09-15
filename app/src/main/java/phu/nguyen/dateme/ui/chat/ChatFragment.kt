@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import phu.nguyen.dateme.common.Result
+import phu.nguyen.dateme.data.chat.model.Chat
 import phu.nguyen.dateme.databinding.FragmentChatBinding
 import timber.log.Timber
 import javax.inject.Inject
@@ -35,22 +36,21 @@ class ChatFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        setUpUI()
         setUpObserver()
 
         return binding.root
     }
 
 
-    private fun setUpUI() {
+    private fun setUpUI(chats: List<Chat>) {
         binding.rcNewMatch.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            adapter = NewMatchAdapter()
+            adapter = NewMatchAdapter(chats)
         }
 
         binding.rcMessage.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = MessageAdapter()
+            adapter = MessageAdapter(chats)
             isNestedScrollingEnabled = false
         }
     }
@@ -65,6 +65,7 @@ class ChatFragment : Fragment() {
 
                 is Result.Success -> {
                     Timber.d("Success - ${result.data.size}")
+                    setUpUI(result.data)
                     binding.prgChat.visibility = View.GONE
                 }
 
