@@ -10,8 +10,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import phu.nguyen.dateme.common.Result
+import phu.nguyen.dateme.common.launchActivity
 import phu.nguyen.dateme.data.chat.model.Chat
 import phu.nguyen.dateme.databinding.FragmentChatBinding
+import phu.nguyen.dateme.ui.chatting.ChattingActivity
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -43,14 +45,21 @@ class ChatFragment : Fragment() {
 
 
     private fun setUpUI(chats: List<Chat>) {
+
+        val onItemActionListener: (Chat) -> Unit = { chat ->
+            requireContext().launchActivity<ChattingActivity>{
+                putExtra(ChattingActivity.CHAT_KEY_INTENT,chat)
+            }
+        }
+
         binding.rcNewMatch.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            adapter = NewMatchAdapter(chats)
+            adapter = NewMatchAdapter(chats, onItemActionListener)
         }
 
         binding.rcMessage.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = MessageAdapter(chats)
+            adapter = MessageAdapter(chats,onItemActionListener)
             isNestedScrollingEnabled = false
         }
     }

@@ -13,7 +13,7 @@ import javax.inject.Inject
 import kotlinx.coroutines.tasks.await as myAwait
 
 class ChatService @Inject constructor() {
-    private val dbMessage = Firebase.firestore.collection("messages")
+    private val dbMessage = Firebase.firestore.collection("chats")
     private val dbUser = Firebase.firestore.collection("users")
     private val auth = FirebaseAuth.getInstance()
 

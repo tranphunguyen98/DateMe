@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="chat"
+            type="phu.nguyen.dateme.data.chat.model.Chat" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -35,7 +37,7 @@
                         android:layout_width="42dp"
                         android:layout_height="42dp"
                         android:layout_marginStart="16dp"
-                        android:src="@drawable/image_avatar1"
+                        loadImage="@{chat.matchingAvatar}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/imageButton"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -46,7 +48,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:text="Trần Phú Nguyện"
+                        android:text="@{chat.matchingName}"
                         app:layout_constraintBottom_toTopOf="@+id/tv_online_chatting"
                         app:layout_constraintStart_toEndOf="@+id/circleImageView2"
                         app:layout_constraintTop_toTopOf="parent"
@@ -81,6 +83,7 @@
             layout="@layout/content_chatting_no_messages"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:chat="@{chat}"
             android:layout_marginTop="?attr/actionBarSize"
             android:layout_marginBottom="?attr/actionBarSize"/>
 
@@ -114,7 +117,6 @@
                 android:paddingBottom="8dp"
                 android:paddingEnd="36dp"
                 style="@style/textNormal16"
-                android:text="Tran Phu Nguyen\"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/imageButton3"
                 app:layout_constraintStart_toEndOf="@+id/imageButton2"
