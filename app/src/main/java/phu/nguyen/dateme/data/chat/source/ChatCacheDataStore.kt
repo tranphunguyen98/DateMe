@@ -1,6 +1,7 @@
 package phu.nguyen.dateme.data.chat.source
 
 import phu.nguyen.dateme.data.chat.model.Chat
+import phu.nguyen.dateme.data.chat.model.Message
 import phu.nguyen.dateme.data.chat.repository.ChatDataStore
 import phu.nguyen.dateme.data.model.Interaction
 import javax.inject.Inject
@@ -16,7 +17,7 @@ class ChatCacheDataStore @Inject constructor() :
         TODO("Not yet implemented")
     }
 
-    override suspend fun saveChat(chat: Chat) {
+    override suspend fun saveChat(idChat: String, message: Message) {
         TODO("Not yet implemented")
     }
 

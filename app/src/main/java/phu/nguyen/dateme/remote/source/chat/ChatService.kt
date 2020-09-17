@@ -8,14 +8,18 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import phu.nguyen.dateme.data.model.Interaction
 import phu.nguyen.dateme.remote.model.NetworkChat
+import phu.nguyen.dateme.remote.model.NetworkMessage
 import phu.nguyen.dateme.remote.model.NetworkProfile
 import javax.inject.Inject
 import kotlinx.coroutines.tasks.await as myAwait
 
 class ChatService @Inject constructor() {
-    private val dbMessage = Firebase.firestore.collection("chats")
+    private val dbChat = Firebase.firestore.collection("chats")
     private val dbUser = Firebase.firestore.collection("users")
     private val auth = FirebaseAuth.getInstance()
+
+    private fun getIdPartner(chat: NetworkChat): String =
+        if (chat.ids[0] == auth.uid!!) chat.ids[1] else chat.ids[0]
 
     suspend fun saveFirstChat(interaction: Interaction) = withContext(Dispatchers.IO) {
         val idMessage = if (auth.uid!! < interaction.uid) {
@@ -32,14 +36,24 @@ class ChatService @Inject constructor() {
                 )
             )
 
-        dbMessage.document(idMessage).set(networkChat, SetOptions.merge())
+        dbChat.document(idMessage).set(networkChat, SetOptions.merge())
+    }
+
+    suspend fun saveChat(chatId: String, message: NetworkMessage) = withContext(Dispatchers.IO){
+        val chatRef =
+            dbChat
+                .document(chatId)
+                .collection("messages")
+                .add(message)
+                .myAwait()
+
     }
 
     suspend fun getChats(): List<NetworkChat> = withContext(Dispatchers.IO) {
         val chats = mutableListOf<NetworkChat>()
 
         val snapshotChats =
-            dbMessage
+            dbChat
                 .whereArrayContains("ids", auth.uid!!)
                 .get()
                 .myAwait()
@@ -52,7 +66,7 @@ class ChatService @Inject constructor() {
         }
 
         for (i in chats.indices) {
-            val idPartner = if (chats[i].ids[0] == auth.uid!!) chats[i].ids[1] else chats[i].ids[0]
+            val idPartner = getIdPartner(chats[i])
 
             val userSnapshot = dbUser.document(idPartner).get().myAwait()
 
@@ -64,18 +78,6 @@ class ChatService @Inject constructor() {
                 )
             }
         }
-//        val matchingIds = mutableListOf<String>()
-//        val snapshotMatchings =
-//            dbMessage.collection("users")
-//                .document(auth.uid!!)
-//                .collection("interactions")
-//                .whereEqualTo("matching", true)
-//                .get()
-//                .myAwait()
-//
-//        snapshotMatchings.documents.forEach {
-//            matchingIds.add(it.id)
-//        }
 
         return@withContext chats
     }

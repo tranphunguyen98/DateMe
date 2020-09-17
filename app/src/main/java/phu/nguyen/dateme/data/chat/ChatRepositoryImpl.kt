@@ -1,6 +1,7 @@
 package phu.nguyen.dateme.data.chat
 
 import phu.nguyen.dateme.data.chat.model.Chat
+import phu.nguyen.dateme.data.chat.model.Message
 import phu.nguyen.dateme.data.chat.source.ChatDataStoreFactory
 import phu.nguyen.dateme.data.model.Interaction
 import javax.inject.Inject
@@ -9,8 +10,8 @@ class ChatRepositoryImpl @Inject constructor(
     private val factory: ChatDataStoreFactory
 ) : ChatRepository {
     override suspend fun getChats(): List<Chat> = factory.retrieveRemoteDataStore().getChats()
-
-    override suspend fun saveChat(chat: Chat) = factory.retrieveRemoteDataStore().saveChat(chat)
+    override suspend fun saveChat(idChat: String, message: Message) =
+        factory.retrieveRemoteDataStore().saveChat(idChat, message)
 
     override suspend fun getMoreChat(idChat: String): Chat =
         factory.retrieveRemoteDataStore().getMoreChat(idChat)

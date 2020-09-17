@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="chat"
-            type="phu.nguyen.dateme.data.chat.model.Chat" />
+            name="viewModel"
+            type="phu.nguyen.dateme.ui.chatting.ChattingViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -37,7 +37,7 @@
                         android:layout_width="42dp"
                         android:layout_height="42dp"
                         android:layout_marginStart="16dp"
-                        loadImage="@{chat.matchingAvatar}"
+                        loadImage="@{viewModel.chat.matchingAvatar}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/imageButton"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -48,7 +48,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:text="@{chat.matchingName}"
+                        android:text="@{viewModel.chat.matchingName}"
                         app:layout_constraintBottom_toTopOf="@+id/tv_online_chatting"
                         app:layout_constraintStart_toEndOf="@+id/circleImageView2"
                         app:layout_constraintTop_toTopOf="parent"
@@ -83,7 +83,7 @@
             layout="@layout/content_chatting_no_messages"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:chat="@{chat}"
+            app:chat="@{viewModel.chat}"
             android:layout_marginTop="?attr/actionBarSize"
             android:layout_marginBottom="?attr/actionBarSize"/>
 
@@ -106,7 +106,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/edt_message"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_margin="8dp"
@@ -116,14 +116,15 @@
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
                 android:paddingEnd="36dp"
+                android:text="@={viewModel.currentMessage}"
                 style="@style/textNormal16"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageButton3"
+                app:layout_constraintEnd_toStartOf="@+id/btn_send"
                 app:layout_constraintStart_toEndOf="@+id/imageButton2"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
-                android:id="@+id/imageButton3"
+                android:id="@+id/btn_send"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:background="?attr/selectableItemBackground"
@@ -138,9 +139,9 @@
                 android:layout_height="36dp"
                 android:background="?attr/selectableItemBackground"
                 android:src="@drawable/ic_emoji_emotions_primary_24"
-                app:layout_constraintBottom_toBottomOf="@+id/editText"
-                app:layout_constraintEnd_toEndOf="@+id/editText"
-                app:layout_constraintTop_toTopOf="@+id/editText">
+                app:layout_constraintBottom_toBottomOf="@+id/edt_message"
+                app:layout_constraintEnd_toEndOf="@+id/edt_message"
+                app:layout_constraintTop_toTopOf="@+id/edt_message">
 
             </ImageButton>
         </androidx.constraintlayout.widget.ConstraintLayout>

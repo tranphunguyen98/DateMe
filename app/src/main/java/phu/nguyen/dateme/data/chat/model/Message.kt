@@ -18,5 +18,7 @@ data class Message(
         const val SEND_SUCCESS = 0
         const val RECEIVED = 1
         const val SEEN = 2
+
+        const val TYPE_TEXT = "text"
     }
 }

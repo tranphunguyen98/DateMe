@@ -9,6 +9,7 @@ import com.jaygoo.widget.RangeSeekBar
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import phu.nguyen.dateme.R
+import phu.nguyen.dateme.data.chat.model.Chat
 import phu.nguyen.dateme.data.model.Profile
 import phu.nguyen.dateme.ui.dashboard.ImageProfileAdapter.Companion.NON_BORDER
 
@@ -17,6 +18,33 @@ class BindingAdapter {
         @JvmStatic
         @BindingAdapter("loadImage")
         fun loadImageSource(view: ImageView, url: String?) {
+            if(url != null && url.isNotEmpty()) {
+                Picasso.get()
+                    .load(url)
+                    .noFade()
+                    .placeholder(R.drawable.placeholder)
+                    .into(view, object : Callback {
+                        override fun onSuccess() {
+                            view.alpha = 0f
+                            view.animate().setDuration(500).alpha(1f).start()
+                        }
+
+                        override fun onError(e: Exception?) {
+                        }
+
+                    })
+            }
+        }
+
+        @JvmStatic
+        @BindingAdapter("loadImageResult")
+        fun loadImageResult(view: ImageView,result: Result<Chat>?) {
+            var url: String? = null
+
+            if(result is Result.Success) {
+                url = result.data.matchingAvatar
+            }
+
             if(url != null && url.isNotEmpty()) {
                 Picasso.get()
                     .load(url)
